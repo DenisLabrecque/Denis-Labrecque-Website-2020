@@ -1,0 +1,389 @@
+@import "angled-edges.scss";
+
+$cloud-black: rgb(0, 29, 41);
+$aquarina: rgb(0, 153, 157);
+$bay-blue: rgb(0, 154, 200);
+$orangerine: rgb(228, 60, 38);
+$red-pinkerton: rgb(198, 36, 77);
+$padding: 40pt;
+$gradient-red: linear-gradient(to right, $orangerine, $red-pinkerton);
+$breakpoint: 700px;
+$border: 5px;
+$border-thin: 1.5px;
+
+@font-face {
+   font-family: "Work Sans";
+   src: "../static/font/Work_Sans/WorkSans-VariableFont_wght.ttf";
+   font-weight: 125 950;
+   font-stretch: 75% 125%;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: "Work Sans Italic";
+   src: "../static/font/Work_Sans/WorkSans-Italic-VariableFont_wght.ttf";
+   font-weight: 125 950;
+   font-stretch: 75% 125%;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: Arimo;
+   src: "../static/font/Work_Sans/Arimo-Regular.ttf";
+   font-weight: 400;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: Arimo;
+   src: "../static/font/Work_Sans/Arimo-Bold.ttf";
+   font-weight: 700;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: Arimo;
+   src: "../static/font/Work_Sans/Arimo-BoldItalic.ttf";
+   font-weight: 400;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: Arimo;
+   src: "../static/font/Work_Sans/Arimo-Italic.ttf";
+   font-weight: 400;
+   font-style: italic;
+}
+
+:root {
+   font-family: Arimo, sans-serif;
+}
+
+body {
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
+}
+
+header { // title page header
+   font-family: "Work Sans";
+   font-weight: 100;
+   color: $cloud-black;
+
+   h1 {
+      font-family: "Work Sans";
+      font-weight: 800;
+      font-size: 55pt;
+      line-height: 100%;
+      color: $cloud-black;
+      margin-top: 0;
+      margin-bottom: 0;
+   }
+   
+   h1 + p { // subtitle
+      font: {
+         family: Arimo;
+         size: 18pt;
+         weight: normal;
+      }
+      line-height: 18pt;
+      margin-top: 0;
+      margin-bottom: 15pt;
+      color: white;
+   }
+}
+
+header {
+   h2 + p { // section page header
+      font-family: Arimo;
+      font-size: 8pt;
+      line-height: 14.4pt;
+      color: $cloud-black;
+   }
+}
+
+section {
+   h2 {
+      text-align: center;
+      font-weight: 800;
+   }
+}
+
+p, ul, ol, li {
+   font-family: "Arimo Regular";
+   margin-top: 10pt;
+   margin-bottom: 0;
+   font-size: 12pt;
+   line-height: 130%;
+   color: $cloud-black;
+}
+p.hero {
+   font-size: 18pt;
+   margin-top: 0;
+   margin-bottom: 0;
+}
+
+h2 {
+   font-family: "Work Sans Light";
+   font-size: 30pt;
+   line-height: 36pt;
+   color: $cloud-black;
+}
+
+h3 {
+   font-family: "Work Sans";
+   font-weight: 400;
+   font-size: 20pt;
+   line-height: 24pt;
+   color: $cloud-black;
+}
+
+h4 {
+   font-family: Arimo;
+   font-size: 9pt;
+   line-height: 10.8pt;
+   opacity: 0.5;
+}
+
+.margined {
+   padding: $padding;
+}
+@media(min-width: $breakpoint) {
+   .margined {
+      padding: $padding $padding * 2;
+   }
+}
+@media(min-width: $breakpoint * 2) {
+   .margined {
+      padding: $padding $padding * 3;
+   }
+}
+
+div.ignore-columns {
+   column-span: all;
+}
+
+
+a {
+   text-decoration: none;
+   border-bottom: $border solid $bay-blue;
+   color: $cloud-black;
+
+   &:hover {
+      border-bottom: $border solid $aquarina;
+   }
+
+   &:visited {
+      border-bottom: $border solid $aquarina;
+   }
+}
+a.button {
+   border: $border-thin solid $red-pinkerton;
+   border-bottom: $border solid $red-pinkerton;
+   font: {
+      weight: 800;
+      family: "Work Sans";
+      color: white;
+   }
+   padding: $border * 2 $border * 4;
+   margin-right: $border * 2;
+   margin-top: $padding;
+   margin-left: 0;
+   margin-bottom: 0;
+   display: inline-block;
+
+   &:hover {
+      opacity: 0.80;
+      cursor: pointer;
+   }
+   &:active {
+      cursor: wait;
+      opacity: 0.60;
+   }
+   transition: ease all 1s;
+}
+
+a.button.not-animated {
+   opacity: 0;
+}
+a.button.animated {
+   opacity: 1;
+}
+
+.red {
+   background-image: $gradient-red;
+
+   h1, p {
+      color: white;
+   }
+   a.button {
+      color: white;
+      border-color: white;
+   }
+}
+
+@mixin diagonal {
+   display: block;
+   content: "test";
+   height: 75px;
+   background: white;
+   @include angle--both-left-right;
+   opacity: 0.25;
+}
+
+.diagonal-bottom {
+   @include angle--bottom-right;
+
+   &::after {
+      @include diagonal;
+      transition: transform 1s ease;
+   }
+}
+.diagonal-bottom.not-animated {
+   &::after {
+      transform: scaleY(0.5);
+   }
+}
+.diagonal-bottom.animated {
+   &::after {
+      transform: scaleY(1);
+   }
+}
+
+.diagonal-both {
+   @include angle--both-left-right;
+
+   &::before {
+      @include diagonal;
+      transition: transform 1s ease;
+   }
+   &::after {
+      @include diagonal;
+      transition: transform 1s ease;
+   }
+}
+.diagonal-both.not-animated {
+   &::before {
+      transform: translateY(-20px);
+   }
+   &::after {
+      transform: translateY(20px);
+   }
+}
+.diagonal-both.animated {
+   &::before {
+      transform: translateY(0);
+   }
+   &::after {
+      transform: translateY(0);
+   }
+}
+
+.diagonal-top {
+   @include angle--top-left;
+
+   &::before {
+      @include diagonal;
+      transition: transform 1s ease;
+   }
+}
+.diagonal-top.not-animated {
+   &::before {
+      transform: translateY(0);
+   }
+}
+.diagonal-top.animated {
+   &::before {
+      transform: translateY(50px);
+   }
+}
+
+blockquote {
+   margin-left: 0;
+   margin-right: 0;
+
+   cite {
+      display: block;
+      text-align: right;
+
+      &:before {
+         content: "—";
+      }
+   }
+}
+
+.two-column {
+   column: {
+      count: 2;
+      gap: $padding;
+   }
+}
+@media(max-width: $breakpoint) {
+   .two-column {
+      column: {
+         count: 1;
+      }
+   }
+}
+
+footer {
+   background: $cloud-black;
+   padding: 0 0;
+   h2, h3, p, ul, ol, small {
+      color: white;
+   }
+   h3 {
+      font-size: 14pt;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      margin-top: 0;
+   }
+   ul {
+      margin: 0 0;
+      padding-left: 0;
+   }
+   li {
+      list-style-type: none;
+   }
+   
+   a {
+      color: white;
+      border-bottom: none;
+
+      &:active {
+         border-bottom: none;
+      }
+   }
+}
+.grid-3 {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 30%));
+   grid-gap: 1rem;
+}
+@media(max-width: $breakpoint) {
+   .grid-3 {
+      display: block;
+   }
+   .grid-item {
+      margin-top: $padding;
+      &:first-of-type {
+         margin-top: 0;
+      }
+   }
+}
+small {
+   display: block;
+   font-size: 8pt;
+   text-align: center;
+   margin-top: $padding;
+}
+
+.card {
+   width: 300px;
+   padding-right: 20pt;
+
+}
+
+img {
+   width: auto;
+   max-width: 100%;
+}

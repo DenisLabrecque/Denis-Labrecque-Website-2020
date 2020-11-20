@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<style>
+   .denis-background {
+      background-image: url("../assets/img/DenisTransparentBackground.png");
+   }
+</style>
+<script href="{{ resources.Get `js/scroll-animation.js` }}"></script>
+<script>
+// This script allows adding an animation class to an HTML element. The class describes when the top, middle,
+// or bottom of an element goes across the top, middle, or bottom of the window. Once that happens, the
+// ANIMATION_CLASS is added to (or removed from) the element that crossed the screen. The animation must then
+// be handled in CSS.
+//
+// Denis Labrecque
+// September 2019, November 2020
+
+// The classes to use to animate an object. The first vertical alignment is the one used by the screen; the
+// second vertical alignment is the one used for the element: "middle-top" means that the ANIMATION_CLASS gets
+// added when the middle of the screen goes past the top of an element.
+const TOP_TOP       = ".anim-top-top"
+const TOP_MIDDLE    = ".anim-top-middle"
+const TOP_BOTTOM    = ".anim-top-bottom"
+const MIDDLE_TOP    = ".anim-middle-top"
+const MIDDLE_MIDDLE = ".anim-middle-middle"
+const MIDDLE_BOTTOM = ".anim-middle-bottom"
+const BOTTOM_TOP    = ".anim-bottom-top"
+const BOTTOM_MIDDLE = ".anim-bottom-middle"
+const BOTTOM_BOTTOM = ".anim-bottom-bottom"
+
+// The class that gets added after the animation gets hit
+const ANIMATION_CLASS = "animated";
+const NOT_ANIMATED_CLASS = "not-animated";
+
+document.querySelectorAll(TOP_TOP).forEach(element => element.classList.add(NOT_ANIMATED_CLASS))
+
+window.addEventListener('scroll', (event) => {
+   let screenTop = window.pageYOffset
+   let screenMiddle = window.pageYOffset + window.outerHeight * 0.5
+   let screenBottom = window.pageYOffset + window.outerHeight
+
+   document.querySelectorAll(TOP_TOP).forEach(element => {
+      let elementTop = element.getBoundingClientRect().top
+      animateElement(element, screenTop, elementTop);
+   })
+});
+
+// Compare window and element height from top to add or remove the animation class
+function animateElement(element, windowHeight, elementHeight) {
+   if (windowHeight > elementHeight) {
+      element.classList.add(ANIMATION_CLASS)
+      element.classList.remove(NOT_ANIMATED_CLASS)
+   }
+   else {
+      element.classList.add(NOT_ANIMATED_CLASS)
+      element.classList.remove(ANIMATION_CLASS)
+   }
+}
+</script>
+
+{{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $sass.Permalink }}" />
+
+<section class="red diagonal-bottom denis-background">
+   <div class="margined">
+      <header>
+         <h1>Denis Labrecque</h1>
+         <p>Programming and graphics</p>
+      </header>
+      <p>Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer.</p>
+      <a class="button anim-top-bottom">Online Résumé</a>
+   </div>
+</section>
+
+<section class="anim-top-top">
+   <div class="margined">
+      <h2>Programming Projects</h2>
+      <a class="card">
+         <img src="{{ ref `/assets/Scale_Air_Apparel.jpg` }}" />
+         <h3>Test</h3>
+         <p>Description</p>
+      </a>
+      <a class="card">
+         <img src="/assets/Scale_Air_Apparel.jpg" />
+         <h3>Warglobe Game</h3>
+         <p>Description</p>
+      </a>
+   </div>
+</section>
+
+<section class="red diagonal-both anim-top-top">
+   <div class="two-column margined">
+      <p class="hero">Need some help programming an app?</p>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+      <p>Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+      <div class="ignore-columns">
+         <a class="button anim-top-top">Contact Denis</a>
+      </div>
+   </div>
+</section>
+
+<section>
+   <div class="margined">
+      <blockquote>
+         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+         <cite>Some Person</cite>
+      </blockquote>
+   </div>
+</section>
+
+<section>
+   <div class="margined">
+      <h2>Graphics Projects</h2>
+      <a class="card">
+         <img src="img/Asian_Garden.jpg" />
+         <h3>Asian Garden</h3>
+         <p>Description</p>
+      </a>
+      <a class="card">
+         <img src="img/Scale_Air_Apparel.jpg" />
+         <h3>Scale Air Apparel</h3>
+         <p>Description</p>
+      </a>
+   <div>
+</section>
+
+<section class="red diagonal-both anim-top-top">
+   <div class="two-column margined">
+      <div class="ignore-columns">
+         <p class="hero">Need help with graphics?</p>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+      <p>Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+      <div class="ignore-columns">
+         <a class="button anim-top-top">Contact Denis</a>
+      </div>
+   </div>
+</section>
+
+<section>
+   <div class="margined">
+      <blockquote>
+         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+         <cite>Some Person</cite>
+      </blockquote>
+   </div>
+</section>
+
+<footer class="diagonal-top anim-top-top">
+   <div class="margined">
+      <nav class="grid-3">
+         <div class="grid-item">
+            <h3>Network</h3>
+            <ul>
+               <li><a href="https://www.linkedin.com/in/denisglabrecque/">LinkedIn</a></li>
+               <li><a href="https://www.youtube.com/channel/UCw3D6IUqE0sQk_ULQEJJkhw">YouTube</a></li>
+               <li><a href="https://www.facebook.com/DenisGLabrecque/">Facebook</a></li>
+            </ul>
+         </div>
+         <div class="grid-item">
+            <h3>Navigation</h3>
+            <ul>
+               <li><a href="posts/">All Articles</a></li>
+               <li><a href="posts/programming/">Programming</a></li>
+               <li><a href="posts/graphics/">Graphics</a></li>
+            </ul>
+         </div>
+         <div class="grid-item">
+            <h3>Information</h3>
+            <ul>
+               <li><a href="about.html">About</a></li>
+               <li><a href="resume.html">Résumé</a></li>
+               <li><a>Français</a></li>
+            </ul>
+         </div>
+      </nav>
+
+      <small>Denis Labrecque © {{ now.Format "2006" }}</small>
+   </div>
+</footer>
