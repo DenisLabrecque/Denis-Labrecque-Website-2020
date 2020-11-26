@@ -1,0 +1,41 @@
+{{ range (where .Site.Pages "Section" "programming") }}
+{{ range.Pages }}
+   <a class="card" href="{{ .RelPermalink }}">
+      {{ $img := resources.GetMatch .Params.image }}
+      
+      {{ $x_400 := $img }}
+      {{ if and (ge $img.Width "400") (ge $img.Height "300") }}
+         {{ $x_400 := $img.Fill "400x300 Smart" }}
+      {{ end }}
+
+      {{ $x_800 := $img }}
+      {{ if and (ge $img.Width "800") (ge $img.Height "600" )}}
+         {{ $x_800 := $img.Fill "800x600 Smart" }}
+      {{ end }}
+
+      {{ $x_1440 := $img }}
+      {{ if and (ge $img.Width "1440") (ge $img.Height "1080") }}
+         {{ $x_1440 := $img.Fill "1440x1080 Smart" }}
+      {{ end }}
+
+      {{ $x_2560 := $img }}
+      {{ if and (ge $img.Width "2560") (ge $img.Height "1920") }}
+         {{ $x_2560 := $img.Fill "2560x1920 smart" }}
+      {{ end }}
+
+      <img src="{{$img.RelPermalink}}"
+           srcset="{{$x_400.RelPermalink}} 400w, {{$x_800.RelPermalink}} 800w, {{$x_1440.RelPermalink}} 1440w, {{$x_2560.RelPermalink}} 2560w"
+           alt="{{ $img.RelPermalink }}" />
+      <h3>{{ .Title }}</h3>
+      <p>{{ .Summary }}</p>
+      <em>{{ with $img.Exif }}
+            {{ range $k, $v := .Tags }}
+            <br /><strong>{{ $k }}</strong> {{ $v }}
+            {{ end }}
+            {{ else }}
+               <em>No exif</em>
+           {{ end }}</em>
+      <p>{{ $img.Params }}</p>
+   </a>
+{{ end }}
+{{ end }}
