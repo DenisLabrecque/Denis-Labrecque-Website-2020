@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+	<meta name="generator" content="Hugo 0.78.2" />
    <link rel="icon" href="icon.png" />
 </head>
 <style>
@@ -7,19 +8,19 @@
       background-image: url("../assets/img/DenisTransparentBackground.png");
    }
 </style>
-<script href="{{ resources.Get `js/scroll-animation.js` }}"></script>
+<script href="js/scroll-animation.js"></script>
 <script>
-// This script allows adding an animation class to an HTML element. The class describes when the top, middle,
-// or bottom of an element goes across the top, middle, or bottom of the window. Once that happens, the
-// ANIMATION_CLASS is added to (or removed from) the element that crossed the screen. The animation must then
-// be handled in CSS.
-//
-// Denis Labrecque
-// September 2019, November 2020
 
-// The classes to use to animate an object. The first vertical alignment is the one used by the screen; the
-// second vertical alignment is the one used for the element: "middle-top" means that the ANIMATION_CLASS gets
-// added when the middle of the screen goes past the top of an element.
+
+
+
+
+
+
+
+
+
+
 const TOP_TOP       = ".anim-top-top"
 const TOP_MIDDLE    = ".anim-top-middle"
 const TOP_BOTTOM    = ".anim-top-bottom"
@@ -30,7 +31,7 @@ const BOTTOM_TOP    = ".anim-bottom-top"
 const BOTTOM_MIDDLE = ".anim-bottom-middle"
 const BOTTOM_BOTTOM = ".anim-bottom-bottom"
 
-// The class that gets added after the animation gets hit
+
 const ANIMATION_CLASS = "animated";
 const NOT_ANIMATED_CLASS = "not-animated";
 
@@ -46,7 +47,7 @@ window.addEventListener('scroll', (event) => {
    })
 });
 
-// Compare window and element height from top to add or remove the animation class
+
 function animateElement(element, windowY) {
 
    if(element == null || element == "" || element == undefined)
@@ -66,8 +67,8 @@ function animateElement(element, windowY) {
 }
 </script>
 
-{{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-<link rel="stylesheet" href="{{ $sass.Permalink }}" />
+
+<link rel="stylesheet" href="http://denislabrecque.ca/sass/dgl.min.8d9483450e8b60476cb38ac9de0a07877ddad4c115b554f8380126f8d1fc7321.css" />
 
 <section class="red diagonal-bottom denis-background">
    <div class="margined">
@@ -84,24 +85,41 @@ function animateElement(element, windowY) {
    <div class="margined">
       <h2>Programming Projects</h2>
       <div class="card-grid">
-         {{ range (where .Site.Pages "Section" "programming") }}
-            {{ range.Pages }}
-               <a class="card" href="{{ .RelPermalink }}">
-                  {{ $img := resources.GetMatch .Params.image }}
+         
+            
+               <a class="card" href="/programming/receptus-application/">
                   
-                  {{ $x_400 := $img.Fill "400x300 smart" }}
-                  {{ $x_800 := $img.Fill "800x600 smart" }}
-                  {{ $x_1440 := $img.Fill "1440x1080 smart" }}
-                  {{ $x_2560 := $img.Fill "2560x1920 smart" }}
+                  
+                  
+                  
+                  
 
-                  <img src="{{$img.RelPermalink}}"
-                       srcset="{{$x_400.RelPermalink}} 400w, {{$x_800.RelPermalink}} 800w, {{$x_1440.RelPermalink}} 1440w, {{$x_2560.RelPermalink}} 2560w"
-                       alt="{{ $img.RelPermalink }}" />
-                  <h3>{{ .Title }}</h3>
-                  <p>{{ .Summary }}</p>
+                  <img src="/Receptus.jpg"
+                       srcset="/Receptus_hu0dfcd7e0b7bbcf65a11828bb2130fe9e_668873_400x300_fill_q75_box_smart1.jpg 400w, /Receptus_hu0dfcd7e0b7bbcf65a11828bb2130fe9e_668873_800x600_fill_q75_box_smart1.jpg 800w, /Receptus_hu0dfcd7e0b7bbcf65a11828bb2130fe9e_668873_1440x1080_fill_q75_box_smart1.jpg 1440w, /Receptus_hu0dfcd7e0b7bbcf65a11828bb2130fe9e_668873_2560x1920_fill_q75_box_smart1.jpg 2560w"
+                       alt="/Receptus.jpg" />
+                  <h3>Receptus Application</h3>
+                  <p>A fast, offline Bible browser that allows easy reading and search. Includes the King James Version, Young&rsquo;s Literal Translation, Louis Segond, and French Darby translations of the Bible.</p>
                </a>
-            {{ end }}
-         {{ end }}
+            
+               <a class="card" href="/programming/warglobe-game/">
+                  
+                  
+                  
+                  
+                  
+
+                  <img src="/Warglobe_Ship_Preview.jpg"
+                       srcset="/Warglobe_Ship_Preview_hu96661ac953ada4f115312a8627769d2a_202221_400x300_fill_q75_box_smart1.jpg 400w, /Warglobe_Ship_Preview_hu96661ac953ada4f115312a8627769d2a_202221_800x600_fill_q75_box_smart1.jpg 800w, /Warglobe_Ship_Preview_hu96661ac953ada4f115312a8627769d2a_202221_1440x1080_fill_q75_box_smart1.jpg 1440w, /Warglobe_Ship_Preview_hu96661ac953ada4f115312a8627769d2a_202221_2560x1920_fill_q75_box_smart1.jpg 2560w"
+                       alt="/Warglobe_Ship_Preview.jpg" />
+                  <h3>Warglobe Game</h3>
+                  <p>Eventually, Warglobe is to become an independently developed, free-to-play game with online combat in ships, airplanes, and vehicles. If possible, players will command groups of vehicles as well as drive them, combining the action and speed of a first-person shooter with the tactics of a real-time strategy game. Nevertheless, this depends on all previous phases (prototype, mission-based, and online multiplayer) being completed first.</p>
+               </a>
+            
+         
+            
+         
+            
+         
       </div>
    </div>
 </section>
@@ -130,23 +148,41 @@ function animateElement(element, windowY) {
    <div class="margined">
       <h2>Graphics Projects</h2>
       <div class="card-grid">
-         {{ range (where .Site.Pages "Section" "graphics") }}
-            {{ range.Pages }}
-               <a class="card" href="{{ .RelPermalink }}">
-                  {{ $img := resources.GetMatch .Params.image }}
-                  {{ $x_400 := $img.Fill "400x300" }}
-                  {{ $x_800 := $img.Fill "800x600" }}
-                  {{ $x_1440 := $img.Fill "1440x1080" }}
-                  {{ $x_2560 := $img.Fill "2560x1920" }}
+         
+            
+               <a class="card" href="/graphics/scale-air-apparel/">
+                  
+                  
+                  
+                  
+                  
 
                   <img 
-                       srcset="{{$x_400.RelPermalink}} 400w, {{$x_800.RelPermalink}} 800w, {{$x_1440.RelPermalink}} 1440w, {{$x_2560.RelPermalink}} 2560w"
-                       alt="{{ $img.RelPermalink }}" />
-                  <h3>{{ .Title }}</h3>
-                  <p>{{ .Summary }}</p>
+                       srcset="/Scale_Air_Apparel_huebbfad1edfa8e198fe68a27ac6a615ca_640028_400x300_fill_q75_box_smart1.jpg 400w, /Scale_Air_Apparel_huebbfad1edfa8e198fe68a27ac6a615ca_640028_800x600_fill_q75_box_smart1.jpg 800w, /Scale_Air_Apparel_huebbfad1edfa8e198fe68a27ac6a615ca_640028_1440x1080_fill_q75_box_smart1.jpg 1440w, /Scale_Air_Apparel_huebbfad1edfa8e198fe68a27ac6a615ca_640028_2560x1920_fill_q75_box_smart1.jpg 2560w"
+                       alt="/Scale_Air_Apparel.jpg" />
+                  <h3>Scale Air Apparel</h3>
+                  <p>This apparel was created and branded for the Ad Design campaign of Scale Air, a model airplane show in Montreal. It is designed to be sold as a fundraiser at the event. It was first sketched out on paper, then made in Illustrator and mocked up in Photoshop.</p>
                </a>
-            {{ end }}
-         {{ end }}
+            
+               <a class="card" href="/graphics/asian-garden/">
+                  
+                  
+                  
+                  
+                  
+
+                  <img 
+                       srcset="/Asian_Garden_hudc9ade1e8ce6668d2577f02af385fffa_948122_400x300_fill_q75_box_smart1.jpg 400w, /Asian_Garden_hudc9ade1e8ce6668d2577f02af385fffa_948122_800x600_fill_q75_box_smart1.jpg 800w, /Asian_Garden_hudc9ade1e8ce6668d2577f02af385fffa_948122_1440x1080_fill_q75_box_smart1.jpg 1440w, /Asian_Garden_hudc9ade1e8ce6668d2577f02af385fffa_948122_2560x1920_fill_q75_box_smart1.jpg 2560w"
+                       alt="/Asian_Garden.jpg" />
+                  <h3>Asian Garden</h3>
+                  <p>I created this scene to challenge myself to represent nature. It taught me how to use software light, and how to texture natural elements like water to make a good-looking render. An asset software called Bridge helped speed the composition process, and the image was rendered from Blender.</p>
+               </a>
+            
+         
+            
+         
+            
+         
       </div>
    <div>
 </section>
@@ -202,6 +238,6 @@ function animateElement(element, windowY) {
          </div>
       </nav>
 
-      <small>Denis Labrecque © {{ now.Format "2006" }}</small>
+      <small>Denis Labrecque © 2020</small>
    </div>
 </footer>
