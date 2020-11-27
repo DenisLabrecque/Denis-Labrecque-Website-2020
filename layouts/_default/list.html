@@ -1,12 +1,9 @@
-<body>
-   {{ define "main" }}
-   {{ range .Pages }}
-   <div>
-      <div>{{ dateFormat "Monday, Jan 2, 2006" .Date }}</div>
-      <div>{{ if .Params.tags }}<strong>Tags</strong>{{ end }}</div>
-      <div>{{ if .Params.categories }}<strong>Categories</strong>{{ end }}</div>
-      <div>{{ .Summary }}</div>
-   </div>
-   {{ end }}
-   {{ end }}
-</body>
+{{ define "main" }}
+  <h1>Posts</h1>
+  {{ range .Pages }}
+    <article>
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+    </article>
+  {{ end }}
+{{ end }}

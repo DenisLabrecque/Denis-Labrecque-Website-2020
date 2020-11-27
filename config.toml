@@ -2,3 +2,5 @@ baseURL = "http://denislabrecque.ca/"
 languageCode = "en-us"
 title = "Denis Labrecque"
 assetDir = "/assets"
+[markup.goldmark.renderer]
+unsafe= true

@@ -110,8 +110,8 @@ section {
 
 p, ul, ol, li {
    font-family: "Arimo Regular";
-   margin-top: 10pt;
-   margin-bottom: 0;
+   margin-top: 0;
+   margin-bottom: $padding;
    font-size: 12pt;
    line-height: 130%;
    color: $cloud-black;

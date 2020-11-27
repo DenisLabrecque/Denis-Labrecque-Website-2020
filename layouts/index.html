@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <head>
    <link rel="icon" href="icon.png" />
+   {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+   <link rel="stylesheet" href="{{ $sass.Permalink }}" />
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<style>
-   .denis-background {
-      background-image: url("../assets/img/DenisTransparentBackground.png");
-   }
-</style>
 <script href="{{ resources.Get `js/scroll-animation.js` }}"></script>
 <script>
 // This script allows adding an animation class to an HTML element. The class describes when the top, middle,
@@ -66,9 +64,6 @@ function animateElement(element, windowY) {
 }
 </script>
 
-{{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-<link rel="stylesheet" href="{{ $sass.Permalink }}" />
-
 <section class="red diagonal-bottom denis-background">
    <div class="margined">
       <header>
@@ -76,7 +71,7 @@ function animateElement(element, windowY) {
          <p>Programming and graphics</p>
       </header>
       <p>Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer.</p>
-      <a class="button anim-top-bottom">Online Résumé</a>
+      <a class="button anim-top-bottom" href="resume">Résumé</a>
    </div>
 </section>
 
@@ -140,35 +135,4 @@ function animateElement(element, windowY) {
    </div>
 </section>
 
-<footer class="diagonal-top anim-top-top">
-   <div class="margined">
-      <nav class="grid-3">
-         <div class="grid-item">
-            <h3>Network</h3>
-            <ul>
-               <li><a href="https://www.linkedin.com/in/denisglabrecque/">LinkedIn</a></li>
-               <li><a href="https://www.youtube.com/channel/UCw3D6IUqE0sQk_ULQEJJkhw">YouTube</a></li>
-               <li><a href="https://www.facebook.com/DenisGLabrecque/">Facebook</a></li>
-            </ul>
-         </div>
-         <div class="grid-item">
-            <h3>Navigation</h3>
-            <ul>
-               <li><a href="posts/">All Articles</a></li>
-               <li><a href="posts/programming/">Programming</a></li>
-               <li><a href="posts/graphics/">Graphics</a></li>
-            </ul>
-         </div>
-         <div class="grid-item">
-            <h3>Information</h3>
-            <ul>
-               <li><a href="about.html">About</a></li>
-               <li><a href="resume.html">Résumé</a></li>
-               <li><a>Français</a></li>
-            </ul>
-         </div>
-      </nav>
-
-      <small>Denis Labrecque © {{ now.Format "2006" }}</small>
-   </div>
-</footer>
+{{ partial "footer" . }}

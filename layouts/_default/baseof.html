@@ -1,12 +1,24 @@
+
+<!DOCTYPE html>
 <html>
-<head></head>
-<body>
-   {{ block "main" . }}
+  <head>
+    <meta charset="utf-8">
+    <title>{{ block "title" . }}
+      <!-- Blocks may include default content. -->
+      {{ .Site.Title }}
+    {{ end }}</title>
 
-   {{ end }}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   {{ block "footer" . }}
-
-   {{ end }}
-</body>
+    <link rel="icon" href="icon.png" />
+    {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{$sass.Permalink}}" />
+  </head>
+  <body>
+    <!-- Code that all your templates share, like a header -->
+    {{ block "main" . }}
+      <!-- The part of the page that begins to differ between templates -->
+    {{ end }}
+    {{ partial "footer" . }}
+  </body>
 </html>
