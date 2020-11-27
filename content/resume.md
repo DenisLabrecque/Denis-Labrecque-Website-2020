@@ -1,24 +1,18 @@
 ---
 title: "Résumé"
+subtitle: "Denis Labrecque"
+headline: "Student graduating with degrees in graphic design and information technology, having practical experience in both design and programming."
 date: 2020-11-26T21:51:14-06:00
 draft: false
 author: "Denis Labrecque"
 ---
-<section class="red diagonal-bottom">
-    <div class="margined">
-        <header>
-            <h1>Résumé</h1>
-        </header>
-    </div>
-</section>
-
 <section>
     <div class="margined">
         <h2>Education</h2>
         <h3>B.S. in Computing: Information Technology
-        <br />B.S. in Visual Arts: Graphic Design<h3>
+        <br />B.S. in Visual Arts: Graphic Design</h3>
         <em>Pensacola Christian College, Florida</em>
-        <strong>August 2015—December 2020 (December graduate); gpa 3.6/4.0</strong>
+        <strong>August 2015—December 2020 (December graduate); GPA 3.6/4.0</strong>
         <p>Lead a small team of designers to create a student publication, following business requirements.</p>
         <p>Helped lead seven team members to code an online testing software in Oracle and ASP.NET, using effective communication to put the project back on track and deliver on time.</p>
     </div>
@@ -26,22 +20,23 @@ author: "Denis Labrecque"
 
 <section>
     <div class="margined">
-        <h2>Web Developer</h2>
+        <h2>Work Experience</h2>
+        <h3>Web Developer</h3>
         <strong>2019, 2020 (seasonal)</strong>
         <p>Maintained Abeka.com, which serves 3.5 million customers every year with homeschool materials. Worked together with a dozen teammates in JavaScript, ASP.NET, and NAV/MSSQL in version control. Learned the customer interaction process through on-the-job training and observation.</p>
         <p>Twice updated four college-related websites to the newest, most secure version of jQuery.</p>
         <p>Authored and suggested guidelines for the team to follow, improving code readability. Refactored critical code to be testable in xUnit, resolving important technical debt issues.</p>
-        <h2>Web and Graphic Designer</h2>
+        <h3>Web and Graphic Designer</h3>
         <em>Studio Grafik, Sorel-Tracy, Québec</em>
         <strong>2018 (summer work)</strong>
         <p>Created and maintained business websites in WordPress and HTML/CSS/PHP by remaining in touch with clients and helping them advertise.</p>
         <p>Beautified the business’ magazine by redesigning the layout using InDesign.</p>
-        <h2>Graphic Design Intern</h2>
+        <h3>Graphic Design Intern</h3>
         <em>Liberty Baptist Church, Las Vegas, Nevada</em>
         <strong>2018 (three-week internship)</strong>
         <p>Helped replace the media director during his transition period.</p>
         <p>Designed 115,000 post cards so that planned distribution could occur throughout the city.</p>
-        <h2>Order Picker</h2>
+        <h3>Order Picker</h3>
         <em>Colabor, Boucherville, Québec</em>
         <strong>2016, 2017 (summer work)</strong>
     </div>

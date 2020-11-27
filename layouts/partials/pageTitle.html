@@ -1,0 +1,21 @@
+
+{{/* Represents a page title heading. Has a required title, subtitle, and headline. An optional CTA link and title can be used. */}}
+{{/* title */}}
+{{/* subtitle */}}
+{{/* headline */}}
+{{/* ctaTitle */}}
+{{/* ctaLink */}}
+<section class="red diagonal-bottom denis-background">
+    <div class="margined">
+       <header>
+          <h1>{{ .title }}</h1>
+          <p>{{ .subtitle }}</p>
+       </header>
+       {{ if .headline }}
+       <p>{{ .headline }}</p>
+       {{ end }}
+       {{ if .ctaLink }}
+       <a class="button anim-top-bottom" href="{{ .ctaLink }}">{{ .ctaTitle }}</a>
+       {{ end }}
+    </div>
+ </section>

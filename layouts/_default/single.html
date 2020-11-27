@@ -2,5 +2,6 @@
   {{ .Title }} &mdash; {{ .Site.Title }}
 {{ end }}
 {{ define "main" }}
+{{ partial "pageTitle" (dict "context" . "title" .Title "subtitle" .Params.subtitle "headline" .Params.headline "ctaTitle" .Params.ctaTitle "ctaLink" .Params.ctaLink )}}
   {{ .Content }}
 {{ end }}

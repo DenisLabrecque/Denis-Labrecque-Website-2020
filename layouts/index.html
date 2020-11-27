@@ -64,16 +64,7 @@ function animateElement(element, windowY) {
 }
 </script>
 
-<section class="red diagonal-bottom denis-background">
-   <div class="margined">
-      <header>
-         <h1>Denis Labrecque</h1>
-         <p>Programming and graphics</p>
-      </header>
-      <p>Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer.</p>
-      <a class="button anim-top-bottom" href="resume">Résumé</a>
-   </div>
-</section>
+{{ partial "pageTitle" (dict "context" . "title" "Denis Labrecque" "subtitle" "Programming and graphics" "headline" "Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer." "ctaTitle" "Résumé" "ctaLink" "resume")}}
 
 <section class="anim-top-top">
    <div class="margined">
