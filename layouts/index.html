@@ -6,67 +6,11 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <script href="{{ resources.Get `js/scroll-animation.js` }}"></script>
-<script>
-// This script allows adding an animation class to an HTML element. The class describes when the top, middle,
-// or bottom of an element goes across the top, middle, or bottom of the window. Once that happens, the
-// ANIMATION_CLASS is added to (or removed from) the element that crossed the screen. The animation must then
-// be handled in CSS.
-//
-// Denis Labrecque
-// September 2019, November 2020
 
-// The classes to use to animate an object. The first vertical alignment is the one used by the screen; the
-// second vertical alignment is the one used for the element: "middle-top" means that the ANIMATION_CLASS gets
-// added when the middle of the screen goes past the top of an element.
-const TOP_TOP       = ".anim-top-top"
-const TOP_MIDDLE    = ".anim-top-middle"
-const TOP_BOTTOM    = ".anim-top-bottom"
-const MIDDLE_TOP    = ".anim-middle-top"
-const MIDDLE_MIDDLE = ".anim-middle-middle"
-const MIDDLE_BOTTOM = ".anim-middle-bottom"
-const BOTTOM_TOP    = ".anim-bottom-top"
-const BOTTOM_MIDDLE = ".anim-bottom-middle"
-const BOTTOM_BOTTOM = ".anim-bottom-bottom"
-
-// The class that gets added after the animation gets hit
-const ANIMATION_CLASS = "animated";
-const NOT_ANIMATED_CLASS = "not-animated";
-
-document.querySelectorAll(".anim-top-top").forEach(element => element.classList.add(NOT_ANIMATED_CLASS))
-
-window.addEventListener('scroll', (event) => {
-   let windowYTop = 0
-   let windowYMiddle = window.outerHeight * 0.5
-   let windowYBottom = window.outerHeight
-
-   document.querySelectorAll(TOP_TOP).forEach(element => {
-      animateElement(element, windowYTop);
-   })
-});
-
-// Compare window and element height from top to add or remove the animation class
-function animateElement(element, windowY) {
-
-   if(element == null || element == "" || element == undefined)
-      return;
-
-   let elementY = element.getBoundingClientRect().top
-   console.log("element " + element + "; windowY " + windowY + "; elementY " + elementY + " both <= 0 " + elementY + windowY);
-
-   if (elementY + windowY <= 0) {
-      element.classList.add(ANIMATION_CLASS)
-      element.classList.remove(NOT_ANIMATED_CLASS)
-   }
-   else {
-      element.classList.add(NOT_ANIMATED_CLASS)
-      element.classList.remove(ANIMATION_CLASS)
-   }
-}
-</script>
 
 {{ partial "pageTitle" (dict "context" . "title" "Denis Labrecque" "subtitle" "Programming and graphics" "headline" "Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer." "ctaTitle" "Résumé" "ctaLink" "resume")}}
 
-<section class="anim-top-top">
+<section data-anim="bottom bottom">
    <div class="margined">
       <h2>Programming Projects</h2>
       <div class="card-grid">
@@ -75,7 +19,7 @@ function animateElement(element, windowY) {
    </div>
 </section>
 
-<section class="red diagonal-both anim-top-top">
+<section class="red diagonal-both">
    <div class="two-column margined">
       <p class="hero">Need some help programming an app?</p>
       <p>Denis has personal experience making websites and apps. For example, he has published Minesweeper Basic and Receptus, and is currently working on Warglobe, a video game.</p>
@@ -129,3 +73,77 @@ function animateElement(element, windowY) {
 </section>
 
 {{ partial "footer" . }}
+
+
+<script >
+   // This script allows adding an animation class to an HTML element. The class describes when the top, middle,
+   // or bottom of an element goes across the top, middle, or bottom of the window. Once that happens, the
+   // ANIMATION_CLASS is added to (or removed from) the element that crossed the screen. The animation must then
+   // be handled in CSS.
+   //
+   // Denis Labrecque
+   // September 2019, November 2020
+      
+   // The class that gets added after the animation gets hit
+   const AnimatedClass = "animated";
+   const NotAnimatedClass = "not-animated";
+   
+   // Mark all elements with the animation attribute as not animated
+   const Elements = document.querySelectorAll("[data-anim]")
+   Elements.forEach(e => {
+      e.classList.add(NotAnimatedClass)
+   })
+   
+   // Listen to window scroll and add the animated class if necessary
+   window.addEventListener('scroll', (event) => {
+      Elements.forEach(element => {
+         animateElement(element);
+      })
+   });
+   
+   // Compare window and element height from top to add or remove the animation class
+   function animateElement(element) {
+   
+      if(element == null || element == "" || element == undefined)
+         return;
+   
+      let positions = element.getAttribute("data-anim").split(" ")
+
+      let windowY = findWindowY(positions[0]);
+      let elementY = findElementY(element, positions[1]);
+      console.log("elementY: " + elementY + ", windowY " + windowY + " <= 0 ?: " + (elementY + windowY <= 0))
+
+      if (elementY + windowY <= 0) {
+         element.classList.add(AnimatedClass)
+         element.classList.remove(NotAnimatedClass)
+      }
+      else {
+         element.classList.add(NotAnimatedClass)
+         element.classList.remove(AnimatedClass)
+      }
+   }
+
+   // Find an element's position on screen based on keywords "top", "middle", and "bottom"
+   function findElementY(element, position) {
+      switch(position) {
+         case "top":
+            return element.getBoundingClientRect().top
+         case "middle":
+            return element.getBoundingClientRect().top + (element.getBoundingClientRect().height / 2)
+         case "bottom":
+            return element.getBoundingClientRect().bottom
+      }
+   }
+
+   // Find the window's position on screen based on keywords "top", "middle, and "bottom"
+   function findWindowY(position) {
+      switch(position) {
+         case "top":
+            return 0
+         case "middle":
+            return window.outerHeight / 2
+         case "bottom":
+            return window.outerHeight
+      }
+   }
+   </script>
