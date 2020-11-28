@@ -1,4 +1,5 @@
 @import "angled-edges.scss";
+@import "animations.scss";
 
 $cloud-black: rgb(0, 29, 41);
 $aquarina: rgb(0, 153, 157);
@@ -111,7 +112,7 @@ section {
 p, ul, ol, li {
    font-family: "Arimo Regular";
    margin-top: 0;
-   margin-bottom: $padding;
+   margin-bottom: 7pt;
    font-size: 12pt;
    line-height: 130%;
    color: $cloud-black;
@@ -119,7 +120,7 @@ p, ul, ol, li {
 p.hero {
    font-size: 18pt;
    margin-top: 0;
-   margin-bottom: 0;
+   margin-bottom: 5pt;
 }
 
 h2 {
@@ -154,7 +155,10 @@ h4 {
 }
 @media(min-width: $breakpoint * 2) {
    .margined {
-      padding: $padding $padding * 3;
+      padding: $padding 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
    }
 }
 
@@ -179,6 +183,7 @@ a {
 a.button {
    border: $border-thin solid $red-pinkerton;
    border-bottom: $border solid $red-pinkerton;
+
    font: {
       weight: 800;
       family: "Work Sans";
@@ -199,14 +204,6 @@ a.button {
       cursor: wait;
       opacity: 0.60;
    }
-   transition: ease all 1s;
-}
-
-a.button.not-animated {
-   opacity: 0;
-}
-a.button.animated {
-   opacity: 1;
 }
 
 .red {
@@ -223,8 +220,8 @@ a.button.animated {
 
 @mixin diagonal {
    display: block;
-   content: "test";
-   height: 75px;
+   content: "";
+   height: calc(4vw + 20px); // As the window gets wider, the 4vw get taller, but the 20px are smaller in comparison to the box's tilt
    background: white;
    @include angle--both-left-right;
    opacity: 0.25;
@@ -235,7 +232,7 @@ a.button.animated {
 
    &::after {
       @include diagonal;
-      transition: transform 1s ease;
+      transition: transform 1s ease-out;
    }
 }
 .diagonal-bottom.not-animated {
@@ -254,11 +251,11 @@ a.button.animated {
 
    &::before {
       @include diagonal;
-      transition: transform 1s ease;
+      transition: transform 1s ease-out;
    }
    &::after {
       @include diagonal;
-      transition: transform 1s ease;
+      transition: transform 1s ease-out;
    }
 }
 .diagonal-both.not-animated {
@@ -384,6 +381,9 @@ small {
    text-align: center;
    margin-top: $padding;
 }
+
+
+
 
 .card {
    width: auto;

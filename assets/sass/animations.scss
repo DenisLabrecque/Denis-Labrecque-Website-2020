@@ -1,0 +1,12 @@
+$distance: 40pt;
+
+.slide-anim {
+    opacity: 0;
+    transform: translateX(-$distance);
+    transition: opacity 1s ease-out;
+    transition: transform 0.7s ease-in-out;
+ }
+ .slide-anim.animated {
+    opacity: 1;
+    transform: translateX(0);
+ }

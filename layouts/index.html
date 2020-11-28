@@ -21,18 +21,18 @@
 
 <section class="red diagonal-both">
    <div class="two-column margined">
-      <p class="hero">Need some help programming an app?</p>
+      <p class="hero">Need help programming an app?</p>
+      <div>
       <p>Denis has personal experience making websites and apps. For example, he has published Minesweeper Basic and Receptus, and is currently working on Warglobe, a video game.</p>
       <p>Whether it is a complex application developed by a team, or a simple app, he can most likely help you on your project.</p>
-      <div class="ignore-columns">
-         <a class="button anim-top-top">Contact Denis</a>
       </div>
+      <a class="button slide-anim" data-anim="bottom top">Contact Denis</a>
    </div>
 </section>
 
 <section>
    <div class="margined">
-      <blockquote>
+      <blockquote class="slide-anim" data-anim="bottom top">
          <p>Denis a is very willing learner and takes on tasks with enthusiasm. He is diligent in his work and always has a positive attitude. I enjoyed working with him, and think he would be an asset to any company.</p>
          <cite>Silas Miller, Web Developer for Abeka</cite>
       </blockquote>
@@ -65,7 +65,7 @@
 
 <section>
    <div class="margined">
-      <blockquote>
+      <blockquote class="slide-anim" data-anim="bottom top">
          <p>[Denis] has distinguished himself with great attention to detail, both suggesting and implementing numerous improvements to our web site. In addition, he has shown great flexibility, willingly assisting with some incredibly “boring” but essential upgrade work to site libraries and structure.</p>
          <cite>Norm Hansen, Abeka Programming Team Leader</cite>
       </blockquote>
@@ -93,12 +93,13 @@
    const Elements = document.querySelectorAll("[data-anim]")
    Elements.forEach(e => {
       e.classList.add(NotAnimatedClass)
+      animateElement(e);
    })
    
    // Listen to window scroll and add the animated class if necessary
    window.addEventListener('scroll', (event) => {
-      Elements.forEach(element => {
-         animateElement(element);
+      Elements.forEach(e => {
+         animateElement(e);
       })
    });
    
@@ -112,7 +113,7 @@
 
       let windowY = findWindowY(positions[0]);
       let elementY = findElementY(element, positions[1]);
-      console.log("elementY: " + elementY + ", windowY " + windowY + " value: " + (elementY - windowY) + " " + (elementY - windowY <= 0))
+      //console.log("elementY: " + elementY + ", windowY " + windowY + " value: " + (elementY - windowY) + " " + (elementY - windowY <= 0))
 
       if (elementY - windowY <= 0) {
          element.classList.add(AnimatedClass)
