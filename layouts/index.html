@@ -19,14 +19,18 @@
    </div>
 </section>
 
-<section class="red diagonal-both">
-   <div class="two-column margined">
-      <p class="hero">Need help programming an app?</p>
-      <div>
-      <p>Denis has personal experience making websites and apps. For example, he has published Minesweeper Basic and Receptus, and is currently working on Warglobe, a video game.</p>
-      <p>Whether it is a complex application developed by a team, or a simple app, he can most likely help you on your project.</p>
+<section class="red diagonal-both" data-anim="bottom top">
+   <div class="two-column margined slide-anim" data-anim="bottom top">
+      <div class="ignore-columns">
+         <p class="hero">Need help programming an app?</p>
       </div>
-      <a class="button slide-anim" data-anim="bottom top">Contact Denis</a>
+      <div>
+         <p>Denis has personal experience making websites and apps. For example, he has published Minesweeper Basic and Receptus, and is currently working on Warglobe, a video game.</p>
+         <p>Whether it is a complex application developed by a team, or a simple app, he can most likely help you on your project.</p>
+      </div>
+      <div class="ignore-columns">
+         <a class="button">Contact Denis</a>
+      </div>
    </div>
 </section>
 
@@ -48,8 +52,8 @@
    <div>
 </section>
 
-<section class="red diagonal-both testinger">
-   <div class="two-column margined">
+<section class="red diagonal-both">
+   <div class="two-column margined slide-anim" data-anim="bottom top">
       <div class="ignore-columns">
          <p class="hero">Need help with graphics?</p>
       </div>
@@ -58,7 +62,7 @@
          <p>Design is not only functional, but also integral to the “pop” that gets you noticed in today's competitive market. See how a purposeful layout can help you reach your target audience.</p>
       </div>
       <div class="ignore-columns">
-         <a class="button anim-top-top">Contact Denis</a>
+         <a class="button">Contact Denis</a>
       </div>
    </div>
 </section>
@@ -93,7 +97,6 @@
    const Elements = document.querySelectorAll("[data-anim]")
    Elements.forEach(e => {
       e.classList.add(NotAnimatedClass)
-      animateElement(e);
    })
    
    // Listen to window scroll and add the animated class if necessary
@@ -114,6 +117,9 @@
       let windowY = findWindowY(positions[0]);
       let elementY = findElementY(element, positions[1]);
       //console.log("elementY: " + elementY + ", windowY " + windowY + " value: " + (elementY - windowY) + " " + (elementY - windowY <= 0))
+
+      if(element.tagName == "A")
+         console.log("windowY " + windowY + " elementY " + elementY);
 
       if (elementY - windowY <= 0) {
          element.classList.add(AnimatedClass)

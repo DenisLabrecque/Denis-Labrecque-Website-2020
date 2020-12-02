@@ -9,10 +9,12 @@ author: "Denis Labrecque"
 <section>
     <div class="margined">
         <h2>Education</h2>
-        <h3>B.S. in Computing: Information Technology
-        <br />B.S. in Visual Arts: Graphic Design</h3>
-        <em>Pensacola Christian College, Florida</em>
-        <strong>August 2015—December 2020 (December graduate); GPA 3.6/4.0</strong>
+        <h3>
+            <em class="side-header">Pensacola Christian College, Florida</em>
+            <div>B.S. in Computing: Information Technology
+            <br />B.S. in Visual Arts: Graphic Design</div>
+        </h3>
+        <p><strong>August 2015—December 2020 (December graduate); GPA 3.6/4.0</strong></p>
         <p>Lead a small team of designers to create a student publication, following business requirements.</p>
         <p>Helped lead seven team members to code an online testing software in Oracle and ASP.NET, using effective communication to put the project back on track and deliver on time.</p>
     </div>
