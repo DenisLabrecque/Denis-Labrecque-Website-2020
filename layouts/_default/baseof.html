@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="{{$sass.Permalink}}" />
   </head>
   <body>
+    <nav class="menu">
+      <ul>
+        <li><img src="/logo.png" /><a href="/">Denis Labrecque</a></li>
+        <li><a href="/programming/">Programming</a></li>
+        <li><a href="/graphics/">Graphics</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
     <!-- Code that all your templates share, like a header -->
     {{ block "main" . }}
       <!-- The part of the page that begins to differ between templates -->

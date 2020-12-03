@@ -144,26 +144,29 @@ h3 {
    line-height: 130%;
    overflow: visible;
 
-   .side-header {
-      font-size: 50%;
-      text-align: right;
-      display: block;
-      float: right;
-      max-width: 50%;
-      margin: 2.8pt;
-      margin-bottom: 0;
-      margin-top: 9pt;
-      line-height: 120%;
-      overflow: visible;
+   .main-header {
+      float: left;
    }
 }
+.side-header {
+   font-size: 12pt;
+   font-family: "Work Sans", sans-serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: right;
+   color: $red-pinkerton;
+   float: right;
+   max-width: 50%;
+   margin: 2pt;
+   margin-bottom: 0;
+   margin-top: 5pt;
+   line-height: 120%;
+   overflow: visible;
+}
 @media(max-width: $breakpoint) {
-   h3 {
-      .side-header {
-         float: unset;
-         display: unset;
-         max-width: unset;
-      }
+   .side-header {
+      display: block;
+      float: none;
    }
 }
 
@@ -382,6 +385,8 @@ footer {
    padding: 0 0;
    h2, h3, p, ul, ol, small {
       color: white;
+      -webkit-text-fill-color: white;
+      background: unset;
    }
    ul {
       margin: 0 0;
@@ -433,6 +438,32 @@ small {
 }
 
 
+
+nav.menu {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100vw;
+   z-index: 1;
+   display: grid;
+
+   a {
+      color: white;
+
+      &::after {
+         background: none;
+      }
+   }
+
+   ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: auto auto auto auto; // TODO
+      grid-column-gap: $padding;
+   }
+}
 
 
 
