@@ -1,5 +1,6 @@
 @import "angled-edges.scss";
 @import "animations.scss";
+@import "menu.scss";
 
 $cloud-black: rgb(0, 29, 41);
 $aquarina: rgb(0, 153, 157);
@@ -8,6 +9,7 @@ $orangerine: rgb(228, 60, 38);
 $red-pinkerton: rgb(198, 36, 77);
 $padding: 40pt;
 $gradient-red: linear-gradient(to right, $orangerine, $red-pinkerton);
+$gradient-blue: linear-gradient(to right, $aquarina, $bay-blue);
 $breakpoint: 700px;
 $border: 5px;
 $border-thin: 1.5px;
@@ -109,7 +111,7 @@ section {
    }
 }
 
-p, ul, ol, li {
+p, ul, ol, li, label, input, textarea {
    font-family: "Arimo Regular";
    margin-top: 0;
    margin-bottom: 7pt;
@@ -202,7 +204,7 @@ div.ignore-columns {
 a {
    text-decoration: none;
 }
-p a, blockquote a, li a, .card h3 {
+p a, blockquote a, li a {
    color: $cloud-black;
    position: relative;
    //border-bottom: $border solid $bay-blue;
@@ -231,17 +233,15 @@ p a, blockquote a, li a, .card h3 {
    }
 }
 a.button {
-   border: $border-thin solid $red-pinkerton;
-   border-bottom: $border solid $red-pinkerton;
-
    font: {
       weight: 800;
       family: "Work Sans";
       color: white;
    }
+   background: $red-pinkerton;
    padding: $border * 2 $border * 4;
    margin-right: $border * 2;
-   margin-top: 0;
+   margin-top: $border * 4;
    margin-left: 0;
    margin-bottom: 0;
    display: inline-block;
@@ -263,8 +263,19 @@ a.button {
       color: white;
    }
    a.button {
+      color: $red-pinkerton;
+      background: white;
+   }
+}
+.blue {
+   background-image: $gradient-blue;
+
+   h1, p {
       color: white;
-      border-color: white;
+   }
+   a.button {
+      color: $aquarina;
+      background: white;
    }
 }
 
@@ -310,7 +321,6 @@ a.button {
 }
 .diagonal-both.not-animated {
    &::before {
-      //$height: convertDegToVW(20);
       transform: translateY(-20px);
    }
    &::after {
@@ -348,17 +358,23 @@ a.button {
 blockquote {
    margin-left: 0;
    margin-right: 0;
+   font-size: 16pt;
+   line-height: 150%;
+   font-style: italic;
+   color: $red-pinkerton;
    
-   p {
-      font-size: 16pt;
-      line-height: 150%;
-      font-style: italic;
-   }
+   // p {
+   //    font-size: 16pt;
+   //    line-height: 150%;
+   //    font-style: italic;
+   // }
 
    cite {
+      color: $cloud-black;
       display: block;
       text-align: right;
       margin-top: 5pt;
+      font-size: 12pt;
 
       &:before {
          content: "—";
@@ -439,34 +455,6 @@ small {
 
 
 
-nav.menu {
-   position: fixed;
-   left: 0;
-   top: 0;
-   width: 100vw;
-   z-index: 1;
-   display: grid;
-
-   a {
-      color: white;
-
-      &::after {
-         background: none;
-      }
-   }
-
-   ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: auto auto auto auto; // TODO
-      grid-column-gap: $padding;
-   }
-}
-
-
-
 .card {
    width: auto;
    border: none;
@@ -476,24 +464,23 @@ a.card {
    padding: 0 0;
    margin: 0 0;
 
+   &:hover {
+      border-bottom: none;
+      opacity: 0.75;
+
+      h3 {
+         text-decoration: underline;
+         color: $orangerine;
+      }
+      p {
+         //text-decoration: underline;
+      }
+   }
+
    h3 {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-   }
-
-   &:hover {
-      border-bottom: none;
-
-      h3 {
-         text-decoration: underline;
-      }
-      p {
-         text-decoration: underline;
-      }
-   }
-
-   h3 {
       font-weight: bold;
       text-align: center;
       margin-bottom: 0;
@@ -501,6 +488,12 @@ a.card {
    }
    h3 ~ p {
       margin-top: 0;
+   }
+   p {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;  
+      overflow: hidden;
    }
    img {
       width: 100%;
@@ -528,5 +521,33 @@ a.card {
 @media(max-width: $breakpoint) {
    .card-grid {
       grid-template-columns: 1fr;
+   }
+}
+
+
+
+label {
+   line-height: 200%;
+   display: block;
+   margin-bottom: 0;
+   margin-top: 5pt;
+}
+.red label {
+   color: white;
+}
+input, textarea {
+   padding: 5pt;
+   width: 100%;
+   display: block;
+   border: 1px solid white;
+   border-radius: 0;
+}
+textarea {
+   resize: vertical;
+
+   &:focus {
+      border: none;
+      outline: none;
+      border-radius: 0;
    }
 }

@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="icon" href="/icon.png" />
     <title>{{ block "title" . }}
       <!-- Blocks may include default content. -->
       {{ .Site.Title }}
@@ -17,12 +18,14 @@
   <body>
     <nav class="menu">
       <ul>
-        <li><img src="/logo.png" /><a href="/">Denis Labrecque</a></li>
+        <li><img src="/icon.png" /><a href="/">Denis Labrecque</a></li>
         <li><a href="/programming/">Programming</a></li>
         <li><a href="/graphics/">Graphics</a></li>
         <li><a href="/about/">About</a></li>
       </ul>
     </nav>
+
+    <label id="overlay-button"><span></span></label>
     <!-- Code that all your templates share, like a header -->
     {{ block "main" . }}
       <!-- The part of the page that begins to differ between templates -->

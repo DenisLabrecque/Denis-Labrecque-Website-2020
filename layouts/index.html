@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <head>
-   <link rel="icon" href="icon.png" />
+   <link rel="icon" href="/icon.png" />
    {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
    <link rel="stylesheet" href="{{ $sass.Permalink }}" />
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<script href="{{ resources.Get `js/scroll-animation.js` }}"></script>
 <script src="/anim.js" defer></script>
+
+<nav class="menu">
+   <label class="overlay-button not-clicked" onclick="menuClick(this)"><span></span></label>
+   <script>
+      function menuClick(element) {
+         console.log("menu click" + element)
+         let menuBar = document.querySelector("#menu-bar");
+
+         if(element.classList.contains("not-clicked")) {
+            element.classList.remove("not-clicked")
+            element.classList.add("clicked")
+            menuBar.classList.remove("not-revealed")
+            menuBar.classList.add("revealed")
+         }
+         else {
+            element.classList.remove("clicked")
+            element.classList.add("not-clicked")
+            menuBar.classList.remove("revealed")
+            menuBar.classList.add("not-revealed")
+         }
+      }
+   </script>
+
+   <ul id="menu-bar" class="not-revealed">
+      <li>Programming</li>
+      <li>Graphics</li>
+      <li>About</li>
+   </ul>
+</nav>
 
 
 {{ partial "pageTitle" (dict "context" . "title" "Denis Labrecque" "subtitle" "Programming and graphics" "headline" "Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer." "ctaTitle" "Résumé" "ctaLink" "resume")}}
@@ -30,7 +58,7 @@
          <p>Whether it is a complex application developed by a team, or a simple app, he can most likely help you on your project.</p>
       </div>
       <div class="ignore-columns">
-         <a class="button">Contact Denis</a>
+         <a class="button" href="/about/">Contact Denis</a>
       </div>
    </div>
 </section>
@@ -38,7 +66,7 @@
 <section>
    <div class="margined">
       <blockquote class="slide-anim" data-anim="bottom top">
-         <p>Denis a is very willing learner and takes on tasks with enthusiasm. He is diligent in his work and always has a positive attitude. I enjoyed working with him, and think he would be an asset to any company.</p>
+         Denis a is very willing learner and takes on tasks with enthusiasm. He is diligent in his work and always has a positive attitude. I enjoyed working with him, and think he would be an asset to any company.
          <cite>Silas Miller, Web Developer for Abeka</cite>
       </blockquote>
    </div>
@@ -63,7 +91,7 @@
          <p>Design is not only functional, but also integral to the “pop” that gets you noticed in today's competitive market. See how a purposeful layout can help you reach your target audience.</p>
       </div>
       <div class="ignore-columns">
-         <a class="button">Contact Denis</a>
+         <a class="button" href="/about/">Contact Denis</a>
       </div>
    </div>
 </section>
@@ -71,7 +99,7 @@
 <section>
    <div class="margined">
       <blockquote class="slide-anim" data-anim="bottom top">
-         <p>[Denis] has distinguished himself with great attention to detail, both suggesting and implementing numerous improvements to our web site. In addition, he has shown great flexibility, willingly assisting with some incredibly “boring” but essential upgrade work to site libraries and structure.</p>
+         [Denis] has distinguished himself with great attention to detail, both suggesting and implementing numerous improvements to our web site. In addition, he has shown great flexibility, willingly assisting with some incredibly “boring” but essential upgrade work to site libraries and structure.
          <cite>Norm Hansen, Abeka Programming Team Leader</cite>
       </blockquote>
    </div>
