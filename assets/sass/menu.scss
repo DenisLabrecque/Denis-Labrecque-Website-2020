@@ -1,73 +1,28 @@
+@import "angled-edges.scss";
 @keyframes bugfix { from {padding:0;} to {padding:0;}}
 @-webkit-keyframes bugfix { from {padding:0;} to {padding:0;}}
 
 $button-width: 30px;
 $line-thickness: 3px;
 
-.overlay-button {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  padding: 26px 11px;
+#logo-button {
+  position: fixed;
   z-index: 5;
-  cursor: pointer;
-  user-select: none;
-  span {
-      height: $line-thickness;
-      width: $button-width;
-      border-radius: 2px;
-      background-color: white;
-      position: relative;
-      display: block;
-      transition: all .2s ease-in-out;
-      &:before {
-        top: -10px;
-        visibility: visible;
-      }
-      &:after {
-        top: 10px;
-      }
-      &:before, &:after {
-          height: $line-thickness;
-          width: $button-width;
-          border-radius: 2px;
-          background-color: white;
-          position: absolute;
-          content: "";
-          transition: all .2s ease-in-out;
-      }
-    }
-    &:hover span, &:hover span:before, &:hover span:after {
-      background: white;
-    }
-}
-
-
-
-.overlay-button.clicked {
-  &:hover span, span{
-    background: transparent;
-  }
-  span {
-    &:before {
-      transform: rotate(45deg) translate(7px, 7px);
-      opacity: 1;
-    }
-    &:after {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-  }
 }
 
 
 
 nav.menu {
-  position: fixed;
+  @include angle--bottom-right;
+  padding: 30px 20px 40px 30px;
+  position: absolute;
+  background: white;
   left: 0;
   top: 0;
   width: 100vw;
   z-index: 1;
   display: grid;
+
 
   a {
      color: white;

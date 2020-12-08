@@ -61,7 +61,9 @@ $border-thin: 1.5px;
 :root {
    font-family: Arimo, sans-serif;
 }
-
+html, body {
+   overflow-x: hidden;
+}
 body {
    margin: 0 0 0 0;
    padding: 0 0 0 0;
@@ -278,6 +280,14 @@ a.button {
       background: white;
    }
 }
+.denis-labrecque-background {
+   background-image: url('/Denis_Labrecque_Fence.jpg');
+   background-size: cover;
+   background-attachment: fixed;
+   background-position: right;
+   min-height: 50vw;
+   min-height: 1000px;
+}
 
 @mixin diagonal {
    display: block;
@@ -290,6 +300,7 @@ a.button {
 
 .diagonal-bottom {
    @include angle--bottom-right;
+   padding-top: $padding * 2;
 
    &::after {
       @include diagonal;

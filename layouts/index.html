@@ -6,9 +6,17 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <script src="/anim.js" defer></script>
+<script src="/scroll-hide-menu.js"></script>
+<script src="/rellax.js" defer></script>
+<script defer>
+   var rellax = new Rellax(".rellax");
+</script>
 
 <nav class="menu">
-   <label class="overlay-button not-clicked" onclick="menuClick(this)"><span></span></label>
+   <a href="/" id="logo-button" class="overlay-button">
+      <img src="/icon-red.png" width="38" height="38" />
+   </a>
+   
    <script>
       function menuClick(element) {
          console.log("menu click" + element)
@@ -36,19 +44,18 @@
    </ul>
 </nav>
 
-
 {{ partial "pageTitle" (dict "context" . "title" "Denis Labrecque" "subtitle" "Programming and graphics" "headline" "Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer." "ctaTitle" "Résumé" "ctaLink" "resume")}}
 
 <section>
    <div class="margined">
       <h2>Programming Projects</h2>
-      <div class="card-grid">
+      <div class="card-grid rellax">
          {{ partial "cardlist" (dict "context" . "section" "programming") }}
       </div>
    </div>
 </section>
 
-<section class="red diagonal-both" data-anim="bottom top">
+<section class="blue diagonal-both" data-anim="bottom top">
    <div class="two-column margined slide-anim" data-anim="bottom top">
       <div class="ignore-columns">
          <p class="hero">Need help programming an app?</p>
@@ -58,7 +65,7 @@
          <p>Whether it is a complex application developed by a team, or a simple app, he can most likely help you on your project.</p>
       </div>
       <div class="ignore-columns">
-         <a class="button" href="/about/">Contact Denis</a>
+         <a class="button rellax" href="/about/">Contact Denis</a>
       </div>
    </div>
 </section>
@@ -102,6 +109,12 @@
          [Denis] has distinguished himself with great attention to detail, both suggesting and implementing numerous improvements to our web site. In addition, he has shown great flexibility, willingly assisting with some incredibly “boring” but essential upgrade work to site libraries and structure.
          <cite>Norm Hansen, Abeka Programming Team Leader</cite>
       </blockquote>
+   </div>
+</section>
+
+<section class="diagonal-both denis-labrecque-background">
+   <div class="margined">
+      <p>Content here.</p>
    </div>
 </section>
 
