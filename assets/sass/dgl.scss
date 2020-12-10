@@ -289,13 +289,25 @@ a.button {
       background: white;
    }
 }
+.background {
+   background-color: $aquarina;
+   background-blend-mode: overlay;
+
+   blockquote, cite, a, p, h1, h2, h3, h4 {
+      color: white;
+      text-shadow: 0px 0px 10px $cloud-black;
+   }
+   a.button {
+      text-shadow: none;
+      background: white;
+      color: $cloud-black;
+   }
+}
 .denis-labrecque-background {
    background-image: url('/Denis_Labrecque_Fence.jpg');
    background-size: cover;
    background-attachment: fixed;
-   background-position: right;
-   min-height: 50vw;
-   min-height: 1000px;
+   background-position: center;
 }
 
 @mixin diagonal {
