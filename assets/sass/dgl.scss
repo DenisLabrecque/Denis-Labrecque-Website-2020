@@ -83,6 +83,11 @@ header { // title page header
       margin-top: 0;
       margin-bottom: 0;
    }
+   @media(max-width: $breakpoint) {
+      h1 {
+         font-size: 30pt;
+      }
+   }
    
    h1 + p { // subtitle
       font: {
@@ -132,6 +137,13 @@ h2 {
    font-size: 30pt;
    line-height: 36pt;
    color: $cloud-black;
+}
+@media(max-width: $breakpoint) {
+   h2 {
+      font-size: 20pt;
+      line-height: 120%;
+      font-weight: medium;
+   }
 }
 
 h3 {
@@ -383,6 +395,7 @@ blockquote {
       text-align: right;
       margin-top: 5pt;
       font-size: 12pt;
+      line-height: 120%;
 
       &:before {
          content: "—";
@@ -584,7 +597,7 @@ nav.menu {
    grid-gap: $padding;
 
   a {
-     color: $cloud-black;
+     color: $red-pinkerton;
      font-weight: bold;
 
      &::after {
@@ -592,7 +605,10 @@ nav.menu {
      }
 
      &:hover {
-        font-style: italic;
+        color: $cloud-black;
+     }
+     &:active {
+        opacity: 0.75;
      }
   }
 
@@ -613,15 +629,15 @@ nav.menu {
   }
 }
 // Narrower for phone width screens
-// @media(max-width: 520px) {
-//    nav.menu {
-//       padding-left: 5vw;
-//       grid-gap: 5vw;
-//       ul {
-//          grid-gap: 5vw;
-//       }
-//    }
-// }
+@media(max-width: 520px) {
+   nav.menu {
+      padding-left: 5vw;
+      grid-gap: 5vw;
+      ul {
+         grid-gap: 5vw;
+      }
+   }
+}
 // Widen after the breakpoint
 @media(min-width: $breakpoint) {
    nav.menu {
@@ -631,12 +647,14 @@ nav.menu {
 // Center at wide frames
 @media(min-width: $breakpoint * 2) {
    nav.menu {
-      padding-left: 0;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      padding-left: calc(50vw - (800px / 2));
+      padding-right: calc(50vw - (800px / 2));
+      //max-width: 800px;
+      //margin-left: auto;
+      //margin-right: auto;
    }
 }
 
-$button-width: 30px;
-$line-thickness: 3px;
+#logo-button {
+   margin-left: -5px;
+}
