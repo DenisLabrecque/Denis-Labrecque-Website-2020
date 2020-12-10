@@ -7,44 +7,12 @@
 </head>
 <script src="/anim.js" defer></script>
 <script src="/scroll-hide-menu.js"></script>
-<script src="/rellax.js" defer></script>
+<!-- <script src="/rellax.js" defer></script>
 <script defer>
    var rellax = new Rellax(".rellax");
-</script>
+</script> -->
 
-<nav class="menu">
-   <div>
-      <a href="/" id="logo-button" class="overlay-button">
-         <img src="/icon-red.png" width="38" height="38" />
-      </a>
-   </div>
-
-   <ul id="menu-bar">
-      <li><a href="/programming/">Programming</a></li>
-      <li><a href="/graphics/">Graphics</a></li>
-      <li><a href="/about/">About</a></li>
-   </ul>
-   
-   <!-- <script>
-      function menuClick(element) {
-         console.log("menu click" + element)
-         let menuBar = document.querySelector("#menu-bar");
-
-         if(element.classList.contains("not-clicked")) {
-            element.classList.remove("not-clicked")
-            element.classList.add("clicked")
-            menuBar.classList.remove("not-revealed")
-            menuBar.classList.add("revealed")
-         }
-         else {
-            element.classList.remove("clicked")
-            element.classList.add("not-clicked")
-            menuBar.classList.remove("revealed")
-            menuBar.classList.add("not-revealed")
-         }
-      }
-   </script> -->
-</nav>
+{{ partial "navMenu" }}
 
 {{ partial "pageTitle" (dict "context" . "title" "Denis Labrecque" "subtitle" "Programming and graphics" "headline" "Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer." "ctaTitle" "Résumé" "ctaLink" "resume")}}
 
