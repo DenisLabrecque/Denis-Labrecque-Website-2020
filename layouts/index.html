@@ -13,11 +13,19 @@
 </script>
 
 <nav class="menu">
-   <a href="/" id="logo-button" class="overlay-button">
-      <img src="/icon-red.png" width="38" height="38" />
-   </a>
+   <div>
+      <a href="/" id="logo-button" class="overlay-button">
+         <img src="/icon-red.png" width="38" height="38" />
+      </a>
+   </div>
+
+   <ul id="menu-bar">
+      <li><a href="/programming/">Programming</a></li>
+      <li><a href="/graphics/">Graphics</a></li>
+      <li><a href="/about/">About</a></li>
+   </ul>
    
-   <script>
+   <!-- <script>
       function menuClick(element) {
          console.log("menu click" + element)
          let menuBar = document.querySelector("#menu-bar");
@@ -35,13 +43,7 @@
             menuBar.classList.add("not-revealed")
          }
       }
-   </script>
-
-   <ul id="menu-bar" class="not-revealed">
-      <li>Programming</li>
-      <li>Graphics</li>
-      <li>About</li>
-   </ul>
+   </script> -->
 </nav>
 
 {{ partial "pageTitle" (dict "context" . "title" "Denis Labrecque" "subtitle" "Programming and graphics" "headline" "Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer." "ctaTitle" "Résumé" "ctaLink" "resume")}}
@@ -88,7 +90,7 @@
    <div>
 </section>
 
-<section class="red diagonal-both">
+<section class="blue diagonal-both" data-anim="bottom top">
    <div class="two-column margined slide-anim" data-anim="bottom top">
       <div class="ignore-columns">
          <p class="hero">Need help with graphics?</p>
@@ -115,6 +117,7 @@
 <section class="diagonal-both denis-labrecque-background">
    <div class="margined">
       <p>Content here.</p>
+      <a class="button" href="/about/">Contact</a>
    </div>
 </section>
 

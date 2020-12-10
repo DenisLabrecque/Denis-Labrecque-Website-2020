@@ -139,14 +139,11 @@ h3 {
    font-weight: 400;
    font-size: 16pt;
    font-weight: bold;
-   color: $red-pinkerton;
-   background: linear-gradient(to right, $red-pinkerton, $orangerine);
    margin-top: 20pt;
    margin-bottom: 3pt;
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
    line-height: 130%;
    overflow: visible;
+   color: $cloud-black;
 
    .main-header {
       float: left;
@@ -474,14 +471,17 @@ small {
 a.card {
    padding: 0 0;
    margin: 0 0;
+   //transition: background-image 0.2s ease;
 
    &:hover {
       border-bottom: none;
-      opacity: 0.75;
+      //background: whitesmoke;
 
       h3 {
          text-decoration: underline;
-         color: $orangerine;
+         background: linear-gradient(to right, $red-pinkerton, $orangerine);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
       }
       p {
          //text-decoration: underline;
@@ -562,3 +562,81 @@ textarea {
       border-radius: 0;
    }
 }
+
+
+
+
+/** menu **/
+
+nav.menu {
+  @include angle--bottom-right;
+  padding: 15px 20px 30px 30px;
+  padding-left: $padding;
+  position: absolute;
+  background: whitesmoke;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  z-index: 1;
+   position: fixed;
+   display: grid;
+   grid-template-columns: min-content auto;
+   grid-gap: $padding;
+
+  a {
+     color: $cloud-black;
+     font-weight: bold;
+
+     &::after {
+        background: none;
+     }
+
+     &:hover {
+        font-style: italic;
+     }
+  }
+
+  ul.not-revealed {
+     display: none;
+  }
+  ul.revealed {
+     display: block;
+  }
+  ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+     margin-top: 10px;
+     display: grid;
+     grid-gap: $padding;
+     grid-template-columns: min-content min-content min-content;
+  }
+}
+// Narrower for phone width screens
+// @media(max-width: 520px) {
+//    nav.menu {
+//       padding-left: 5vw;
+//       grid-gap: 5vw;
+//       ul {
+//          grid-gap: 5vw;
+//       }
+//    }
+// }
+// Widen after the breakpoint
+@media(min-width: $breakpoint) {
+   nav.menu {
+      padding-left: $padding * 2;
+   }
+}
+// Center at wide frames
+@media(min-width: $breakpoint * 2) {
+   nav.menu {
+      padding-left: 0;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+   }
+}
+
+$button-width: 30px;
+$line-thickness: 3px;
