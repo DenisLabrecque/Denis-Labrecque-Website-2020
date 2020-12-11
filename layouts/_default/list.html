@@ -1,16 +1,11 @@
 {{ define "main" }}
 
-{{ partial "pageTitle" (dict "context" . "title" "Section")}}
+{{ partial "pageTitle" (dict "context" . "title" .Title)}}
 
 <section>
   <div class="margined">
      <div class="card-grid">
-      {{ range .Pages }}
-        <article>
-          <h1>{{ .Title }}</h1>
-          {{ .Content }}
-        </article>
-      {{ end }}
+      {{ partial "cardlist" (dict "context" . "section" "programming") }}
      </div>
   </div>
 </section>

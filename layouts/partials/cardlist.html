@@ -1,6 +1,6 @@
 {{ range (where .context.Site.Pages "Section" .section) }}
 {{ range.Pages }}
-   <a class="card slide-anim" href="{{ .RelPermalink }}" data-anim="bottom top">
+   <a class="card" href="{{ .RelPermalink }}">
       {{ $img := resources.GetMatch .Params.image }}
       
       {{ $x_400 := $img.Fill "400x300 Smart" }}

@@ -289,7 +289,7 @@ a.button {
       background: white;
    }
 }
-.background {
+.background, .background-red {
    background-color: $aquarina;
    background-blend-mode: overlay;
 
@@ -302,6 +302,9 @@ a.button {
       background: white;
       color: $cloud-black;
    }
+}
+.background-red {
+   background-color: $red-pinkerton;
 }
 .denis-labrecque-background {
    background-image: url('/Denis_Labrecque_Fence.jpg');
