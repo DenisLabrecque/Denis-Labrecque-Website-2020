@@ -291,7 +291,10 @@ a.button {
 }
 .background, .background-red {
    background-color: $aquarina;
-   background-blend-mode: overlay;
+   //background-blend-mode: overlay;
+   background-size: cover;
+   background-attachment: fixed;
+   background-position: center;
 
    blockquote, cite, a, p, h1, h2, h3, h4 {
       color: white;
@@ -308,9 +311,6 @@ a.button {
 }
 .denis-labrecque-background {
    background-image: url('/Denis_Labrecque_Fence.jpg');
-   background-size: cover;
-   background-attachment: fixed;
-   background-position: center;
 }
 
 @mixin diagonal {
@@ -591,6 +591,24 @@ textarea {
    }
 }
 
+
+
+/** figure images **/
+figure {
+   margin: 0;
+   padding: 0;
+
+   img {
+      width: 100%;
+   }
+
+   figcaption {
+      margin: 5pt;
+      margin-left: $padding;
+      margin-right: $padding;
+      text-align: center;
+   }
+}
 
 
 

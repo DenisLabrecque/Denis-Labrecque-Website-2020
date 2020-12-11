@@ -1,6 +1,8 @@
 ---
 title: "Warglobe Game"
-subtitle: "Subtitle"
+subtitle: "Multiplayer Vehicle Battle Game in Development"
+ctaLink: "https://www.youtube.com/playlist?list=PLq7M1cOtTjn1QMICtPQld-icaORGyhxED"
+ctaTitle: "Watch the Devlog"
 image: "Warglobe_Ship_Preview.jpg"
 date: 2020-11-24T15:59:27-06:00
 draft: false

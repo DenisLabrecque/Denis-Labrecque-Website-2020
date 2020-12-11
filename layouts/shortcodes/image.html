@@ -1,0 +1,19 @@
+{{ $source := .Get 0 }}
+{{ $caption := .Get 1 }}
+
+{{ $img := resources.GetMatch $source }}
+      
+{{ $x_400 := $img.Fill "400x300 Smart" }}
+{{ $x_800 := $img.Fill "800x600 Smart" }}
+{{ $x_1440 := $img.Fill "1440x1080 Smart" }}
+{{ $x_2560 := $img.Fill "2560x1920 smart" }}
+
+<figure>
+<img src="{{$img.RelPermalink}}"
+    srcset="{{$x_400.RelPermalink}} 400w,
+            {{ if $x_800.Width }}{{$x_800.RelPermalink}} 800w,{{ end }}
+            {{ if $x_1440.Width }}{{$x_1440.RelPermalink}} 1440w,{{ end }}
+            {{ if $x_2560.Width }}{{$x_2560.RelPermalink}} 2560w{{ end }}"
+    alt="{{ $img.RelPermalink }}" />
+    <figcaption>{{ $caption }}</figcaption>
+</figure>
