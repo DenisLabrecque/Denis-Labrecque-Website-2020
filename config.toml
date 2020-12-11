@@ -1,7 +1,9 @@
-baseURL = "http://denislabrecque.ca/"
+baseURL = "/"
 languageCode = "en-us"
 title = "Denis Labrecque"
 assetDir = "/assets"
 pluralizelisttitles = false
+relativeURLs = true
+publishDir = "docs"
 [markup.goldmark.renderer]
 unsafe= true

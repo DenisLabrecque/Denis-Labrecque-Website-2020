@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Denis Labrecque</title>
+    <link>/</link>
+    <description>Recent content on Denis Labrecque</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Nov 2020 18:05:29 -0600</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Thu, 26 Nov 2020 21:51:14 -0600</pubDate>
+      
+      <guid>/about/</guid>
+      <description>When he was very young, Denis enjoyed drawing airplanes and rolling a miniature steam engine around to understand how the wheels paired together. Eventually, his curiosity grew towards graphics, piqued by a book explaining how to design websites. He has since been imagining user interfaces by creating small apps on the side, by working as a web designer, and by working as a programmer. From this work, one of his designs has been printed over 100,000 times; his programming has also helped maintain websites with over 3 million yearly users.</description>
+    </item>
+    
+    <item>
+      <title>Résumé</title>
+      <link>/resume/</link>
+      <pubDate>Thu, 26 Nov 2020 21:51:14 -0600</pubDate>
+      
+      <guid>/resume/</guid>
+      <description>EducationPensacola Christian College, FloridaB.S. in Computing: Information TechnologyB.S. in Visual Arts: Graphic DesignAugust 2015—December 2020 (December graduate); GPA 3.6/4.0
+Lead a small team of designers to create a student publication, following business requirements.
+Helped lead seven team members to code an online testing software in Oracle and ASP.NET, using effective communication to put the project back on track and deliver on time.
+Work ExperienceIT at Pensacola Christian College, FloridaWeb Developer2019, 2020 (seasonal)</description>
+    </item>
+    
+    <item>
+      <title>Scale Air Campaign</title>
+      <link>/graphics/scale-air/</link>
+      <pubDate>Tue, 24 Nov 2020 18:05:29 -0600</pubDate>
+      
+      <guid>/graphics/scale-air/</guid>
+      <description>Apparel This apparel was created and branded for the Ad Design campaign of Scale Air, a model airplane show in Montreal. It is designed to be sold as a fundraiser at the event. It was first sketched out on paper, then made in Illustrator and mocked up in Photoshop.   
+Stage Design This multipurpose stage is meant for live scale modeling demonstrations and sponsor product highlights.</description>
+    </item>
+    
+    <item>
+      <title>Asian Garden</title>
+      <link>/graphics/asian-garden/</link>
+      <pubDate>Tue, 24 Nov 2020 18:04:27 -0600</pubDate>
+      
+      <guid>/graphics/asian-garden/</guid>
+      <description>I created this scene to challenge myself to represent nature. It taught me how to use software light, and how to texture natural elements like water to make a good-looking render. An asset software called Bridge helped speed the composition process, and the image was rendered from Blender.
+This image represents a garden that is closed off and allows wading in a pond of clear water while enjoying the warm sun.</description>
+    </item>
+    
+    <item>
+      <title>Receptus Application</title>
+      <link>/programming/receptus-application/</link>
+      <pubDate>Tue, 24 Nov 2020 16:01:35 -0600</pubDate>
+      
+      <guid>/programming/receptus-application/</guid>
+      <description>Receptus is a fast, offline Bible browser that allows easy reading and search. Includes the King James Version, Young&#39;s Literal Translation, Louis Segond, and French Darby translations of the Bible.
+The code for this app was written by Denis from December 2019 to January 2020. To see this app&#39;s source code, visit the GitHub repository. Contributions to the app&#39;s code are welcome.
+Key FeaturesTabbed interface. Like a browser, this Bible app is able to load many pages at once, allowing quick skipping between passages and versions.</description>
+    </item>
+    
+    <item>
+      <title>Warglobe Game</title>
+      <link>/programming/warglobe-game/</link>
+      <pubDate>Tue, 24 Nov 2020 15:59:27 -0600</pubDate>
+      
+      <guid>/programming/warglobe-game/</guid>
+      <description>About the Game In the early 2000s, video games came in cereal boxes. An example of this is Battleship: Surface Thunder, a simple mission-based third-person shooter that put my child fingers in control of a battleship. I was hooked.
+Since then, the distant idea of creating a game with air and naval combat has stuck. Unfortunately, many games today are based on a flat map, which is great for game engines, but not so great for players who want a larger area.</description>
+    </item>
+    
+  </channel>
+</rss>
