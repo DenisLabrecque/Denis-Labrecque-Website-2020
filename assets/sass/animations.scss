@@ -10,3 +10,11 @@ $distance: 40pt;
     opacity: 1;
     transform: translateX(0);
  }
+
+ .appear-anim {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+ }
+ .appear-anim.animated {
+    opacity: 1;
+ }

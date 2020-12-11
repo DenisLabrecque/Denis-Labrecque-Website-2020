@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <head>
-   <link rel="icon" href="/icon.png" />
+   <title>Denis Labrecque</title>
+   <link rel="icon" href="/icon-red.png" />
    {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
    <link rel="stylesheet" href="{{ $sass.Permalink }}" />
    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <script src="/anim.js" defer></script>
-<script src="/scroll-hide-menu.js"></script>
+<!-- <script src="/scroll-hide-menu.js"></script> -->
 <!-- <script src="/rellax.js" defer></script>
 <script defer>
    var rellax = new Rellax(".rellax");
@@ -22,7 +23,7 @@
       <div class="card-grid rellax">
          {{ partial "cardlist" (dict "context" . "section" "programming") }}
       </div>
-      <a class="button" href="/programming/">More</a>
+      <a class="button slide-anim" data-anim="bottom top" href="/programming/">More</a>
    </div>
 </section>
 
@@ -36,7 +37,7 @@
          <p>Whether it is a complex application developed by a team, or a simple app, he can most likely help you on your project.</p>
       </div>
       <div class="ignore-columns">
-         <a class="button rellax" href="/about/">Contact Denis</a>
+         <a class="button slide-anim" data-anim="bottom top" href="/about/">Contact Denis</a>
       </div>
    </div>
 </section>
@@ -56,7 +57,7 @@
          <span class="highlight">If I had to describe Denis in two words, I would say would say hard-working and creative. His desire to always find the best solution to the problem is truly one of his talents.</span>
          <cite>Maxime Pronovost, Owner of Studio Grafik</cite>
       </blockquote>
-      <a class="button" href="/about/">About Denis</a>
+      <a class="button slide-anim" data-anim="bottom top" href="/about/">About Denis</a>
    </div>
 </section>
 
@@ -66,7 +67,7 @@
       <div class="card-grid">
          {{ partial "cardlist" (dict "context" . "section" "graphics") }}
       </div>
-      <a class="button" href="/graphics/">More</a>
+      <a class="button slide-anim" data-anim="bottom top" href="/graphics/">More</a>
    <div>
 </section>
 
@@ -80,7 +81,7 @@
          <p>Design is not only functional, but also integral to the “pop” that gets you noticed in today's competitive market. See how a purposeful layout can help you reach your target audience.</p>
       </div>
       <div class="ignore-columns">
-         <a class="button" href="/about/">Contact Denis</a>
+         <a class="button slide-anim" data-anim="bottom top" href="/about/">Contact Denis</a>
       </div>
    </div>
 </section>

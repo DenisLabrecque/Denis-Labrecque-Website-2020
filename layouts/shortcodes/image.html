@@ -4,6 +4,6 @@
 {{ $img := resources.GetMatch $source }}
 
 <figure>
-    <img src="{{$img.RelPermalink}}" alt="{{ $img.RelPermalink }}" />
-    <figcaption>{{ $caption }}</figcaption>
+    <img src="{{$img.RelPermalink}}" alt="{{ $img.RelPermalink }}" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top">{{ $caption }}</figcaption>
 </figure>

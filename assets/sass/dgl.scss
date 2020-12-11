@@ -195,11 +195,6 @@ h4 {
 }
 @media(min-width: $breakpoint) {
    .margined {
-      padding: $padding $padding * 2;
-   }
-}
-@media(min-width: $breakpoint * 2) {
-   .margined {
       padding: $padding 0;
       max-width: 600px;
       margin-left: auto;
@@ -214,16 +209,16 @@ div.ignore-columns {
 
 a {
    text-decoration: none;
-   font-weight: 500;
+   font-weight: bold;
 }
 p a, blockquote a, li a {
-   color: $cloud-black;
+   color: $aquarina;
    position: relative;
    //border-bottom: $border solid $bay-blue;
 
    &::after {
       content: "";
-      background: rgba($aquarina, 0.25);
+      background: rgba($aquarina, 0.1);
       position: absolute;
       left: 0;
       bottom: -6px;
@@ -533,6 +528,11 @@ a.card {
    margin: 0 0;
    //transition: background-image 0.2s ease;
 
+   p {
+      color: grey;
+      font-weight: 500;
+   }
+
    &:hover {
       border-bottom: none;
       //background: whitesmoke;
@@ -544,7 +544,7 @@ a.card {
          -webkit-text-fill-color: transparent;
       }
       p {
-         //text-decoration: underline;
+         text-decoration: underline;
       }
    }
 
@@ -627,18 +627,22 @@ textarea {
 
 /** figure images **/
 figure {
-   margin: 0;
+   margin: $padding 0;
    padding: 0;
 
    img {
       width: 100%;
+      background-color: whitesmoke;
    }
 
    figcaption {
+      font-family: Arimo;
+      font-weight: 600;
+      color: grey;
       margin: 5pt;
       margin-left: $padding;
       margin-right: $padding;
-      text-align: center;
+      text-align: left;
    }
 }
 
@@ -703,14 +707,8 @@ nav.menu {
       }
    }
 }
-// Widen after the breakpoint
-@media(min-width: $breakpoint) {
-   nav.menu {
-      padding-left: $padding * 2;
-   }
-}
 // Center at wide frames
-@media(min-width: $breakpoint * 2) {
+@media(min-width: $breakpoint) {
    nav.menu {
       padding-left: calc(50vw - (800px / 2));
       padding-right: calc(50vw - (800px / 2));

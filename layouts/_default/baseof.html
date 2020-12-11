@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="icon" href="/icon.png" />
+    <link rel="icon" href="/icon-red.png" />
     <title>{{ block "title" . }}
       {{ .Site.Title }}
     {{ end }}</title>
@@ -14,6 +14,7 @@
     {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{$sass.Permalink}}" />
   </head>
+  <script src="/anim.js" defer></script>
   <body>
     {{ partial "navMenu" }}
 
