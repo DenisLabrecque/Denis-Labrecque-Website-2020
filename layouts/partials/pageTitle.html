@@ -8,8 +8,7 @@
 {{/* ctaLink */}}
 
 {{ $img := resources.GetMatch .image }}
-<section class="red diagonal-bottom {{if .image}}background-red{{end}}"
-style="{{if .image}}background-image: url('{{$img.RelPermalink}}'){{end}}">
+<section class="red diagonal-bottom">
     <div class="margined">
        <header>
           <h1>{{ .title }}</h1>
