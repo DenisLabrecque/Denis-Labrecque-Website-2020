@@ -16,7 +16,7 @@ $border-thin: 1.5px;
 
 @font-face {
    font-family: "Work Sans";
-   src: "../static/font/Work_Sans/WorkSans-VariableFont_wght.ttf";
+   src: url("/font/Work_Sans/WorkSans-VariableFont_wght.ttf");
    font-weight: 125 950;
    font-stretch: 75% 125%;
    font-style: normal;
@@ -24,42 +24,42 @@ $border-thin: 1.5px;
 
 @font-face {
    font-family: "Work Sans Italic";
-   src: "../static/font/Work_Sans/WorkSans-Italic-VariableFont_wght.ttf";
+   src: url("/font/Work_Sans/WorkSans-Italic-VariableFont_wght.ttf");
    font-weight: 125 950;
    font-stretch: 75% 125%;
    font-style: italic;
 }
 
 @font-face {
-   font-family: Arimo;
-   src: "../static/font/Work_Sans/Arimo-Regular.ttf";
+   font-family: "Arimo";
+   src: url("/font/Arimo/Arimo-Regular.ttf");
    font-weight: 400;
    font-style: normal;
 }
 
 @font-face {
-   font-family: Arimo;
-   src: "../static/font/Work_Sans/Arimo-Bold.ttf";
+   font-family: "Arimo";
+   src: url("/font/Arimo/Arimo-Bold.ttf");
    font-weight: 700;
    font-style: normal;
 }
 
 @font-face {
-   font-family: Arimo;
-   src: "../static/font/Work_Sans/Arimo-BoldItalic.ttf";
+   font-family: "Arimo";
+   src: url("/font/Arimo/Arimo-BoldItalic.ttf");
    font-weight: 400;
    font-style: italic;
 }
 
 @font-face {
-   font-family: Arimo;
-   src: "../static/font/Work_Sans/Arimo-Italic.ttf";
+   font-family: "Arimo";
+   src: url("/font/Arimo/Arimo-Italic.ttf");
    font-weight: 400;
    font-style: italic;
 }
 
 :root {
-   font-family: Arimo, sans-serif;
+   font-family: "Arimo", sans-serif;
 }
 html, body {
    overflow-x: hidden;
@@ -119,7 +119,7 @@ section {
 }
 
 p, ul, ol, li, label, input, textarea {
-   font-family: "Arimo Regular";
+   font-family: Arimo;
    margin-top: 0;
    margin-bottom: 7pt;
    font-size: 12pt;
