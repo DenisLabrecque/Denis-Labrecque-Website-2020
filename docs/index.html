@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-
-  <head>
+<head>
 	<meta name="generator" content="Hugo 0.79.0" />
-    <meta charset="utf-8">
-    <link rel="icon" href="./icon-red.png" />
-    <title>Denis Labrecque</title>
+  <meta charset="utf-8">
+  <link rel="icon" href="./icon-red.png" />
+  <title>Denis Labrecque</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="icon.png" />
-    
-    <link rel="stylesheet" href="./sass/dgl.min.f4a2bd5116480a4890e3ba99a4c7bcb68818164fc919bd172d2824b0d6928c2b.css" />
-  </head>
+  
+  <link rel="stylesheet" href="./sass/dgl.min.24119632e1d1a3baa2259acd5e1748d3107c4072a66018fa55e8f69d26200fc6.css" />
+</head>
+
+<script src="./js/anim.js" defer></script>
 
 <body>
 <nav class="menu">
@@ -116,7 +116,7 @@ Since then, the distant idea of creating a game with air and naval combat has st
          <p>Whether it is a complex application developed by a team, or a simple app, he can most likely help you on your project.</p>
       </div>
       <div class="ignore-columns">
-         <a class="button slide-anim" data-anim="bottom top" href="./about/">Contact Denis</a>
+         <a class="button" href="./about/#contact">Contact Denis</a>
       </div>
    </div>
 </section>
@@ -238,7 +238,7 @@ Apparel This apparel is designed to be sold as a fundraiser at the event. It was
          <p>Design is not only functional, but also integral to the “pop” that gets you noticed in today's competitive market. See how a purposeful layout can help you reach your target audience.</p>
       </div>
       <div class="ignore-columns">
-         <a class="button slide-anim" data-anim="bottom top" href="./about/">Contact Denis</a>
+         <a class="button" data-anim="bottom top" href="./about/#contact">Contact Denis</a>
       </div>
    </div>
 </section>
@@ -284,102 +284,5 @@ Apparel This apparel is designed to be sold as a fundraiser at the event. It was
           Denis Labrecque © 2020</small>
     </div>
  </footer>
- <script defer>
-       
-   
-   
-   
-   
-   
-   
-   
-      
-   
-   const AnimatedClass = "animated";
-   const NotAnimatedClass = "not-animated";
 
-   console.log("Hello! this is you new JS talking!")
-   
-   
-   const Elements = document.querySelectorAll("[data-anim]")
-   Elements.forEach(e => {
-      e.classList.add(NotAnimatedClass)
-   })
-   
-   
-   window.addEventListener('scroll', (event) => {
-      Elements.forEach(e => {
-         animateElement(e);
-      })
-   });
-   
-   
-   function animateElement(element) {
-   
-      if(element == null || element == "" || element == undefined)
-         return;
-   
-      let positions = element.getAttribute("data-anim").split(" ")
-
-      let windowY = findWindowY(positions[0]);
-      let elementY = findElementY(element, positions[1]);
-      
-
-      if(element.tagName == "A")
-         
-
-      if (elementY - windowY <= 0) {
-         element.classList.add(AnimatedClass)
-         element.classList.remove(NotAnimatedClass)
-      }
-      else {
-         element.classList.add(NotAnimatedClass)
-         element.classList.remove(AnimatedClass)
-      }
-   }
-
-   
-   function findElementY(element, position) {
-      switch(position) {
-         case "top":
-            return element.getBoundingClientRect().top
-         case "middle":
-            return element.getBoundingClientRect().top + (element.getBoundingClientRect().height / 2)
-         case "bottom":
-            return element.getBoundingClientRect().bottom
-      }
-   }
-
-   
-   function findWindowY(position) {
-      switch(position) {
-         case "top":
-            return 0
-         case "middle":
-            return window.outerHeight / 2
-         case "bottom":
-            return window.outerHeight
-      }
-   }
-
-
-
-
-
-
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
- </script>
 </body>

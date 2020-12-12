@@ -1,18 +1,18 @@
 
 <!DOCTYPE html>
 <html>
-  
   <head>
-    <meta charset="utf-8">
-    <link rel="icon" href="../../icon-red.png" />
-    <title>Denis Labrecque</title>
+  <meta charset="utf-8">
+  <link rel="icon" href="../../icon-red.png" />
+  <title>Denis Labrecque</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="icon.png" />
-    
-    <link rel="stylesheet" href="../../sass/dgl.min.f4a2bd5116480a4890e3ba99a4c7bcb68818164fc919bd172d2824b0d6928c2b.css" />
-  </head>
+  
+  <link rel="stylesheet" href="../../sass/dgl.min.24119632e1d1a3baa2259acd5e1748d3107c4072a66018fa55e8f69d26200fc6.css" />
+</head>
+
+<script src="../../js/anim.js" defer></script>
   
 
   <body>
@@ -57,8 +57,9 @@
     </div>
  </section>
 
-<section class="margined">
-  <p>Receptus is a fast, offline Bible browser that allows easy reading and search. Includes the King James Version, Young's Literal Translation, Louis Segond, and French Darby translations of the Bible.</p>
+  
+  <section class="margined">
+    <p>Receptus is a fast, offline Bible browser that allows easy reading and search. Includes the King James Version, Young's Literal Translation, Louis Segond, and French Darby translations of the Bible.</p>
 <p>The code for this app was written by Denis from December 2019 to January 2020. To see this app's source code, visit <a href="https://github.com/DenisLabrecque/Bible-Browser">the GitHub repository</a>. Contributions to the app's code are welcome.</p>
 <h2>Key Features</h2>
 <p><strong>Tabbed interface.</strong> Like a browser, this Bible app is able to load many pages at once, allowing quick skipping between passages and versions.</p>
@@ -94,7 +95,8 @@
     <figcaption class="appear-anim" data-anim="bottom top">Dark mode</figcaption>
 </figure>
 
-</section>
+  </section>
+  
 
     <footer class="diagonal-top anim-top-top">
     <div class="margined">
@@ -128,203 +130,5 @@
           Denis Labrecque © 2020</small>
     </div>
  </footer>
- <script defer>
-       
-   
-   
-   
-   
-   
-   
-   
-      
-   
-   const AnimatedClass = "animated";
-   const NotAnimatedClass = "not-animated";
-
-   console.log("Hello! this is you new JS talking!")
-   
-   
-   const Elements = document.querySelectorAll("[data-anim]")
-   Elements.forEach(e => {
-      e.classList.add(NotAnimatedClass)
-   })
-   
-   
-   window.addEventListener('scroll', (event) => {
-      Elements.forEach(e => {
-         animateElement(e);
-      })
-   });
-   
-   
-   function animateElement(element) {
-   
-      if(element == null || element == "" || element == undefined)
-         return;
-   
-      let positions = element.getAttribute("data-anim").split(" ")
-
-      let windowY = findWindowY(positions[0]);
-      let elementY = findElementY(element, positions[1]);
-      
-
-      if(element.tagName == "A")
-         
-
-      if (elementY - windowY <= 0) {
-         element.classList.add(AnimatedClass)
-         element.classList.remove(NotAnimatedClass)
-      }
-      else {
-         element.classList.add(NotAnimatedClass)
-         element.classList.remove(AnimatedClass)
-      }
-   }
-
-   
-   function findElementY(element, position) {
-      switch(position) {
-         case "top":
-            return element.getBoundingClientRect().top
-         case "middle":
-            return element.getBoundingClientRect().top + (element.getBoundingClientRect().height / 2)
-         case "bottom":
-            return element.getBoundingClientRect().bottom
-      }
-   }
-
-   
-   function findWindowY(position) {
-      switch(position) {
-         case "top":
-            return 0
-         case "middle":
-            return window.outerHeight / 2
-         case "bottom":
-            return window.outerHeight
-      }
-   }
-
-
-
-
-
-
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
- </script>
   </body>
-
-  <script>
-    
-
-
-
-
-
-
-
-   
-
-const AnimatedClass = "animated";
-const NotAnimatedClass = "not-animated";
-
-console.log("Hi! I'm your script")
-
-
-const Elements = document.querySelectorAll("[data-anim]")
-Elements.forEach(e => {
-  console.log(e)
-   e.classList.add(NotAnimatedClass)
-})
-
-
-window.addEventListener('scroll', (event) => {
-   Elements.forEach(e => {
-      animateElement(e);
-   })
-});
-
-
-function animateElement(element) {
-
-   if(element == null || element == "" || element == undefined)
-      return;
-
-   let positions = element.getAttribute("data-anim").split(" ")
-
-   let windowY = findWindowY(positions[0]);
-   let elementY = findElementY(element, positions[1]);
-   
-
-   if(element.tagName == "A")
-      
-
-   if (elementY - windowY <= 0) {
-      element.classList.add(AnimatedClass)
-      element.classList.remove(NotAnimatedClass)
-   }
-   else {
-      element.classList.add(NotAnimatedClass)
-      element.classList.remove(AnimatedClass)
-   }
-}
-
-
-function findElementY(element, position) {
-   switch(position) {
-      case "top":
-         return element.getBoundingClientRect().top
-      case "middle":
-         return element.getBoundingClientRect().top + (element.getBoundingClientRect().height / 2)
-      case "bottom":
-         return element.getBoundingClientRect().bottom
-   }
-}
-
-
-function findWindowY(position) {
-   switch(position) {
-      case "top":
-         return 0
-      case "middle":
-         return window.outerHeight / 2
-      case "bottom":
-         return window.outerHeight
-   }
-}
-
-
-
-
-
-
-function debounce(func, wait, immediate) {
-var timeout;
-return function() {
- var context = this, args = arguments;
- var later = function() {
-   timeout = null;
-   if (!immediate) func.apply(context, args);
- };
- var callNow = immediate && !timeout;
- clearTimeout(timeout);
- timeout = setTimeout(later, wait);
- if (callNow) func.apply(context, args);
-};
-};
-</script>
 </html>
