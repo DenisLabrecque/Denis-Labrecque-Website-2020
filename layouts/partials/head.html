@@ -1,0 +1,12 @@
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/icon-red.png" />
+    <title>Denis Labrecque</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="icon.png" />
+    {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{$sass.Permalink}}" />
+  </head>

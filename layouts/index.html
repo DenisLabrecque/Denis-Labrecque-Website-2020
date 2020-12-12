@@ -1,18 +1,7 @@
 <!DOCTYPE html>
-<head>
-   <title>Denis Labrecque</title>
-   <link rel="icon" href="/icon-red.png" />
-   {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-   <link rel="stylesheet" href="{{ $sass.Permalink }}" />
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<script src="/anim.js" defer></script>
-<!-- <script src="/scroll-hide-menu.js"></script> -->
-<!-- <script src="/rellax.js" defer></script>
-<script defer>
-   var rellax = new Rellax(".rellax");
-</script> -->
+{{ partial "head"}}
 
+<body>
 {{ partial "navMenu" }}
 
 {{ partial "pageTitle" (dict "context" . "title" "Denis Labrecque" "subtitle" "Programming and graphics" "headline" "Denis studies Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer." "ctaTitle" "Résumé" "ctaLink" "resume")}}
@@ -96,3 +85,4 @@
 </section>
 
 {{ partial "footer" . }}
+</body>

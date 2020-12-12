@@ -11,6 +11,7 @@ $padding: 40pt;
 $gradient-red: linear-gradient(to right, $orangerine, $red-pinkerton);
 $gradient-blue: linear-gradient(to right, $aquarina, $bay-blue);
 $breakpoint: 700px;
+$column-width: 600px;
 $border: 5px;
 $border-thin: 1.5px;
 
@@ -196,7 +197,7 @@ h4 {
 @media(min-width: $breakpoint) {
    .margined {
       padding: $padding 0;
-      max-width: 600px;
+      max-width: $column-width;
       margin-left: auto;
       margin-right: auto;
    }
@@ -467,6 +468,9 @@ footer {
       -webkit-text-fill-color: white;
       background: unset;
    }
+   h3 {
+      margin-bottom: 12pt;
+   }
    ul {
       margin: 0 0;
       padding-left: 0;
@@ -710,8 +714,8 @@ nav.menu {
 // Center at wide frames
 @media(min-width: $breakpoint) {
    nav.menu {
-      padding-left: calc(50vw - (800px / 2));
-      padding-right: calc(50vw - (800px / 2));
+      padding-left: calc(50vw - (600px / 2));
+      padding-right: calc(50vw - (600px / 2));
       //max-width: 800px;
       //margin-left: auto;
       //margin-right: auto;
