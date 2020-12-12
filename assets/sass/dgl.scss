@@ -92,7 +92,7 @@ header { // title page header
    
    h1 + p { // subtitle
       font: {
-         family: Arimo;
+         family: Arimo, sans-serif;
          size: 18pt;
          weight: normal;
       }
@@ -105,7 +105,7 @@ header { // title page header
 
 header {
    h2 + p { // section page header
-      font-family: Arimo;
+      font-family: Arimo, sans-serif;
       font-size: 8pt;
       line-height: 14.4pt;
       color: $cloud-black;
@@ -120,7 +120,7 @@ section {
 }
 
 p, ul, ol, li, label, input, textarea {
-   font-family: Arimo;
+   font-family: Arimo, sans-serif;
    margin-top: 0;
    margin-bottom: 12pt;
    font-size: 12pt;
@@ -186,7 +186,7 @@ h3 {
 }
 
 h4 {
-   font-family: Arimo;
+   font-family: Arimo, sans-serif;
    font-size: 9pt;
    line-height: 10.8pt;
    opacity: 0.5;
@@ -661,7 +661,7 @@ figure {
    }
 
    figcaption {
-      font-family: Arimo;
+      font-family: Arimo, sans-serif;
       font-weight: 600;
       color: grey;
       margin: 5pt;
