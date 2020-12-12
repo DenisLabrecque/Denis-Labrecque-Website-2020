@@ -203,6 +203,9 @@ h4 {
       margin-right: auto;
    }
 }
+.margined + .margined {
+   padding-top: 0;
+}
 
 div.ignore-columns {
    column-span: all;
@@ -401,6 +404,20 @@ a.button {
 .diagonal-top.animated {
    &::before {
       transform: translateY(0);
+   }
+}
+
+.red.diagonal-bottom + section p:first-child {
+   &::first-line {
+      color: $red-pinkerton;
+   }
+   &::first-letter {
+      float: left;
+      font-family: "Work Sans";
+      font-weight: 300;
+      font-size: 350%;
+      padding-top: 8pt;
+      padding-right: 1pt;
    }
 }
 
@@ -619,7 +636,10 @@ input, textarea {
    border-radius: 0;
 }
 textarea {
-   resize: vertical;
+   resize: none;
+   height: 100%;
+   min-height: 300px;
+   overflow-y: scroll;
 
    &:focus {
       border: none;
@@ -725,4 +745,8 @@ nav.menu {
 
 #logo-button {
    margin-left: -5px;
+
+   &:hover {
+      opacity: 0.75;
+   }
 }

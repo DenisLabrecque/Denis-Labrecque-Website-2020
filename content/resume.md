@@ -6,7 +6,7 @@ date: 2020-11-26T21:51:14-06:00
 draft: false
 author: "Denis Labrecque"
 ---
-<section data-anim="bottom top">
+<section>
     <h2>Education</h2>
     <h3>
         <em class="side-header">Pensacola Christian College, Florida</em>
@@ -18,7 +18,7 @@ author: "Denis Labrecque"
     <p>Helped lead seven team members to code an online testing software in Oracle and ASP.NET, using effective communication to put the project back on track and deliver on time.</p>
 </section>
 
-<section>
+<section class="slide-anim" data-anim="bottom top">
     <h2>Work Experience</h2>
     <h3>
         <em class="side-header">IT at Pensacola Christian College, Florida</em>
@@ -50,7 +50,7 @@ author: "Denis Labrecque"
 </section>
 
 
-<section>
+<section class="slide-anim" data-anim="bottom top">
         <h2>Personal Qualifications</h2>
         <p>Programmed my personal website, a Unity simulation (Warglobe), and Windows Store apps 
 (Minesweeper Basic and Receptus) to help improve my personal knowledge.</p>

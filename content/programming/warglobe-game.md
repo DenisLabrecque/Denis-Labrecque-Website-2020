@@ -30,6 +30,7 @@ To allow for independent development, this game’s models are simple enough to 
 
 ## Lore
 
+{{< image "Flag Gomer.png" >}}
 ### Gomer
 The **Gomerag** live in a fictional country known officially as the **Allied State of Gomer**. Their capital is **Galic**.
 
@@ -37,15 +38,13 @@ This faction’s inspiration is Gomer, son of Japheth. Gomer’s descendants, ca
 
 The flag is inspired from the popular depiction of Gauls as fierce warriors with horned helmets. Incidentally, this is likely an ethnic cliché, because horns would be cumbersome to wear in battle. However, as bulls are common in Spanish and French cave paintings, the symbol is still meaningfully representative of Gauls.
 
-{{< image "Flag Gomer.png" >}}
-
+{{< image "Flag Scythia.png" >}}
 ### Scythia
 The **Scyth** live in a fictional country known officially as the **Allied State of Scythia**. Their capital is **Ukra**.
 
 This faction’s inspiration is Magog, son of Japheth. Magog’s offspring settled parts of Romania and Ukraine, and became known as Scythians by the Greeks. Historical Scythians inspire the imaginary Scyth, and their settling Ukraine is the inspiration for their capital name, Ukra.
 
-{{< image "Flag Scythia.png" >}}
-
+{{< image "Flag Javan.png" >}}
 ### Javan
 **Javanites** live in a fictional country known officially as the **United Coalition of Javan**. Their capital is **Elys**.
 
@@ -53,8 +52,7 @@ This faction’s inspiration is Javan, son of Japheth, and his people are known 
 
 One of Javan’s sons was Elishah, and his offspring were the Elysians. This inspired the imaginary capital Elys.
 
-{{< image "Flag Javan.png" >}}
-
+{{< image "Flag Toboli.png" >}}
 ### Tobol
 The **Toboli** live in a fictional country known officially as the **United Coalition of Tobol**. Their capital is **Tobolski**.
 
@@ -63,16 +61,14 @@ and Tobolsk.
 
 The flag’s left field represents the Caucasus mountains from which the Thobelites came. The zig-zag lines represent their many river crossings during their trek across the Russian plains.
 
-{{< image "Flag Toboli.png" >}}
-
+{{< image "Flag Meshchera.png" >}}
 ### Meshk
 The **Meshchera** live in a fictional country known officially as the **International Bloc of Meshk**. Meshk’s capital is called **Meshkva**.
 
 This faction’s inspiration is Meshech, son of Japheth. Meshech gave his name Moscow and to the Meschera Lowland that surrounds it.
 Because of its connection to Moscow, this flag is inspired from the Russian colors. It is a combination of the Romanov crest and the modern Russian triband.
 
-{{< image "Flag Meshchera.png" >}}
-
+{{< image "Flag Thurash.png" >}}
 ### Thur
 The **Thurani** live in a fictional country known officially as the **International Bloc of Thur**. Thur’s capital is also called **Thur**.
 
@@ -80,15 +76,13 @@ This faction’s inspiration is Tiras, son of Japheth. Eventually, Tiras’ sons
 
 Thur’s flag is inspired from the ancient Viking hammer called Mjölnir, or Thor’s hammer. This mythological Norse pattern symbolizes Thor, who is in reality the Norse ancestor Tiras.
 
-{{< image "Flag Thurash.png" >}}
-
+{{< image "Flag Cush.png" >}}
 ### Cush
 The **Cushites** live in a fictional country known officially as the **International Bloc of Cush**. Cush’s capital city is named **Ethi**.
 
 This faction’s inspiration is Cush, son of Ham. Ethiopia was in the past known as Cush, and its inhabitants were called Chusites. The imaginary capital’s name, Ethi, is inspired from the country’s modern name, Ethiopia.
 
-{{< image "Flag Cush.png" >}}
-
+{{< image "Flag Mizr.png" >}}
 ### Mizr
 The **Mizraim** live in a fictional country known officially as the **Cosmopolitan Coalition of Mizr**. Mizr’s capital is named **Mitz**.
 
@@ -96,15 +90,13 @@ This faction’s inspiration is Mizraim, son of Ham. The Mizraim settled Egypt, 
 
 The flag takes cues from Egyptian art, which often features scarabs, oustretched wings, bold colors, and checkered borders.
 
-{{< image "Flag Mizr.png" >}}
-
+{{< image "Flag Huttia.png" >}}
 ### Huttia
 The **Huttites** live in a fictional country known officially as the **Cosmopolitan Coalition of Huttia**. Their capital is named **Hut**.
 
 This people’s inspiration is Heth, son of Ham, and patriarch of the Hittite empire. The flag’s five spearheads are fictional, but inspired from bronze Hittite artifacts known as standards.
 
-{{< image "Flag Huttia.png" >}}
-
+{{< image "Flag Elam.png" >}}
 ### Elam
 The **Elami** live in a fictional country known officially as the **Federal Coalition of Elam**. Elam’s capital is **Eru**.
 
@@ -112,29 +104,25 @@ This faction’s inspiration is Elam, son of Shem. Through time, Elam became kno
 
 The flag’s bird symbol is from a Jiroft culture bracelet. Because Jiroft culture is a Bronze Age people that left behind artifacts in central Iran, it is an example of what ancient Elamite art may have looked like.
 
-{{< image "Flag Elam.png" >}}
-
+{{< image "Flag Asshuria.png" >}}
 ### Asshuria
 The **Asshur** live in a country known officially as the **Federal Coalition of Asshuria**. Their capital is **Ashkh**.
 
 This faction’s inspiration is Asshur, a son of Shem. Asshur gave rise to the empire of Assyira. Their flag’s cardinal symbol conveys the central location and importance of Assyria within Mesopotamia, and the two lines represent the Tigris and Euphrates rivers, between which Assyria was wedged.
 
-{{< image "Flag Asshuria.png" >}}
-
+{{< image "Flag Arphaxia.png" >}}
 ### Arphaxia
 The **Arrhip** live in a fictional country known officially as the **Federal Coalition of Arphaxia**. Their capital city is named **Chalda**.
 
 This faction’s inspiration is Arphaxad, son of Shem. Arphaxad gave birth to the Chaldeans, Hebrews (through Eber), and Arabians (through Joktan). The Chaldeans have inspired the capital’s fictional name, Chalda. The Middle Eastern connection has inspired the flag: its colors are from similar Arabic flags; and the dagger is shaped as a janbiya, a type of curved knife originating from Yemen and Saudi Arabia.
 
-{{< image "Flag Arphaxia.png" >}}
-
+{{< image "Flag Lydda.png" >}}
 ### Lydda
 The **Sardi** live in a fictional country known officially as the **Joint Coalition of Lydda**. The capital of Lydda is known as **Lydd**.
 
 This faction’s inspiration is Lud, son of Shem. His descendants, known as Lydians, settled Turkey. Their demonym, Sardi, is inspired from the capital of the historical Lydians, Sardis.
 
-{{< image "Flag Lydda.png" >}}
-
+{{< image "Flag Madesh.png" >}}
 ### Madesh
 The **Madai** live in a fictional country known officially as the **Independent Faction of Madesh**. The capital of Madesh is **Madapa**.
 
@@ -142,13 +130,10 @@ This faction’s inspiration is Madai, son of Japheth. Madai’s descendants wer
 
 This flag’s pattern is formed after a flower motif found on the walls of Persepolis, Persia’s ancient capital. The flower motif is also meant to echo India’s modern flag, recalling the historical settlement connection.
 
-{{< image "Flag Madesh.png" >}}
-
+{{< image "Flag Peleset.png" >}}
 ### Peleset
 The **Pelesim** live in a fictional country known officially as the **Independent Faction of Peleset**. The capital of Peleset is **Jebussa**.
 
 This faction’s inspiration is Canaan, son of Ham; some of Canaan’s descendants were the Philistim, or Philistines, who settled across the Mediterranean coast, in what is commonly known today as Palestine.
 
 From this Canaanite connection comes the capital name Jebussa, which in history was Jebus (later renamed Jerusalem), which remains a significant city to this day. The flag contains wave-like elements to commemorate the Philistine’s Mediterranean origins.
-
-{{< image "Flag Peleset.png" >}}
