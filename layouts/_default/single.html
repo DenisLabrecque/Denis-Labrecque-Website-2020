@@ -4,7 +4,11 @@
 {{ define "main" }}
 {{ partial "pageTitle" (dict "context" . "title" .Title "subtitle" .Params.subtitle "headline" .Params.headline "image" .Params.image "ctaTitle" .Params.ctaTitle "ctaLink" .Params.ctaLink )}}
 
-<section class="margined">
-  {{ .Content }}
-</section>
+  {{ if .Params.blank }}
+    {{ .Content }}
+  {{ else }}
+  <section class="margined">
+    {{ .Content }}
+  </section>
+  {{ end }}
 {{ end }}

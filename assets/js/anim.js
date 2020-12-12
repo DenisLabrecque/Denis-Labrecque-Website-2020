@@ -25,7 +25,7 @@
    }
    
    // Listen to window scroll and add the animated class if necessary
-   window.addEventListener('scroll', debounce(animateEachElementFunction, 20));
+   window.addEventListener('scroll', debounce(animateEachElementFunction, 15));
    
    // Compare window and element height from top to add or remove the animation class
    function animateElement(element) {
