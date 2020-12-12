@@ -71,12 +71,12 @@ body {
 }
 
 header { // title page header
-   font-family: "Work Sans";
+   font-family: "Work Sans", sans-serif;
    font-weight: 100;
    color: $cloud-black;
 
    h1 {
-      font-family: "Work Sans";
+      font-family: "Work Sans", sans-serif;
       font-weight: 800;
       font-size: 55pt;
       line-height: 100%;
@@ -134,7 +134,7 @@ p.hero {
 }
 
 h2 {
-   font-family: "Work Sans Light", "Work Sans";
+   font-family: "Work Sans Light", "Work Sans", sans-serif;
    font-size: 30pt;
    line-height: 36pt;
    color: $cloud-black;
@@ -148,7 +148,7 @@ h2 {
 }
 
 h3 {
-   font-family: "Work Sans";
+   font-family: "Work Sans", sans-serif;
    font-weight: 400;
    font-size: 16pt;
    font-weight: bold;
@@ -247,7 +247,7 @@ p a, blockquote a, li a {
 a.button {
    font: {
       weight: 800;
-      family: "Work Sans";
+      family: "Work Sans", sans-serif;
    }
    color: white;
    background: $red-pinkerton;
@@ -413,7 +413,7 @@ a.button {
    }
    &::first-letter {
       float: left;
-      font-family: "Work Sans";
+      font-family: "Work Sans", sans-serif;
       font-weight: 300;
       font-size: 350%;
       padding-top: 8pt;
