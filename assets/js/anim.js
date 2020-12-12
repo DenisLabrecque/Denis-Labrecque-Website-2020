@@ -11,7 +11,7 @@
    const AnimatedClass = "animated";
    const NotAnimatedClass = "not-animated";
 
-   console.log("Hello! this is you new JS talking!")
+   console.log("Hello! this is your new JS talking!")
    
    // Mark all elements with the animation attribute as not animated
    const Elements = document.querySelectorAll("[data-anim]")

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<head>
-	<meta name="generator" content="Hugo 0.74.1" />
-   <title>Denis Labrecque</title>
-   <link rel="icon" href="./icon-red.png" />
-   
-   <link rel="stylesheet" href="./sass/dgl.min.4df7c000bf77080738f552fec7018ee563de9b2f046d918b7af96161ab3a8091.css" />
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<script src="./anim.js" defer></script>
 
+  <head>
+	<meta name="generator" content="Hugo 0.79.0" />
+    <meta charset="utf-8">
+    <link rel="icon" href="./icon-red.png" />
+    <title>Denis Labrecque</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" href="icon.png" />
+    
+    <link rel="stylesheet" href="./sass/dgl.min.f4a2bd5116480a4890e3ba99a4c7bcb68818164fc919bd172d2824b0d6928c2b.css" />
+  </head>
+
+<body>
 <nav class="menu">
     <div>
        <a href="./" id="logo-button" class="overlay-button">
@@ -143,6 +146,23 @@ Since then, the distant idea of creating a game with air and naval combat has st
       <div class="card-grid">
          
 
+   <a class="card" href="./graphics/spenser-house/">
+      
+      
+      
+      
+      
+      
+
+      <img src="./Spenser_House_Exterior.jpg"
+           srcset="./Spenser_House_Exterior_huf6d5e0c6f6834dd440b0fb4702f92100_1110557_400x300_fill_q75_box_smart1.jpg 400w, ./Spenser_House_Exterior_huf6d5e0c6f6834dd440b0fb4702f92100_1110557_800x600_fill_q75_box_smart1.jpg 800w, ./Spenser_House_Exterior_huf6d5e0c6f6834dd440b0fb4702f92100_1110557_1440x1080_fill_q75_box_smart1.jpg 1440w, ./Spenser_House_Exterior_huf6d5e0c6f6834dd440b0fb4702f92100_1110557_2560x1920_fill_q75_box_smart1.jpg 2560w"
+           alt="/Spenser_House_Exterior.jpg" />
+      <h3>Spenser House</h3>
+      <p>Creating 3D models is a skill I developed personally during college. Using rendering engines taught me the complicated but fascinating process of elaborating geometry and shaders to replicate the real world, from painstakingly copying building plans to properly using assets.
+Kitchen Living room Portico Exterior Designed by architect Guy Peterson, Spenser House is a residence made in the Sarasota School of Architecture’s signature style.</p>
+      
+   </a>
+
    <a class="card" href="./graphics/modern-home/">
       
       
@@ -152,7 +172,7 @@ Since then, the distant idea of creating a game with air and naval combat has st
       
 
       <img src="./Modern_Home_Front.jpg"
-           srcset="./Modern_Home_Front_huffd6e27e9ee89b3e7e526b6c88edc5f4_1115553_400x300_fill_q75_box_smart1.jpg 400w, ./Modern_Home_Front_huffd6e27e9ee89b3e7e526b6c88edc5f4_1115553_800x600_fill_q75_box_smart1.jpg 800w, ./Modern_Home_Front_huffd6e27e9ee89b3e7e526b6c88edc5f4_1115553_1440x1080_fill_q75_box_smart1.jpg 1440w, ./Modern_Home_Front_huffd6e27e9ee89b3e7e526b6c88edc5f4_1115553_2560x1920_fill_q75_box_smart1.jpg 2560w"
+           srcset="./Modern_Home_Front_hu315a9271b2f101302efc80a8f3baa314_1546838_400x300_fill_q75_box_smart1.jpg 400w, ./Modern_Home_Front_hu315a9271b2f101302efc80a8f3baa314_1546838_800x600_fill_q75_box_smart1.jpg 800w, ./Modern_Home_Front_hu315a9271b2f101302efc80a8f3baa314_1546838_1440x1080_fill_q75_box_smart1.jpg 1440w, ./Modern_Home_Front_hu315a9271b2f101302efc80a8f3baa314_1546838_2560x1920_fill_q75_box_smart1.jpg 2560w"
            alt="/Modern_Home_Front.jpg" />
       <h3>Modern Home</h3>
       <p>Front view Two stone block towers support this house, giving it the feeling of floating above ground. The main living spaces are left open plan, with large windowed walls funneling views towards both the front and the back, helping maintain privacy. The windows are also placed to provide features at night, where they will glow brightly against the dark stone construction, enhancing the building’s volume.
@@ -193,6 +213,8 @@ Apparel This apparel is designed to be sold as a fundraiser at the event. It was
 Early on, the details are blocked in, but the lighting needs work. The fireflies are from a non-denoised draft render in Cycles.</p>
       
    </a>
+
+
 
 
 
@@ -262,3 +284,102 @@ Apparel This apparel is designed to be sold as a fundraiser at the event. It was
           Denis Labrecque © 2020</small>
     </div>
  </footer>
+ <script defer>
+       
+   
+   
+   
+   
+   
+   
+   
+      
+   
+   const AnimatedClass = "animated";
+   const NotAnimatedClass = "not-animated";
+
+   console.log("Hello! this is you new JS talking!")
+   
+   
+   const Elements = document.querySelectorAll("[data-anim]")
+   Elements.forEach(e => {
+      e.classList.add(NotAnimatedClass)
+   })
+   
+   
+   window.addEventListener('scroll', (event) => {
+      Elements.forEach(e => {
+         animateElement(e);
+      })
+   });
+   
+   
+   function animateElement(element) {
+   
+      if(element == null || element == "" || element == undefined)
+         return;
+   
+      let positions = element.getAttribute("data-anim").split(" ")
+
+      let windowY = findWindowY(positions[0]);
+      let elementY = findElementY(element, positions[1]);
+      
+
+      if(element.tagName == "A")
+         
+
+      if (elementY - windowY <= 0) {
+         element.classList.add(AnimatedClass)
+         element.classList.remove(NotAnimatedClass)
+      }
+      else {
+         element.classList.add(NotAnimatedClass)
+         element.classList.remove(AnimatedClass)
+      }
+   }
+
+   
+   function findElementY(element, position) {
+      switch(position) {
+         case "top":
+            return element.getBoundingClientRect().top
+         case "middle":
+            return element.getBoundingClientRect().top + (element.getBoundingClientRect().height / 2)
+         case "bottom":
+            return element.getBoundingClientRect().bottom
+      }
+   }
+
+   
+   function findWindowY(position) {
+      switch(position) {
+         case "top":
+            return 0
+         case "middle":
+            return window.outerHeight / 2
+         case "bottom":
+            return window.outerHeight
+      }
+   }
+
+
+
+
+
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+ </script>
+</body>
