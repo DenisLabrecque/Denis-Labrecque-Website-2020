@@ -1,11 +1,12 @@
-  <head>
-    <meta charset="utf-8">
-    <link rel="icon" href="/icon-red.png" />
-    <title>Denis Labrecque</title>
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/icon-red.png" />
+  <title>Denis Labrecque</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{$sass.Permalink}}" />
-  </head>
-   <scrip src="js/anim.js" defer></scrip>
+  {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $sass.Permalink}}" />
+</head>
+{{ $js := resources.Get "js/anim.js" }}
+<script src="{{ $js.Permalink }}" defer></script>

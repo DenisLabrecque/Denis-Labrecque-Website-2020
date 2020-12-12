@@ -10,21 +10,22 @@
    // The class that gets added after the animation gets hit
    const AnimatedClass = "animated";
    const NotAnimatedClass = "not-animated";
-
-   console.log("Hello! this is your new JS talking!")
    
    // Mark all elements with the animation attribute as not animated
    const Elements = document.querySelectorAll("[data-anim]")
    Elements.forEach(e => {
       e.classList.add(NotAnimatedClass)
    })
+
+   let animateEachElementFunction = function() {
+      //console.log("debounce happened")
+      Elements.forEach(e => {
+         animateElement(e)
+      })
+   }
    
    // Listen to window scroll and add the animated class if necessary
-   window.addEventListener('scroll', (event) => {
-      Elements.forEach(e => {
-         animateElement(e);
-      })
-   });
+   window.addEventListener('scroll', debounce(animateEachElementFunction, 20));
    
    // Compare window and element height from top to add or remove the animation class
    function animateElement(element) {
@@ -38,8 +39,9 @@
       let elementY = findElementY(element, positions[1]);
       //console.log("elementY: " + elementY + ", windowY " + windowY + " value: " + (elementY - windowY) + " " + (elementY - windowY <= 0))
 
-      if(element.tagName == "A")
+      if(element.tagName == "A") {
          //console.log("windowY " + windowY + " elementY " + elementY);
+      }
 
       if (elementY - windowY <= 0) {
          element.classList.add(AnimatedClass)
