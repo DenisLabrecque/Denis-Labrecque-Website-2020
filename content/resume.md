@@ -8,9 +8,10 @@ author: "Denis Labrecque"
 ---
 <section data-anim="bottom top">
     <h2>Education</h2>
-    <em class="side-header">Pensacola Christian College, Florida</em>
-    <h3>B.S. in Computing: Information Technology
-        <br />B.S. in Visual Arts: Graphic Design
+    <h3>
+        <em class="side-header">Pensacola Christian College, Florida</em>
+        <div>B.S. in Computing: Information Technology
+        <br />B.S. in Visual Arts: Graphic Design</div>
     </h3>
     <p><strong>August 2015—December 2020 (December graduate); GPA 3.6/4.0</strong></p>
     <p>Lead a small team of designers to create a student publication, following business requirements.</p>

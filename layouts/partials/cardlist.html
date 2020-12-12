@@ -3,10 +3,10 @@
    <a class="card" href="{{ .RelPermalink }}">
       {{ $img := resources.GetMatch .Params.image }}
       
-      {{ $x_400 := $img.Fill "400x300 Smart" }}
-      {{ $x_800 := $img.Fill "800x600 Smart" }}
-      {{ $x_1440 := $img.Fill "1440x1080 Smart" }}
-      {{ $x_2560 := $img.Fill "2560x1920 smart" }}
+      {{ $x_400 := $img.Fill "400x300 Center" }}
+      {{ $x_800 := $img.Fill "800x600 Center" }}
+      {{ $x_1440 := $img.Fill "1440x1080 Center" }}
+      {{ $x_2560 := $img.Fill "2560x1920 Center" }}
 
       <img src="{{$img.RelPermalink}}"
            srcset="{{$x_400.RelPermalink}} 400w,
