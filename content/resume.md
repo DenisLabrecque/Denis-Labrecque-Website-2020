@@ -56,3 +56,7 @@ author: "Denis Labrecque"
         <p>Completed projects in C, C++, C#, Java, SQL, Bootstrap, Xamarin, UWP, Android Studio, Adobe XD, InDesign, Photoshop, Illustrator, After Effects, Premiere Pro, Unity, and Blender.</p>
         <p>Natively bilingual in English and French.</p>
 </section>
+
+<section>
+    <a href="/about/#contact" class="button">Contact Denis</a>
+</section>
