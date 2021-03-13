@@ -19,8 +19,16 @@ blank: true
 
 <section class="red diagonal-both" id="contact">
    <div class="margined slide-anim" data-anim="bottom top">
-      <p class="lead">For any inquiry, send an email.</p>
-      <a class="button">Contact me</a>
+         <p class="hero">Contact Me</p>
+      <form>
+        <label>Email</label>
+        <input type="email" />
+        <label>Subject</label>
+        <input>
+        <label>Message</label>
+        <textarea></textarea>
+      </form>
+         <a class="button">Send</a>
    </div>
 </section>
 
