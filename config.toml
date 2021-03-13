@@ -1,8 +1,12 @@
 baseURL = "/"
-languageCode = "en-us"
+pluralizelisttitles = false
+[Languages]
+    [Languages.en]
+        weight = 1
+    [Languages.fr]
+        weight = 2
 title = "Denis Labrecque"
 assetDir = "/assets"
-pluralizelisttitles = false
 relativeURLs = true
 publishDir = "docs"
 [markup.goldmark.renderer]
