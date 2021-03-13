@@ -1,6 +1,12 @@
 baseURL = "/"
-languageCode = "en-us"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = "true"
 title = "Denis Labrecque"
+[languages]
+    [languages.en]
+        weight = 1
+    [languages.fr]
+        weight = 2
 assetDir = "/assets"
 pluralizelisttitles = false
 relativeURLs = true
