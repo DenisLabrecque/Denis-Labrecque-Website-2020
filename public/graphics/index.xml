@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Graphics on </title>
+    <link>/graphics/</link>
+    <description>Recent content in Graphics on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 11 Dec 2020 18:05:10 -0600</lastBuildDate>
+    
+	<atom:link href="/graphics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spenser House</title>
+      <link>/graphics/spenser-house/</link>
+      <pubDate>Fri, 11 Dec 2020 18:05:10 -0600</pubDate>
+      
+      <guid>/graphics/spenser-house/</guid>
+      <description>Creating 3D models is a skill I developed personally during college. Using rendering engines taught me the complicated but fascinating process of elaborating geometry and shaders to replicate the real world, from painstakingly copying building plans to properly using assets.
+Kitchen Living room Portico Exterior Designed by architect Guy Peterson, Spenser House is a residence made in the Sarasota School of Architecture’s signature style.</description>
+    </item>
+    
+    <item>
+      <title>Modern Home</title>
+      <link>/graphics/modern-home/</link>
+      <pubDate>Fri, 11 Dec 2020 15:49:54 -0600</pubDate>
+      
+      <guid>/graphics/modern-home/</guid>
+      <description>Front view Two stone block towers support this house, giving it the feeling of floating above ground. The main living spaces are left open plan, with large windowed walls funneling views towards both the front and the back, helping maintain privacy. The windows are also placed to provide features at night, where they will glow brightly against the dark stone construction, enhancing the building’s volume.
+Rooftop terrace Requested spaces for this house were: a living area with kitchen, a balcony, and a central courtyard.</description>
+    </item>
+    
+    <item>
+      <title>Scale Air Campaign</title>
+      <link>/graphics/scale-air/</link>
+      <pubDate>Tue, 24 Nov 2020 18:05:29 -0600</pubDate>
+      
+      <guid>/graphics/scale-air/</guid>
+      <description>This advertising campaign is for an imaginary model aircraft meetup in Montreal. It supports the event’s design needs, and is meant to attract visitors. Because of its particular location, part of the campaign is bilingual.
+Apparel This apparel is designed to be sold as a fundraiser at the event. It was first sketched out on paper, then made in Illustrator and mocked up in Photoshop.</description>
+    </item>
+    
+    <item>
+      <title>Asian Garden</title>
+      <link>/graphics/asian-garden/</link>
+      <pubDate>Tue, 24 Nov 2020 18:04:27 -0600</pubDate>
+      
+      <guid>/graphics/asian-garden/</guid>
+      <description>I created this scene to challenge myself to represent nature. It taught me how to use software light, and how to texture natural elements like water to make a good-looking render. An asset software called Bridge helped speed the composition process, and the image was rendered from Blender.
+Early on, the details are blocked in, but the lighting needs work. The fireflies are from a non-denoised draft render in Cycles.</description>
+    </item>
+    
+  </channel>
+</rss>

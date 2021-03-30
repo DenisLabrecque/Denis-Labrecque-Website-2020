@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Denis Labrecque</title>
+    <link>/fr/</link>
+    <description>Recent content on Denis Labrecque</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="/fr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Résumé</title>
+      <link>/fr/resume/</link>
+      <pubDate>Thu, 26 Nov 2020 21:51:14 -0600</pubDate>
+      
+      <guid>/fr/resume/</guid>
+      <description>Resume en francais en ce moment.EducationPensacola Christian College, FloridaB.S. in Computing: Information TechnologyB.S. in Visual Arts: Graphic DesignAugust 2015—December 2020 (December graduate); GPA 3.6/4.0
+Lead a small team of designers to create a student publication, following business requirements.
+Helped lead seven team members to code an online testing software in Oracle and ASP.NET, using effective communication to put the project back on track and deliver on time.</description>
+    </item>
+    
+  </channel>
+</rss>

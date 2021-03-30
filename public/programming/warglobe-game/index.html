@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/icon-red.png" />
+  <title>Denis Labrecque</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="stylesheet" href="/sass/dgl.min.90850529801544ed619b9745b2c99ef4a6df523183ace7f17fbe9d16ceb68b78.css" />
+</head>
+
+<script src="/js/anim.js" defer></script>
+  
+
+  <body>
+    <nav class="menu">
+    <div>
+       <a href="/" id="logo-button" class="overlay-button">
+          <img src="/icon-red.png" width="38" height="38" />
+       </a>
+    </div>
+ 
+    <ul id="menu-bar">
+       <li><a href="/programming/">Programming</a></li>
+       <li><a href="/graphics/">Graphics</a></li>
+       <li><a href="/about/">About</a></li>
+    </ul>
+    
+    
+ </nav>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+<section class="red diagonal-bottom">
+    <div class="margined">
+       <header>
+          <h1>Warglobe Game</h1>
+          <p>Planetary Combat Game</p>
+       </header>
+       
+       <p>Eventually, Warglobe is to become an independently developed, free-to-play game with online combat in ships, airplanes, and vehicles. If possible, players will command groups of vehicles as well as drive them, combining the action and speed of a first-person shooter with the tactics of a real-time strategy game. Nevertheless, this depends on all previous phases (prototype, mission-based, and online multiplayer) being completed first.</p>
+       
+       
+       <a class="button anim-top-bottom" href="https://www.youtube.com/playlist?list=PLq7M1cOtTjn1QMICtPQld-icaORGyhxED">Watch the Devlog</a>
+       
+    </div>
+ </section>
+
+  
+  <section class="margined">
+    <h2 id="about-the-game">About the Game</h2>
+<p>In the early 2000s, video games came in cereal boxes. 
+An example of this is Battleship: Surface Thunder, a simple mission-based third-person shooter that put my child fingers in control of a battleship. I was hooked.</p>
+<p>Since then, the distant idea of creating a game with air and naval combat has stuck. Unfortunately, many games today are based on a flat map, which is great for game engines, but not so great for players who want a larger area. Therefore, the concept of creating a game that is a true globe came to mind: when traveling in one direction, the player, instead of encountering the edge of the map, will circumnavigate the game world. This gives the additional benefit of reducing the player’s visibility based on the curvature of the earth. This is the idea for Warglobe—a digitally spherical map on which players can do battle without encountering map edge confines.
+The advent of more warship games such as World of Warships, War Thunder, and Cold Water demonstrates a true public interest in this type of video game. This means that to distinguish itself, Warglobe must be both easy to play and sophisticated in its mechanics.
+Just as the original battleship was mission-based, Warglobe will most likely implement missions in its prototype stage, so that a few players can test vehicle mechanics Afterwards, the goal will become implementing online player-versus-player battles, which is a more challenging development task. Once online battles are complete, monetization of premium vehicles will help make the project sustainable.</p>
+<p>Currently, Warglobe is in early development, with such mechanics as factions, flight, flotation, gravitation, radar spotting and ranging, firing, and basic vehicle functionality implemented. Because an interface was not necessary for early development, whatever user graphics did ensue were somewhat haphazard, made for programming convenience rather than visual appeal. However, the time for an aesthetic interface has now come.</p>
+<p>Eventually, Warglobe is to become an independently developed, free-to-play game with online combat in ships, airplanes, and vehicles. If possible, players will command groups of vehicles as well as drive them, combining the action and speed of a first-person shooter with the tactics of a real-time strategy game. Nevertheless, this depends on all previous phases (prototype, mission-based, and online multiplayer) being completed first.</p>
+<p>This document is the product of the last two Christmas breaks in ideas and programming. Because Warglobe is still an indie game in development, whether it will be successful is yet to be proven.</p>
+<h2 id="concept-assets">Concept Assets</h2>
+<p>To allow for independent development, this game’s models are simple enough to produce rapidly without a heavy investment in texturing. Using a stylized look will brand the game and avoid its looking dated due to advances in rendering technology.
+
+
+
+
+
+<figure>
+    <img src="/Warglobe_Ship.png" alt="/Warglobe_Ship.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+
+
+
+
+
+<figure>
+    <img src="/Warglobe_Cannon.png" alt="/Warglobe_Cannon.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+
+
+
+
+
+<figure>
+    <img src="/Warglobe_CIWS.png" alt="/Warglobe_CIWS.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure></p>
+<h2 id="lore">Lore</h2>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Gomer.png" alt="/Flag%20Gomer.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="gomer">Gomer</h3>
+<p>The <strong>Gomerag</strong> live in a fictional country known officially as the <strong>Allied State of Gomer</strong>. Their capital is <strong>Galic</strong>.</p>
+<p>This faction’s inspiration is Gomer, son of Japheth. Gomer’s descendants, called Gomerites, eventually settled all the way from from western Europe to Turkey. In Spain, their region was Galicia; in France, it was Gaul; and in Turkey, it was known as Galacia.</p>
+<p>The flag is inspired from the popular depiction of Gauls as fierce warriors with horned helmets. Incidentally, this is likely an ethnic cliché, because horns would be cumbersome to wear in battle. However, as bulls are common in Spanish and French cave paintings, the symbol is still meaningfully representative of Gauls.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Scythia.png" alt="/Flag%20Scythia.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="scythia">Scythia</h3>
+<p>The <strong>Scyth</strong> live in a fictional country known officially as the <strong>Allied State of Scythia</strong>. Their capital is <strong>Ukra</strong>.</p>
+<p>This faction’s inspiration is Magog, son of Japheth. Magog’s offspring settled parts of Romania and Ukraine, and became known as Scythians by the Greeks. Historical Scythians inspire the imaginary Scyth, and their settling Ukraine is the inspiration for their capital name, Ukra.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Javan.png" alt="/Flag%20Javan.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="javan">Javan</h3>
+<p><strong>Javanites</strong> live in a fictional country known officially as the <strong>United Coalition of Javan</strong>. Their capital is <strong>Elys</strong>.</p>
+<p>This faction’s inspiration is Javan, son of Japheth, and his people are known as Greeks. The god Jupiter (also called Zeus), got his name from Japheth, Javan’s father.</p>
+<p>One of Javan’s sons was Elishah, and his offspring were the Elysians. This inspired the imaginary capital Elys.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Toboli.png" alt="/Flag%20Toboli.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="tobol">Tobol</h3>
+<p>The <strong>Toboli</strong> live in a fictional country known officially as the <strong>United Coalition of Tobol</strong>. Their capital is <strong>Tobolski</strong>.</p>
+<p>This faction’s inspiration is Tubal, son of Japheth. They were known variously as the Tabali, Thobelites, and later Iberes. They gave their name to many locations in their eastward migration, such as to the cities of Tbilisi 
+and Tobolsk.</p>
+<p>The flag’s left field represents the Caucasus mountains from which the Thobelites came. The zig-zag lines represent their many river crossings during their trek across the Russian plains.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Meshchera.png" alt="/Flag%20Meshchera.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="meshk">Meshk</h3>
+<p>The <strong>Meshchera</strong> live in a fictional country known officially as the <strong>International Bloc of Meshk</strong>. Meshk’s capital is called <strong>Meshkva</strong>.</p>
+<p>This faction’s inspiration is Meshech, son of Japheth. Meshech gave his name Moscow and to the Meschera Lowland that surrounds it.
+Because of its connection to Moscow, this flag is inspired from the Russian colors. It is a combination of the Romanov crest and the modern Russian triband.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Thurash.png" alt="/Flag%20Thurash.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="thur">Thur</h3>
+<p>The <strong>Thurani</strong> live in a fictional country known officially as the <strong>International Bloc of Thur</strong>. Thur’s capital is also called <strong>Thur</strong>.</p>
+<p>This faction’s inspiration is Tiras, son of Japheth. Eventually, Tiras’ sons became known as Thracians; their fathered was revered as Thuras (or Thor), god of thunder.</p>
+<p>Thur’s flag is inspired from the ancient Viking hammer called Mjölnir, or Thor’s hammer. This mythological Norse pattern symbolizes Thor, who is in reality the Norse ancestor Tiras.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Cush.png" alt="/Flag%20Cush.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="cush">Cush</h3>
+<p>The <strong>Cushites</strong> live in a fictional country known officially as the <strong>International Bloc of Cush</strong>. Cush’s capital city is named <strong>Ethi</strong>.</p>
+<p>This faction’s inspiration is Cush, son of Ham. Ethiopia was in the past known as Cush, and its inhabitants were called Chusites. The imaginary capital’s name, Ethi, is inspired from the country’s modern name, Ethiopia.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Mizr.png" alt="/Flag%20Mizr.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="mizr">Mizr</h3>
+<p>The <strong>Mizraim</strong> live in a fictional country known officially as the <strong>Cosmopolitan Coalition of Mizr</strong>. Mizr’s capital is named <strong>Mitz</strong>.</p>
+<p>This faction’s inspiration is Mizraim, son of Ham. The Mizraim settled Egypt, and to this day Misr is a synonym for Egypt (as in Banque Misr, for bank of Egypt).</p>
+<p>The flag takes cues from Egyptian art, which often features scarabs, oustretched wings, bold colors, and checkered borders.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Huttia.png" alt="/Flag%20Huttia.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="huttia">Huttia</h3>
+<p>The <strong>Huttites</strong> live in a fictional country known officially as the <strong>Cosmopolitan Coalition of Huttia</strong>. Their capital is named <strong>Hut</strong>.</p>
+<p>This people’s inspiration is Heth, son of Ham, and patriarch of the Hittite empire. The flag’s five spearheads are fictional, but inspired from bronze Hittite artifacts known as standards.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Elam.png" alt="/Flag%20Elam.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="elam">Elam</h3>
+<p>The <strong>Elami</strong> live in a fictional country known officially as the <strong>Federal Coalition of Elam</strong>. Elam’s capital is <strong>Eru</strong>.</p>
+<p>This faction’s inspiration is Elam, son of Shem. Through time, Elam became known as Persia, itself is known today as Iran. In modern times, the Ilam province in Iran is still named after Elam, father of the Elamites.</p>
+<p>The flag’s bird symbol is from a Jiroft culture bracelet. Because Jiroft culture is a Bronze Age people that left behind artifacts in central Iran, it is an example of what ancient Elamite art may have looked like.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Asshuria.png" alt="/Flag%20Asshuria.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="asshuria">Asshuria</h3>
+<p>The <strong>Asshur</strong> live in a country known officially as the <strong>Federal Coalition of Asshuria</strong>. Their capital is <strong>Ashkh</strong>.</p>
+<p>This faction’s inspiration is Asshur, a son of Shem. Asshur gave rise to the empire of Assyira. Their flag’s cardinal symbol conveys the central location and importance of Assyria within Mesopotamia, and the two lines represent the Tigris and Euphrates rivers, between which Assyria was wedged.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Arphaxia.png" alt="/Flag%20Arphaxia.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="arphaxia">Arphaxia</h3>
+<p>The <strong>Arrhip</strong> live in a fictional country known officially as the <strong>Federal Coalition of Arphaxia</strong>. Their capital city is named <strong>Chalda</strong>.</p>
+<p>This faction’s inspiration is Arphaxad, son of Shem. Arphaxad gave birth to the Chaldeans, Hebrews (through Eber), and Arabians (through Joktan). The Chaldeans have inspired the capital’s fictional name, Chalda. The Middle Eastern connection has inspired the flag: its colors are from similar Arabic flags; and the dagger is shaped as a janbiya, a type of curved knife originating from Yemen and Saudi Arabia.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Lydda.png" alt="/Flag%20Lydda.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="lydda">Lydda</h3>
+<p>The <strong>Sardi</strong> live in a fictional country known officially as the <strong>Joint Coalition of Lydda</strong>. The capital of Lydda is known as <strong>Lydd</strong>.</p>
+<p>This faction’s inspiration is Lud, son of Shem. His descendants, known as Lydians, settled Turkey. Their demonym, Sardi, is inspired from the capital of the historical Lydians, Sardis.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Madesh.png" alt="/Flag%20Madesh.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="madesh">Madesh</h3>
+<p>The <strong>Madai</strong> live in a fictional country known officially as the <strong>Independent Faction of Madesh</strong>. The capital of Madesh is <strong>Madapa</strong>.</p>
+<p>This faction’s inspiration is Madai, son of Japheth. Madai’s descendants were known as Medes. Later, they would coalesce with the Persians, settling as far as India.</p>
+<p>This flag’s pattern is formed after a flower motif found on the walls of Persepolis, Persia’s ancient capital. The flower motif is also meant to echo India’s modern flag, recalling the historical settlement connection.</p>
+
+
+
+
+
+<figure>
+    <img src="/Flag%20Peleset.png" alt="/Flag%20Peleset.png" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top"></figcaption>
+</figure>
+<h3 id="peleset">Peleset</h3>
+<p>The <strong>Pelesim</strong> live in a fictional country known officially as the <strong>Independent Faction of Peleset</strong>. The capital of Peleset is <strong>Jebussa</strong>.</p>
+<p>This faction’s inspiration is Canaan, son of Ham; some of Canaan’s descendants were the Philistim, or Philistines, who settled across the Mediterranean coast, in what is commonly known today as Palestine.</p>
+<p>From this Canaanite connection comes the capital name Jebussa, which in history was Jebus (later renamed Jerusalem), which remains a significant city to this day. The flag contains wave-like elements to commemorate the Philistine’s Mediterranean origins.</p>
+
+  </section>
+  
+
+    <footer class="diagonal-top anim-top-top">
+    <div class="margined">
+       <nav class="grid-3">
+          <div class="grid-item">
+             <h3>Network</h3>
+             <ul>
+                <li><a href="https://www.linkedin.com/in/denisglabrecque/">LinkedIn</a></li>
+                <li><a href="https://www.youtube.com/channel/UCw3D6IUqE0sQk_ULQEJJkhw">YouTube</a></li>
+                <li><a href="https://www.facebook.com/DenisGLabrecque/">Facebook</a></li>
+             </ul>
+          </div>
+          <div class="grid-item">
+             <h3>Navigation</h3>
+             <ul>
+                <li><a href="/programming/">Programming</a></li>
+                <li><a href="/graphics/">Graphics</a></li>
+             </ul>
+          </div>
+          <div class="grid-item">
+             <h3>Information</h3>
+             <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/resume/">Résumé</a></li>
+             </ul>
+          </div>
+       </nav>
+ 
+       <small>
+          <img src="/icon.png" width="32" height="39.5" />
+          Denis Labrecque © 2021</small>
+    </div>
+ </footer>
+  </body>
+</html>
