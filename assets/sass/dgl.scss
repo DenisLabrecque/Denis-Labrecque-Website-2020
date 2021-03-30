@@ -407,7 +407,7 @@ a.button {
    }
 }
 
-.red.diagonal-bottom + section p:first-child {
+.red.diagonal-bottom + section>p:first-child {
    &::first-line {
       color: $red-pinkerton;
    }
@@ -632,8 +632,10 @@ input, textarea {
    padding: 5pt;
    width: 100%;
    display: block;
-   border: 1px solid white;
+   border: none;
+   outline: none;
    border-radius: 0;
+   background-color: whitesmoke;
 }
 textarea {
    resize: none;
@@ -750,3 +752,85 @@ nav.menu {
       opacity: 0.75;
    }
 }
+
+
+// Circle animation for email sending
+// https://stackoverflow.com/questions/53332736/pure-css-drawing-circle-animation
+.circle__box {
+   width: 200px;
+   height: 200px;
+   margin: 50px auto;
+   position: relative;
+ }
+ .circle__box.hidden {
+    display: none;
+ }
+ .circle__box p {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 70px;
+ }
+ 
+ .circle__wrapper {
+   width: 100px;
+   height: 200px;
+   position: absolute;
+   top: 0;
+   overflow: hidden;
+ }
+ 
+ .circle__wrapper--right {
+   right: 0;
+ }
+ 
+ .circle__wrapper--left {
+   left: 0;
+ }
+ 
+ .circle__whole {
+   width: 180px;
+   height: 180px;
+   border: 10px solid transparent;
+   border-radius: 50%;
+   position: absolute;
+   top: 0;
+   transform: rotate(-135deg);
+ }
+ 
+ .circle__right {
+   border-top: 10px solid $red-pinkerton;
+   border-right: 10px solid $red-pinkerton;
+   right: 1px;
+   animation: circleRight 1s linear forwards;
+ }
+ 
+ .circle__left {
+   border-bottom: 10px solid $red-pinkerton;
+   border-left: 10px solid $red-pinkerton;
+   left: 1px;
+   animation: circleLeft 1s linear forwards;
+ }
+ 
+ @keyframes circleRight {
+   0% {
+     transform: rotate(-135deg);
+   }
+   50%,
+   100% {
+     transform: rotate(45deg);
+   }
+ }
+ 
+ @keyframes circleLeft {
+   0%,
+   50% {
+     transform: rotate(-135deg);
+   }
+   100% {
+     -webkit-transform: rotate(45deg);
+   }
+ }

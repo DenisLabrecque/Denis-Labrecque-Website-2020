@@ -31,14 +31,13 @@
     </item>
     
     <item>
-      <title>About</title>
+      <title>Contact</title>
       <link>/about/</link>
       <pubDate>Thu, 26 Nov 2020 21:51:14 -0600</pubDate>
       
       <guid>/about/</guid>
-      <description>When he was very young, Denis enjoyed drawing airplanes and rolling a miniature steam engine around to understand how the wheels paired together. Eventually, his curiosity grew towards graphics, piqued by a book explaining how to design websites. He has since been imagining user interfaces by creating small apps on the side, by working as a web designer, and by working as a programmer.
-Contact Me
-SubjectMessageSendlet email = &#39;&#39;let subject = &#39;&#39;let message = &#39;&#39;let fld_subject = document.</description>
+      <description>SubjectMessageSendThanks! Sent to your email program.
+let div_container = document.querySelector(&#39;div.contact-content&#39;)let fld_subject = document.querySelector(&#39;#subjectField&#39;)let txt_message = document.querySelector(&#39;#messageField&#39;)let btn_send = document.querySelector(&#39;#sendEmail&#39;)let div_confirmation = document.querySelector(&#39;div.circle__box&#39;)function sendEmail() {let mail = document.createElement(&#34;a&#34;)mail.href = &#39;mailto:denis.g.labrecque@gmail.com?subject=&#39; + encodeURIComponent(fld_subject.value) + &#39;&amp;body=&#39; + encodeURIComponent(txt_message.value)mail.click();div_confirmation.classList.remove(&#39;hidden&#39;)div_container.style.display = &#39;none&#39;}AboutWhen he was very young, Denis enjoyed drawing airplanes and rolling a miniature steam engine around to understand how the wheels paired together.</description>
     </item>
     
     <item>

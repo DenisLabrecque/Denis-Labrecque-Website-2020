@@ -1,47 +1,49 @@
 ---
-title: "About"
-subtitle: "Learn More or Contact"
-headline: "Denis Labrecque is a finishing student in Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and has graduated cum laude in December 2020. After his education, he hopes to continue as a programmer."
-ctaTitle: "Résumé"
-ctaLink: "/resume/"
+title: "Contact"
+headline: "Denis is available to respond to queries and work on projects. If you need help with your programming or graphics job, send him a message below."
 date: 2020-11-26T21:51:14-06:00
 draft: false
 author: "Denis Labrecque"
 blank: true
 ---
-<section class="margined">
-<p>When he was very young, Denis enjoyed drawing airplanes and rolling a miniature steam engine around to understand how the wheels paired together. Eventually, his curiosity grew towards graphics, piqued by a book explaining how to design websites. He has since been imagining user interfaces by creating small apps on the side, by working as a web designer, and by working as a programmer.</p>
-</section>
-
-<section class="red diagonal-both" id="contact">
-  <div class="margined slide-anim" data-anim="bottom top">
-    <p class="hero">Contact Me</p>
+<section class="margined" id="contact">
+  <div class="contact-content">
     <form>
-      <label>Subject</label>
+      <label><strong>Subject</strong></label>
       <input id="subjectField">
-      <label>Message</label>
+      <label><strong>Message</strong></label>
       <textarea id="messageField"></textarea>
     </form>
     <a class="button" id="sendEmail" onclick="sendEmail()">Send</a>
   </div>
+  <div class="circle__box hidden">
+    <p>Thanks! Sent to your email program.</p>
+    <div class="circle__wrapper circle__wrapper--right">
+      <div class="circle__whole circle__right"></div>
+    </div>
+    <div class="circle__wrapper circle__wrapper--left">
+      <div class="circle__whole circle__left"></div>
+    </div>
+  </div>
   <script>
-    let email = ''
-    let subject = ''
-    let message = ''
+    let div_container = document.querySelector('div.contact-content')
     let fld_subject = document.querySelector('#subjectField')
     let txt_message = document.querySelector('#messageField')
     let btn_send = document.querySelector('#sendEmail')
+    let div_confirmation = document.querySelector('div.circle__box')
     function sendEmail() {
-      console.log(fld_subject.value)
-      console.log(txt_message.value)
       let mail = document.createElement("a")
       mail.href = 'mailto:denis.g.labrecque@gmail.com?subject=' + encodeURIComponent(fld_subject.value) + '&body=' + encodeURIComponent(txt_message.value)
       mail.click();
+      div_confirmation.classList.remove('hidden')
+      div_container.style.display = 'none'
     }
   </script>
 </section>
 
 <section class="margined">
+  <h2>About</h2>
+  <p>When he was very young, Denis enjoyed drawing airplanes and rolling a miniature steam engine around to understand how the wheels paired together. Eventually, his curiosity grew towards graphics, piqued by a book explaining how to design websites. He has since been imagining user interfaces by creating small apps on the side, by working as a web designer, and by working as a programmer.</p>
   <p>One of Denis' designs has been printed over 100,000 times; his programming has also helped maintain websites with over 3 million yearly users. He hopes to continue being useful in improving software user experiences for his future organization.</p>
 
   {{< image "DenisTransparentBackground.png" "Denis Labrecque" >}}
