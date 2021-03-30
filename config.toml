@@ -1,5 +1,6 @@
 baseURL = "/"
 pluralizelisttitles = false
+publishDir = "docs"
 [Languages]
     [Languages.en]
         weight = 1
@@ -8,6 +9,5 @@ pluralizelisttitles = false
 title = "Denis Labrecque"
 assetDir = "/assets"
 relativeURLs = true
-publishDir = "docs"
 [markup.goldmark.renderer]
 unsafe= true

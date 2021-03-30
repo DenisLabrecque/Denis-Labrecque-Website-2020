@@ -3,30 +3,30 @@
 <html>
   <head>
   <meta charset="utf-8">
-  <link rel="icon" href="../icon-red.png" />
+  <link rel="icon" href="/icon-red.png" />
   <title>Denis Labrecque</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="stylesheet" href="../sass/dgl.min.90850529801544ed619b9745b2c99ef4a6df523183ace7f17fbe9d16ceb68b78.css" />
+  <link rel="stylesheet" href="/sass/dgl.min.90850529801544ed619b9745b2c99ef4a6df523183ace7f17fbe9d16ceb68b78.css" />
 </head>
 
-<script src="../js/anim.js" defer></script>
+<script src="/js/anim.js" defer></script>
   
 
   <body>
     <nav class="menu">
     <div>
-       <a href="../" id="logo-button" class="overlay-button">
-          <img src="../icon-red.png" width="38" height="38" />
+       <a href="/" id="logo-button" class="overlay-button">
+          <img src="/icon-red.png" width="38" height="38" />
        </a>
     </div>
  
     <ul id="menu-bar">
-       <li><a href="../programming/">Programming</a></li>
-       <li><a href="../graphics/">Graphics</a></li>
-       <li><a href="../about/">About</a></li>
+       <li><a href="/programming/">Programming</a></li>
+       <li><a href="/graphics/">Graphics</a></li>
+       <li><a href="/about/">About</a></li>
     </ul>
     
     
@@ -51,10 +51,10 @@
           <p>Learn More or Contact</p>
        </header>
        
-       <p>Denis Labrecque is a finishing student in Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer.</p>
+       <p>Denis Labrecque is a finishing student in Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and has graduated cum laude in December 2020. After his education, he hopes to continue as a programmer.</p>
        
        
-       <a class="button anim-top-bottom" href="../resume/">Résumé</a>
+       <a class="button anim-top-bottom" href="/resume/">Résumé</a>
        
     </div>
  </section>
@@ -68,24 +68,44 @@
 
 
 <figure>
-    <img src="../DenisTransparentBackground.png" alt="/DenisTransparentBackground.png" class="slide-anim" data-anim="bottom top" />
+    <img src="/DenisTransparentBackground.png" alt="/DenisTransparentBackground.png" class="slide-anim" data-anim="bottom top" />
     <figcaption class="appear-anim" data-anim="bottom top">Denis Labrecque</figcaption>
 </figure>
 <p>Because Denis’ interests range from composing orchestral music to using 3D software, and building electronics to making scale models, your project likely interests him! If you want help, you are welcome to contact him below.<p>
 </section>
 <section class="red diagonal-both" id="contact">
-   <div class="margined slide-anim" data-anim="bottom top">
-         <p class="hero">Contact Me</p>
-      <form>
-        <label>Email</label>
-        <input type="email" />
-        <label>Subject</label>
-        <input>
-        <label>Message</label>
-        <textarea></textarea>
-      </form>
-         <a class="button">Send</a>
-   </div>
+  <div class="margined slide-anim" data-anim="bottom top">
+    <p class="hero">Contact Me</p>
+    <form>
+      <label>Email</label>
+      <input type="email" id="emailField" />
+      <label>Subject</label>
+      <input id="subjectField">
+      <label>Message</label>
+      <textarea id="messageField"></textarea>
+    </form>
+    <a class="button" id="sendEmail" onclick="sendEmail()">Send</a>
+  </div>
+  <script>
+    let email = ''
+    let subject = ''
+    let message = ''
+    let fld_email = document.querySelector('#emailField')
+    let fld_subject = document.querySelector('#subjectField')
+    let txt_message = document.querySelector('#messageField')
+    let btn_send = document.querySelector('#sendEmail')
+    console.log('Email:')
+    console.log(fld_email)
+    console.log(fld_email.value)
+    function sendEmail() {
+      console.log(fld_email.value)
+      console.log(fld_subject.value)
+      console.log(txt_message.value)
+      let mail = document.createElement("a")
+      mail.href = 'mailto:' + encodeURI(fld_email.value) + '?subject=' + encodeURIComponent(fld_subject.value) + '&body=' + encodeURIComponent(txt_message.value)
+      mail.click();
+    }
+  </script>
 </section>
 <section class="margined">
     <blockquote>
@@ -109,22 +129,22 @@
           <div class="grid-item">
              <h3>Navigation</h3>
              <ul>
-                <li><a href="../programming/">Programming</a></li>
-                <li><a href="../graphics/">Graphics</a></li>
+                <li><a href="/programming/">Programming</a></li>
+                <li><a href="/graphics/">Graphics</a></li>
              </ul>
           </div>
           <div class="grid-item">
              <h3>Information</h3>
              <ul>
-                <li><a href="../about/">About</a></li>
-                <li><a href="../resume/">Résumé</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/resume/">Résumé</a></li>
              </ul>
           </div>
        </nav>
  
        <small>
-          <img src="../icon.png" width="32" height="39.5" />
-          Denis Labrecque © 2020</small>
+          <img src="/icon.png" width="32" height="39.5" />
+          Denis Labrecque © 2021</small>
     </div>
  </footer>
   </body>
