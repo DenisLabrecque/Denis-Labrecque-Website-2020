@@ -1,7 +1,7 @@
 ---
 title: "About"
 subtitle: "Learn More or Contact"
-headline: "Denis Labrecque is a finishing student in Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and is preparing to graduate cum laude in December 2020. After his education, he hopes to continue as a programmer."
+headline: "Denis Labrecque is a finishing student in Graphic Design and Information Technology at Pensacola Christian College. He has been successful on all semesters of attendance and has graduated cum laude in December 2020. After his education, he hopes to continue as a programmer."
 ctaTitle: "Résumé"
 ctaLink: "/resume/"
 date: 2020-11-26T21:51:14-06:00
@@ -18,18 +18,38 @@ blank: true
 </section>
 
 <section class="red diagonal-both" id="contact">
-   <div class="margined slide-anim" data-anim="bottom top">
-         <p class="hero">Contact Me</p>
-      <form>
-        <label>Email</label>
-        <input type="email" />
-        <label>Subject</label>
-        <input>
-        <label>Message</label>
-        <textarea></textarea>
-      </form>
-         <a class="button">Send</a>
-   </div>
+  <div class="margined slide-anim" data-anim="bottom top">
+    <p class="hero">Contact Me</p>
+    <form>
+      <label>Email</label>
+      <input type="email" id="emailField" />
+      <label>Subject</label>
+      <input id="subjectField">
+      <label>Message</label>
+      <textarea id="messageField"></textarea>
+    </form>
+    <a class="button" id="sendEmail" onclick="sendEmail()">Send</a>
+  </div>
+  <script>
+    let email = ''
+    let subject = ''
+    let message = ''
+    let fld_email = document.querySelector('#emailField')
+    let fld_subject = document.querySelector('#subjectField')
+    let txt_message = document.querySelector('#messageField')
+    let btn_send = document.querySelector('#sendEmail')
+    console.log('Email:')
+    console.log(fld_email)
+    console.log(fld_email.value)
+    function sendEmail() {
+      console.log(fld_email.value)
+      console.log(fld_subject.value)
+      console.log(txt_message.value)
+      let mail = document.createElement("a")
+      mail.href = 'mailto:' + encodeURI(fld_email.value) + '?subject=' + encodeURIComponent(fld_subject.value) + '&body=' + encodeURIComponent(txt_message.value)
+      mail.click();
+    }
+  </script>
 </section>
 
 <section class="margined">
