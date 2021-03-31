@@ -75,8 +75,8 @@
     }
   
     $clip-path: polygon($clip-path-top, $clip-path-bottom);
-    clip-path: $clip-path;
     -webkit-clip-path: $clip-path;
+    clip-path: $clip-path;
   
   
     // Fallback for clip-path with solid colours

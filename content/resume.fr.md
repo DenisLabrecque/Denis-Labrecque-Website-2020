@@ -1,8 +1,9 @@
 ---
 title: "Résumé"
 subtitle: "Denis Labrecque"
-headline: "Étudiant finissant en design graphique et en technologie de l’information, ayant des expériences pratiques en graphisme et 
-en programmation"
+headline: "Étudiant finissant en design graphique et en technologie de l’information, ayant des expériences pratiques en graphisme et en programmation"
+ctaTitle: "LinkedIn"
+ctaLink: "https://www.linkedin.com/in/denisglabrecque/?locale=fr_FR"
 date: 2021-03-26T21:51:14-06:00
 draft: false
 author: "Denis Labrecque"

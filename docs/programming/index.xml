@@ -5,10 +5,16 @@
     <link>/programming/</link>
     <description>Recent content in Programming on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 24 Nov 2020 16:01:35 -0600</lastBuildDate>
-    
-	<atom:link href="/programming/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Wed, 31 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Waypoint Tool</title>
+      <link>/programming/bing-api-map-waypoint-tool/</link>
+      <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/programming/bing-api-map-waypoint-tool/</guid>
+      <description>This tool was created with the purpose of programming a vehicle to follow waypoints using an Arduino microcontroller paired to a GPS module.
+Creating and Loading Waypoints  To create a path: click on the map. To save coordinates or erase the shape: click inside the path shape; the location name varies based on where you click. To load coordinates from a file: righ-click the map to load a JSON file and view the path (still in development, doesn&amp;rsquo;t work yet).</description>
+    </item>
     
     <item>
       <title>Receptus Application</title>

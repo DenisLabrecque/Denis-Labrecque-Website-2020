@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <!-- Reference to the Bing Maps SDK -->
+    <script type='text/javascript'
+            src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AkOvaEXpuYuvKD6xHCBpjmkGnubc1VxERFfQtQMD6fvaEJFcujrHF1C0oWXirPBU' 
+            async defer></script>
+    
+    <script type='text/javascript'>
+    let BingMapsKey = 'AkOvaEXpuYuvKD6xHCBpjmkGnubc1VxERFfQtQMD6fvaEJFcujrHF1C0oWXirPBU'
+    let pins = []
+    let shape = null
+    let infobox = null
+    let loadbox = null
+    let placeName = null
+    function GetMap()
+    {
+        let navigationBarMode = Microsoft.Maps.NavigationBarMode;
+        let map = new Microsoft.Maps.Map('#myMap', {
+            navigationBarMode: navigationBarMode.compact,
+            mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+            zoom: 12
+        });
+
+        // Load modules
+        Microsoft.Maps.loadModule('Microsoft.Maps.SpatialMath')
+        Microsoft.Maps.loadModule('Microsoft.Maps.Search')
+
+        // Bind mouse event
+        Microsoft.Maps.Events.addHandler(map, 'click', function(e) {
+            // Add pushpin
+            let pin = new Microsoft.Maps.Pushpin(e.location, {
+                text: (pins.length + 1) + '',
+                enableHoverStyle: true,
+                draggable: true
+            })
+            map.entities.push(pin)
+            pins.push(pin)
+
+            // Add drag handler
+            Microsoft.Maps.Events.addHandler(pin, 'dragend', function(e) {
+                drawLineThroughPins(map)
+            })
+
+            drawLineThroughPins(map)
+        })
+
+        Microsoft.Maps.Events.addHandler(map, 'rightclick', function(e) {
+            if(loadbox != null)
+                eraseBox(loadbox)
+            
+            loadbox = new Microsoft.Maps.Infobox(e.location, {
+                title: 'Load',
+                description: 'Load a set of waypoints to see them on the map.',
+                actions: [{
+                    label: "JSON",
+                    eventHandler: function(e) {
+                        console.log("Load waypoint JSON")
+                        getFile()
+                    }
+                }]
+            })
+            loadbox.setMap(map)
+        })
+    }
+
+    // Erase previous lines and draw line through these pins
+    function drawLineThroughPins(map) {
+        if(pins.length > 1) {
+            if(shape == null) {
+                // Create the shape
+                shape = new Microsoft.Maps.Polygon(getPinnedLocations(), null)
+                Microsoft.Maps.Events.addHandler(shape, 'click', function(e) {
+                    if(infobox != null)
+                        eraseBox(infobox)
+                    // Add an infobox when clicking the polygon
+                    let clickLocation = e.location // needed for passing later
+                    infobox = new Microsoft.Maps.Infobox(clickLocation, {
+                        description: 'Save the waypoints to your computer for later reference.',
+                        actions: [{
+                            label: "JSON",
+                            eventHandler: function(e) {
+                                console.log("Save waypoints JSON...")
+                                download(JSON.stringify(getPinnedLocations()), placeName + ".json", 'text/plain')
+                            }
+                        }, {
+                            label: "Erase",
+                            eventHandler: function(e) {
+                                erasePins(map)
+                                eraseShape(map)
+                                eraseBox(infobox)
+                            }
+                        }]
+                    })
+                    // Set infobox title
+                    RESTlocationRecognition(clickLocation, infobox)
+                    infobox.setMap(map)
+                })
+                map.entities.push(shape)
+            }
+            else {
+                // Update the shape
+                let spline = Microsoft.Maps.SpatialMath.getCardinalSpline(getPinnedLocations())
+                shape.setLocations(spline)
+            }
+        }
+    }
+
+    function erasePins(map) {
+        for(let i in pins) {
+           map.entities.remove(pins[i])
+        }
+        pins.splice(0, pins.length)
+    }
+
+    function eraseShape(map) {
+        map.entities.remove(shape)
+        shape = null
+    }
+
+    function eraseBox(box) {
+        box.setMap(null)
+    }
+
+    function getPinnedLocations() {
+        let locs = []
+        for(i = 0; i < pins.length; i++)
+            locs.push(pins[i].getLocation())
+        return locs;
+    }
+
+    // "How do I save JSON to local text file"
+    // https://stackoverflow.com/a/34156339/4682228
+    function download(content, fileName, contentType) {
+        var a = document.createElement("a");
+        var file = new Blob([content], {type: contentType});
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        a.click();
+    }
+
+    // https://docs.microsoft.com/en-us/bingmaps/rest-services/locations/location-recognition
+    async function RESTlocationRecognition(location, infobox) {
+        // http://dev.virtualearth.net/REST/v1/locationrecog/47.640068,-122.129860?key={BingMapsAPIKey}&output=json
+
+        let locationRecognition = "http://dev.virtualearth.net/REST/v1/locationrecog/" + location.latitude + "," + location.longitude + "?top=3&verboseplacenames=true&includeEntityTypes=businessAndPOI,address,naturalPOI&key=" + BingMapsKey + "&output=json"
+
+        fetch(locationRecognition).then(response => response.json()).then(data => {
+            let placeInfo = data.resourceSets[0].resources[0]
+            placeName = findDescriptiveLocationName(placeInfo)
+            infobox.setOptions({title: placeName})
+        })
+    }
+
+    function findDescriptiveLocationName(placeInfo) {
+        placeName = null
+
+        // First check whether we have a non-plateau or ocean natural POI
+        for(let i in placeInfo.naturalPOIAtLocation) {
+            if(placeInfo.naturalPOIAtLocation[i].type != "Plateau" | "Sea" | "Valley" | "Reserve") {
+                placeName = placeInfo.naturalPOIAtLocation[i].entityName
+                return placeName
+            }
+        }
+
+        // No geography found, let's try an address (these can often be empty)
+        for(let i in placeInfo.addressOfLocation) {
+            if(placeInfo.addressOfLocation[i].addressLine != "") {
+                placeName = placeInfo.addressOfLocation[i].addressLine
+                return placeName
+            }
+        }
+
+        // No address found, let's try a business
+        for(let i in placeInfo.businessesAtLocation) {
+            if(placeInfo.businessesAtLocation[i].businessInfo.entityName != "") {
+                placeName = placeInfo.businessesAtLocation[i].businessInfo.entityName
+                return placeName
+            }
+        }
+
+        // Still nothing? Backup geography! (This will likely give a lot of "Canadian Shield"-style answers)
+        for(let i in placeInfo.naturalPOIAtLocation) {
+            placeName = placeInfo.naturalPOIAtLocation[i].entityName
+            return placeName
+        }
+
+        placeName = ""
+        return placeName
+    }
+
+    function searchNearby(map, location) {
+        console.log("calling search manager with...")
+        console.log(map)
+        console.log(location)
+        let searchManager = new Microsoft.Maps.Search.SearchManager(map)
+        let entityLookupRequestOptions = {
+            location: location,
+            callback: function (answer) {
+                if (answer) {
+                    console.log(answer)
+                }
+            }
+        };
+        searchManager.entityLookup(entityLookupRequestOptions);
+    }
+
+    function reverseGeocode(map, location) {
+        console.log(map)
+        console.log(location)
+        let searchManager = new Microsoft.Maps.Search.SearchManager(map)
+        let reverseGeocodeRequestOptions = {
+            location: location,
+            callback: function (answer, userData) {
+                console.log("Reverse geocode:")
+                console.log(answer)
+            }
+        }
+        searchManager.reverseGeocode(reverseGeocodeRequestOptions)
+    }    
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="myMap" style="position:relative;width:100%;height:100%;"></div>
+
+    <script>
+        const pickerOpts = {
+            types: [{
+                description: 'JSON',
+                accept: {
+                    'JSON/*': ['.json']
+                }
+            }],
+            excludeAcceptAllOption: true,
+            multiple: false
+        }
+        let fileHandle
+
+        async function getFile() {
+            [fileHandle] = await window.showOpenFilePicker(pickerOpts)
+            console.log(fileHandle)
+
+            const reader = new FileReader()
+            reader.addEventListener('load', (event) => {
+                console.log(event.target.result)
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>/</loc>
-    <lastmod>2020-12-11T18:05:10-06:00</lastmod>
+    <lastmod>2021-03-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -15,29 +14,25 @@
                 hreflang="en"
                 href="/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>/programming/</loc>
+    <lastmod>2021-03-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/programming/bing-api-map-waypoint-tool/</loc>
+    <lastmod>2021-03-31T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>/graphics/</loc>
     <lastmod>2020-12-11T18:05:10-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/graphics/spenser-house/</loc>
     <lastmod>2020-12-11T18:05:10-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/graphics/modern-home/</loc>
     <lastmod>2020-12-11T15:49:54-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/about/</loc>
     <lastmod>2020-11-26T21:51:14-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/resume/</loc>
     <lastmod>2020-11-26T21:51:14-06:00</lastmod>
     <xhtml:link
@@ -50,34 +45,19 @@
                 hreflang="en"
                 href="/resume/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/graphics/scale-air/</loc>
     <lastmod>2020-11-24T18:05:29-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/graphics/asian-garden/</loc>
     <lastmod>2020-11-24T18:04:27-06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/programming/</loc>
-    <lastmod>2020-11-24T16:01:35-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/programming/receptus-application/</loc>
     <lastmod>2020-11-24T16:01:35-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/programming/warglobe-game/</loc>
     <lastmod>2020-11-24T15:59:27-06:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/</loc>
     <xhtml:link
                 rel="alternate"
@@ -89,9 +69,7 @@
                 hreflang="en"
                 href="/categories/"
                 />
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/</loc>
     <xhtml:link
                 rel="alternate"
@@ -104,5 +82,4 @@
                 href="/tags/"
                 />
   </url>
-  
 </urlset>

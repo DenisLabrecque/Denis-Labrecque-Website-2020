@@ -2,6 +2,8 @@
 title: "Résumé"
 subtitle: "Denis Labrecque"
 headline: "Student graduating with degrees in graphic design and information technology, having practical experience in both design and programming."
+ctaTitle: "LinkedIn"
+ctaLink: "https://www.linkedin.com/in/denisglabrecque/?locale=en_US"
 date: 2020-11-26T21:51:14-06:00
 draft: false
 author: "Denis Labrecque"

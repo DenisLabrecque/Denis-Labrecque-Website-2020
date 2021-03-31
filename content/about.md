@@ -1,6 +1,8 @@
 ---
 title: "Contact"
 headline: "Denis is available to respond to queries and work on projects. If you need help with your programming or graphics job, send him a message below."
+ctaTitle: "LinkedIn"
+ctaLink: "https://www.linkedin.com/in/denisglabrecque/?locale=en_US"
 date: 2020-11-26T21:51:14-06:00
 draft: false
 author: "Denis Labrecque"
@@ -9,9 +11,9 @@ blank: true
 <section class="margined" id="contact">
   <div class="contact-content">
     <form>
-      <label><strong>Subject</strong></label>
+      <label for="subjectField"><strong>Subject</strong></label>
       <input id="subjectField">
-      <label><strong>Message</strong></label>
+      <label for="messageField"><strong>Message</strong></label>
       <textarea id="messageField"></textarea>
     </form>
     <a class="button" id="sendEmail" onclick="sendEmail()">Send</a>
