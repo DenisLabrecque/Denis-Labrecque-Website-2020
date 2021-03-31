@@ -295,15 +295,17 @@
         const text = await file.text()
         return JSON.parse(text)
     }
+
+    function fileInputReceived() {
+        let input = document.querySelector('input#file-picker')
+        const files = input.files
+        console.log(files)
+    }
     </script>
 </head>
 <body style="margin: 0;">
-    <div id="myMap" style="position:relative;width:100%;height:100%;"></div>
+    <div id="myMap" style="position:relative;width:100%;height:90%;"></div>
 
-    <script>
-
-
-
-    </script>
+    <input type="file" id="file-picker" accept=".json" onchange="fileInputReceived()" />
 </body>
 </html>
