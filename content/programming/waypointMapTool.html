@@ -29,58 +29,20 @@
         Microsoft.Maps.loadModule('Microsoft.Maps.SpatialMath')
         Microsoft.Maps.loadModule('Microsoft.Maps.Search')
 
-        // Add waypoint on map click
-        Microsoft.Maps.Events.addHandler(map, 'click', function(e) {
-            // Add pushpin
-            let pin = new Microsoft.Maps.Pushpin(e.location, {
-                text: (pins.length + 1) + '',
-                enableHoverStyle: true,
-                draggable: true
-            })
+        addPushpinClickHandler(map)
+        addMapClickHandler(map)
+    }
 
-            // Add puspin click handler
-            Microsoft.Maps.Events.addHandler(pin, 'click', function(e) {
-                console.log(e)
-                eraseBox(loadbox)
-                eraseBox(infobox)
-                infobox = new Microsoft.Maps.Infobox(e.location, {
-                    title: 'Edit Waypoint',
-                    actions: [{
-                        label: "Remove",
-                        eventHandler: function(e) {
-                            removePushpin(pin, map)
-                            eraseBox(infobox)
-                        }
-                    }]
-                })
-                infobox.setMap(map)
-            })
-            Microsoft.Maps.Events.add
-            map.entities.push(pin)
-            pins.push(pin)
-
-            // Add drag handler
-            Microsoft.Maps.Events.addHandler(pin, 'dragend', function(e) {
-                drawLineThroughPins(map)
-                eraseBox(infobox)
-                eraseBox(loadbox)
-            })
-
-            drawLineThroughPins(map)
-            eraseBox(loadbox)
-            eraseBox(infobox)
-        })
-
+    function addMapClickHandler(map) {
         // Add map right-click handler
         Microsoft.Maps.Events.addHandler(map, 'rightclick', function(e) {
             eraseBox(loadbox)
             eraseBox(infobox)
             
-            let clickLocation = e.location // needed for passing later
             loadbox = new Microsoft.Maps.Infobox(e.location, {
-                description: 'Load or save waypoints.',
-                actions: [{
-                    label: "Erase",
+            description: 'Empty the map, save your waypoints, or load a saved file.',
+            actions: [{
+                    label: "Clear",
                     eventHandler: function(e) {
                         erasePins(map)
                         eraseShape(map)
@@ -96,27 +58,76 @@
                 {
                     label: "Load",
                     eventHandler: function(e) {
-                        console.log("Load waypoint JSON")
-                        getFile()
+                        getJSONFileText().then(jsonData => {
+                            eraseBox(loadbox)
+                            erasePins(map)
+                            eraseShape(map)
+                            for(let i in jsonData) {
+                                let location = { latitude: jsonData[i].latitude, longitude: jsonData[i].longitude }
+                                addPushpin(map, location)
+                                // Center map on first waypoint
+                                if(i == 0)
+                                    map.setView({ center: location, zoom: 15 });
+                            }
+                        })
                     }
                 }]
             })
             // Set infobox title
-            RESTlocationRecognition(clickLocation, loadbox)
+            if(pins[0] != null)
+                RESTlocationRecognition(pins[0].getLocation(), loadbox)
             loadbox.setMap(map)
         })
     }
 
+    function addPushpinClickHandler(map) {
+        // Add waypoint on map click
+        Microsoft.Maps.Events.addHandler(map, 'click', function(e) {
+            addPushpin(map, e.location)
+        })
+    }
+
+    function addPushpin(map, location) {
+        let pin = new Microsoft.Maps.Pushpin(location, {
+            text: (pins.length + 1) + '',
+            enableHoverStyle: true,
+            draggable: true
+        })
+
+        // Add pushpin click handler
+        Microsoft.Maps.Events.addHandler(pin, 'click', function(e) {
+            eraseBox(loadbox)
+            eraseBox(infobox)
+            infobox = new Microsoft.Maps.Infobox(e.location, {
+                title: 'Edit Waypoint',
+                actions: [{
+                    label: "Remove",
+                    eventHandler: function(e) {
+                        removePushpin(pin, map)
+                        eraseBox(infobox)
+                    }
+                }]
+            })
+            infobox.setMap(map)
+        })
+
+        // Add drag handler
+        Microsoft.Maps.Events.addHandler(pin, 'dragend', function(e) {
+            drawLineThroughPins(map)
+            eraseBox(infobox)
+            eraseBox(loadbox)
+        })
+
+        map.entities.push(pin)
+        pins.push(pin)
+        drawLineThroughPins(map)
+        eraseBox(loadbox)
+        eraseBox(infobox)
+    }
+
     function removePushpin(pin, map) {
         map.entities.remove(pin)
-
-        // Also remove from the array
-        for(let i in pins) {
-            if(pins[i].id == pin.id)
-                pins.splice(i, 1)
-        }
-
-        // Redraw
+        removePin(pin)
         drawLineThroughPins(map)
     }
 
@@ -140,6 +151,18 @@
                 map.entities.remove(shape)
                 shape = null // Detect it has been removed later
             }
+        }
+    }
+
+    function removePin(pin) {
+        for(let i in pins) {
+            if(pins[i].id == pin.id)
+                pins.splice(i, 1)
+        }
+
+        // Re-number pins
+        for(let i in pins) {
+            pins[i].setOptions({ text: (Number(i) + 1) + '' })
         }
     }
 
@@ -179,6 +202,8 @@
         a.click();
     }
 
+    // Had to use this because other direct JavaScript API didn't have the place of interest functionality I wanted
+    // (or at least, not good enough).
     // https://docs.microsoft.com/en-us/bingmaps/rest-services/locations/location-recognition
     async function RESTlocationRecognition(location, infobox) {
         // http://dev.virtualearth.net/REST/v1/locationrecog/47.640068,-122.129860?key={BingMapsAPIKey}&output=json
@@ -230,9 +255,6 @@
     }
 
     function searchNearby(map, location) {
-        console.log("calling search manager with...")
-        console.log(map)
-        console.log(location)
         let searchManager = new Microsoft.Maps.Search.SearchManager(map)
         let entityLookupRequestOptions = {
             location: location,
@@ -246,24 +268,18 @@
     }
 
     function reverseGeocode(map, location) {
-        console.log(map)
-        console.log(location)
         let searchManager = new Microsoft.Maps.Search.SearchManager(map)
         let reverseGeocodeRequestOptions = {
             location: location,
             callback: function (answer, userData) {
-                console.log("Reverse geocode:")
                 console.log(answer)
             }
         }
         searchManager.reverseGeocode(reverseGeocodeRequestOptions)
-    }    
-    </script>
-</head>
-<body style="margin: 0;">
-    <div id="myMap" style="position:relative;width:100%;height:100%;"></div>
+    }
 
-    <script>
+    // Open a file and return its text contents
+    async function getJSONFileText() {
         const pickerOpts = {
             types: [{
                 description: 'JSON',
@@ -274,17 +290,20 @@
             excludeAcceptAllOption: true,
             multiple: false
         }
-        let fileHandle
+        let [fileHandle] = await window.showOpenFilePicker(pickerOpts)
+        const file = await fileHandle.getFile()
+        const text = await file.text()
+        return JSON.parse(text)
+    }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="myMap" style="position:relative;width:100%;height:100%;"></div>
 
-        async function getFile() {
-            [fileHandle] = await window.showOpenFilePicker(pickerOpts)
-            console.log(fileHandle)
+    <script>
 
-            const reader = new FileReader()
-            reader.addEventListener('load', (event) => {
-                console.log(event.target.result)
-            })
-        }
+
+
     </script>
 </body>
 </html>

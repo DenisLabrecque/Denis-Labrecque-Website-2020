@@ -64,13 +64,15 @@
 <iframe src="/programming/waypointMapTool.html" style="width:100%; height: 500px; border: none;"></iframe>
 <h2 id="creating-and-loading-waypoints">Creating and Loading Waypoints</h2>
 <ul>
-<li><strong>To create a path:</strong> click on the map.</li>
-<li><strong>To save coordinates or erase the shape:</strong> right-click the map; the location name varies based on where you click.</li>
-<li><strong>To load coordinates from a file:</strong> righ-click the map to load a JSON file and view the path (still in development, doesn&rsquo;t work yet).</li>
+<li><strong>To create a waypoint path:</strong> click on the map.</li>
+<li><strong>To remove a waypoint:</strong> click on the waypoint and click remove.</li>
+<li><strong>To move a waypoint:</strong> click and drag it.</li>
+<li><strong>To save or erase coordinates:</strong> right-click the map; the location name is the point of interest nearest to the first waypoint, and that is the file&rsquo;s default name.</li>
+<li><strong>To load coordinates from a file:</strong> right-click the map to load a JSON file and view the path on the map. The file must be an array of latitudes and longitudes as explained below.</li>
 </ul>
 <p>To make editing easier, use the <a href="/programming/waypointMapTool.html">full-page view</a>.</p>
 <h3 id="output-json">Output JSON</h3>
-<p>This map uses the Bing Maps API to add events that allow the user to create waypoints. The output file is a JSON array in the following format:</p>
+<p>This map uses the <a href="https://www.bing.com/api/maps/sdkrelease/mapcontrol/isdk">Bing Maps API</a> to add events that allow the user to create waypoints. The output file is a JSON array in the following format:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript">[{
     <span style="color:#e6db74">&#34;latitude&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">45.66026005547925</span>,
     <span style="color:#e6db74">&#34;longitude&#34;</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">73.84635072708129</span>,
@@ -81,7 +83,7 @@
     ...
 }]
 </code></pre></div>
-<p>Each node in the array represents a waypoint, ordered from the first waypoint placed to the last.</p>
+<p>Each node in the array represents a waypoint, ordered from the first waypoint to the last. At the moment, only the <code>latitude</code> and <code>longitude</code> properties are used, the rest being complimentary information received from <a href="https://docs.microsoft.com/en-us/bingmaps/v8-web-control/map-control-api/pushpin-class"><code>Pushpin.getLocation()</code></a>.</p>
 
   </section>
   
