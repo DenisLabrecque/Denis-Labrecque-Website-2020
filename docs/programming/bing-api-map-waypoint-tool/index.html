@@ -65,11 +65,11 @@
 <h2 id="creating-and-loading-waypoints">Creating and Loading Waypoints</h2>
 <ul>
 <li><strong>To create a path:</strong> click on the map.</li>
-<li><strong>To save coordinates or erase the shape:</strong> click inside the path shape; the location name varies based on where you click.</li>
+<li><strong>To save coordinates or erase the shape:</strong> right-click the map; the location name varies based on where you click.</li>
 <li><strong>To load coordinates from a file:</strong> righ-click the map to load a JSON file and view the path (still in development, doesn&rsquo;t work yet).</li>
 </ul>
 <p>To make editing easier, use the <a href="/programming/waypointMapTool.html">full-page view</a>.</p>
-<h3 id="how-it-works">How it Works</h3>
+<h3 id="output-json">Output JSON</h3>
 <p>This map uses the Bing Maps API to add events that allow the user to create waypoints. The output file is a JSON array in the following format:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript">[{
     <span style="color:#e6db74">&#34;latitude&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">45.66026005547925</span>,
@@ -81,6 +81,7 @@
     ...
 }]
 </code></pre></div>
+<p>Each node in the array represents a waypoint, ordered from the first waypoint placed to the last.</p>
 
   </section>
   
