@@ -11,7 +11,7 @@
     
     <script type='text/javascript'>
     let BingMapsKey = 'AkOvaEXpuYuvKD6xHCBpjmkGnubc1VxERFfQtQMD6fvaEJFcujrHF1C0oWXirPBU'
-    let filePicker
+    let map
     let pins = []
     let shape = null
     let infobox = null
@@ -20,7 +20,7 @@
     function GetMap()
     {
         let navigationBarMode = Microsoft.Maps.NavigationBarMode;
-        let map = new Microsoft.Maps.Map('#myMap', {
+        map = new Microsoft.Maps.Map('#myMap', {
             navigationBarMode: navigationBarMode.compact,
             mapTypeId: Microsoft.Maps.MapTypeId.aerial,
             zoom: 12
@@ -30,11 +30,7 @@
         Microsoft.Maps.loadModule('Microsoft.Maps.SpatialMath')
         Microsoft.Maps.loadModule('Microsoft.Maps.Search')
 
-        // Hide the input button
-        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
-        // "file inputs tend to be ugly, difficult to style, and inconsistent in their design across browsers"
         filePicker = document.querySelector('input#file-picker')
-        filePicker.style.opacity = 0 // assistive tech interprets hidden or display none to mean the input isn't interactive
 
         addPushpinClickHandler(map)
         addMapClickHandler(map)
@@ -65,19 +61,10 @@
                 {
                     label: "Load",
                     eventHandler: function(e) {
-                        filePicker.click()
-                        // getJSONFileText().then(jsonData => {
-                        //     eraseBox(loadbox)
-                        //     erasePins(map)
-                        //     eraseShape(map)
-                        //     for(let i in jsonData) {
-                        //         let location = { latitude: jsonData[i].latitude, longitude: jsonData[i].longitude }
-                        //         addPushpin(map, location)
-                        //         // Center map on first waypoint
-                        //         if(i == 0)
-                        //             map.setView({ center: location, zoom: 15 });
-                        //     }
-                        // })
+                        filePicker.click() // Let a callback do the rest, onFileInputReceived()
+                        eraseBox(loadbox)
+                        erasePins(map)
+                        eraseShape(map)
                     }
                 }]
             })
@@ -86,6 +73,18 @@
                 RESTlocationRecognition(pins[0].getLocation(), loadbox)
             loadbox.setMap(map)
         })
+    }
+
+    // Plot a set of JSON locations on the map
+    function plotJSONOnMap(jsonData) {
+        for(let i in jsonData) {
+            let location = { latitude: jsonData[i].latitude, longitude: jsonData[i].longitude }
+            addPushpin(map, location)
+            
+            // Center map on first waypoint
+            if(i == 0)
+                map.setView({ center: location, zoom: 15 })
+        }
     }
 
     function addPushpinClickHandler(map) {
@@ -287,6 +286,7 @@
     }
 
     // Open a file and return its text contents
+    // This method only works using HTTPS
     async function getJSONFileText() {
         const pickerOpts = {
             types: [{
@@ -304,18 +304,19 @@
         return JSON.parse(text)
     }
 
-    function fileInputReceived() {
-        let fileInput = document.querySelector('input#file-picker')
-        const files = fileInput.files
-        console.log(files)
+    // Using showOpenFilePicker() is only allowed on HTTPS, but receiving a file from an actual picker is totally OK on HTTP.
+    function onFileInputReceived(element) {
+        const file = element.files[0]
+        let text
+        file.text().then(text => {
+            plotJSONOnMap(JSON.parse(text))
+        })
     }
     </script>
 </head>
 <body style="margin: 0;">
-    <div id="myMap" style="position:relative;width:100%;height: 400px;"></div>
+    <div id="myMap" style="position:absolute;width:100%;height:100%;"></div>
 
-    <form>
-    <input type="file" id="file-picker" accept=".json" onchange="fileInputReceived()" />
-    </form>
+    <input type="file" id="file-picker" accept=".json" onchange="onFileInputReceived(this)" style="opacity:0;" />
 </body>
 </html>
