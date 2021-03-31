@@ -9,16 +9,17 @@
 
 {{ $img := resources.GetMatch .image }}
 <section class="red diagonal-bottom">
-    <div class="margined">
-       <header>
-          <h1>{{ .title }}</h1>
-          <p>{{ .subtitle }}</p>
-       </header>
-       {{ if .headline }}
-       <p>{{ .headline }}</p>
-       {{ end }}
-       {{ if .ctaLink }}
-       <a class="button anim-top-bottom" href="{{ .ctaLink }}">{{ .ctaTitle }}</a>
-       {{ end }}
-    </div>
+   <meta name="image" content="/{{ .image }}" />
+   <div class="margined">
+      <header>
+         <h1>{{ .title }}</h1>
+         <p>{{ .subtitle }}</p>
+      </header>
+      {{ if .headline }}
+      <p>{{ .headline }}</p>
+      {{ end }}
+      {{ if .ctaLink }}
+      <a class="button anim-top-bottom" href="{{ .ctaLink }}">{{ .ctaTitle }}</a>
+      {{ end }}
+   </div>
  </section>
