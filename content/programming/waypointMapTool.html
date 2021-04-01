@@ -11,8 +11,13 @@
     
     <script type='text/javascript'>
     let BingMapsKey = 'AkOvaEXpuYuvKD6xHCBpjmkGnubc1VxERFfQtQMD6fvaEJFcujrHF1C0oWXirPBU'
+    let heading = 0
     let map
     let pins = []
+    let waypointIndex = 0
+    let previousDistance = null
+    let vehicleProjection = null
+    let vehiclePin = null
     let shape = null
     let infobox = null
     let loadbox = null
@@ -42,7 +47,8 @@
             eraseBox(loadbox)
             eraseBox(infobox)
             
-            loadbox = new Microsoft.Maps.Infobox(e.location, {
+            let clickLocation = e.location
+            loadbox = new Microsoft.Maps.Infobox(clickLocation, {
             description: 'Empty the map, save your waypoints, or load a saved file.',
             actions: [{
                     label: "Clear",
@@ -61,10 +67,18 @@
                 {
                     label: "Load",
                     eventHandler: function(e) {
-                        filePicker.click() // Let a callback do the rest, onFileInputReceived()
-                        eraseBox(loadbox)
                         erasePins(map)
                         eraseShape(map)
+                        eraseBox(loadbox)
+                        filePicker.click() // Let a callback do the rest, onFileInputReceived()
+                    }
+                },
+                {
+                    // Place a vehicle on the map
+                    label: "Place",
+                    eventHandler: function(e) {
+                        addVehiclePin(map, clickLocation)
+                        eraseBox(loadbox)
                     }
                 }]
             })
@@ -92,6 +106,78 @@
         Microsoft.Maps.Events.addHandler(map, 'click', function(e) {
             addPushpin(map, e.location)
         })
+    }
+
+    function addVehiclePin(map, location) {
+        // Project point
+        let projectedPoint = projectPoint(location, heading, 5)
+        let information = ''
+        let error
+        let distance
+        if(pins.length > 0) {
+            let targetLoc = currentWaypoint()
+            let bearing = angleFromCoordinate(location, targetLoc)
+            error = calculateError(bearing, heading)
+            distance = distanceInMetersOnEarth(location, targetLoc)
+            if(previousDistance == null)
+                previousDistance = distance
+            information = "Bearing: " + Math.round(bearing) + '°' + 
+                          "\nError: " + Math.round(error) + '°' +
+                          "\nDistance: " + Math.round(distance) + "m"
+        }
+        if(vehicleProjection != null)
+            map.entities.remove(vehicleProjection)
+        vehicleProjection = new Microsoft.Maps.Polyline([location, projectedPoint], null);
+        map.entities.push(vehicleProjection);
+
+        // Add pin
+        if(vehiclePin != null)
+            map.entities.remove(vehiclePin)
+        vehiclePin = new Microsoft.Maps.Pushpin(location, {
+            title: 'Vehicle',
+            subTitle: information,
+            color: 'red',
+            enableHoverStyle: true,
+            draggable: true
+        })
+        // Drag handler
+        Microsoft.Maps.Events.addHandler(vehiclePin, 'dragend', function(e) {
+            addVehiclePin(map, e.location)
+        })
+        map.entities.push(vehiclePin)
+
+        // Course correct
+        if(error > 0) // Too far right
+            heading -= (Math.abs(error) * 0.25)
+        else if(error < 0) // Too far left
+            heading += (Math.abs(error) * 0.25)
+
+        // Reach waypoint
+        if(distance < 5) // Within a 5m radius
+            nextWaypoint()
+        previousDistance = distance
+
+        // Move the vehicle forwards
+        window.setTimeout(moveVehicle, 100)
+    }
+
+    function moveVehicle() {
+        console.log("Move")
+        let newLocation = projectPoint(vehiclePin.getLocation(), heading, 1)
+        addVehiclePin(map, newLocation)
+    }
+
+    function currentWaypoint() {
+        if(waypointIndex + 1 > pins.length) // Error check
+            waypointIndex = 0
+        return pins[waypointIndex].getLocation()
+    }
+
+    function nextWaypoint() {
+        console.log("next waypoint")
+        waypointIndex++
+        if(waypointIndex + 1 > pins.length)
+            waypointIndex = 0
     }
 
     function addPushpin(map, location) {
@@ -312,6 +398,78 @@
             plotJSONOnMap(JSON.parse(text))
         })
     }
+
+// Project a point from a certain location at a certain angle for a certain distance
+// Returns the other point needed to complete this line.
+// https://math.stackexchange.com/a/143946/769532
+// x = distance * cos(θ), y = distance * sin(θ)
+function projectPoint(location, angle, distance) {
+    distance = distance * .00001 // Not sure why this approximately works
+    angle = degreesToRadians(angle)
+    let latitude = location.latitude + (distance * Math.cos(angle))
+    let longitude = location.longitude + (distance * Math.sin(angle))
+    let projectedPoint = {"latitude": latitude, "longitude": longitude}
+    return projectedPoint
+}
+
+// Calculate the difference in degrees between the target bearing
+// and current heading in degrees North. Negative error is degrees
+// off to the left, and positive error is divergence to the right.
+// https://stackoverflow.com/a/54820295/4682228
+function calculateError(heading1, heading2) {
+    let left = heading1 - heading2
+    let right = heading2 - heading1
+    if(left < 0)
+        left += 360
+    if(right < 0)
+        right += 360
+    return left < right ? -left : right
+}
+
+// https://www.igismap.com/map-tool/bearing-angle
+// https://stackoverflow.com/a/18738281/4682228
+function angleFromCoordinate(point1, point2) {
+    point1 = locationToRadians(point1)
+    point2 = locationToRadians(point2)
+
+    let dLongitude = point2.longitude - point1.longitude
+    let y = Math.sin(dLongitude) * Math.cos(point2.latitude)
+    let x = Math.cos(point1.latitude) * Math.sin(point2.latitude) - Math.sin(point1.latitude) * Math.cos(point2.latitude) * Math.cos(dLongitude)
+    
+    let bearing = Math.atan2(y, x)
+    bearing = radiansToDegrees(bearing)
+    bearing = (bearing + 360) % 360
+
+    return bearing
+}
+
+// https://stackoverflow.com/a/365853/4682228
+// Distance between Paris and London about 340km
+function distanceInMetersOnEarth(point1, point2) {
+  let earthRadiusKm = 6371000;
+
+  let dLat = degreesToRadians(point2.latitude - point1.latitude);
+  let dLon = degreesToRadians(point2.longitude - point1.longitude);
+
+  let lat1 = degreesToRadians(point1.latitude);
+  let lat2 = degreesToRadians(point2.latitude);
+
+  let a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  return earthRadiusKm * c;
+}
+
+function radiansToDegrees(radians) {
+    return radians * (180 / Math.PI)
+}
+
+function degreesToRadians(degrees) {
+    return degrees * (Math.PI / 180)
+}
+
+function locationToRadians(location) {
+    return {latitude: degreesToRadians(location.latitude), longitude: degreesToRadians(location.longitude)}
+}
     </script>
 </head>
 <body style="margin: 0;">
