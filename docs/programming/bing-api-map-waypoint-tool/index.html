@@ -66,11 +66,21 @@
 <h2 id="creating-and-loading-waypoints">Creating and Loading Waypoints</h2>
 <ul>
 <li><strong>To create a waypoint path:</strong> click on the map.</li>
-<li><strong>To remove a waypoint:</strong> click on the waypoint and click remove.</li>
+<li><strong>To remove a waypoint:</strong> click on the waypoint and click <em>remove</em>.</li>
 <li><strong>To move a waypoint:</strong> click and drag it.</li>
 <li><strong>To save or erase coordinates:</strong> right-click the map; the location name is the point of interest nearest to the first waypoint, and that is the file&rsquo;s default name.</li>
 <li><strong>To load coordinates from a file:</strong> right-click the map to load a JSON file and view the path on the map. The file must be an array of latitudes and longitudes as explained below.</li>
+<li><strong>To add a vehicle:</strong> right-click the map and click <em>place</em>. A small bot will happily move around the waypoints with a simple algorithm at a fixed speed.</li>
 </ul>
+
+
+
+
+
+<figure>
+    <img src="/Waypoint_Tool_vehicle.gif" alt="/Waypoint_Tool_vehicle.gif" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top">Vehicle following waypoints on map</figcaption>
+</figure>
 <p>To make editing easier, use the <a href="/programming/waypointMapTool.html">full-page view</a>.</p>
 <h3 id="output-json">Output JSON</h3>
 <p>This map uses the <a href="https://www.bing.com/api/maps/sdkrelease/mapcontrol/isdk">Bing Maps API</a> to add events that allow the user to create waypoints. The output file is a JSON array in the following format:</p>

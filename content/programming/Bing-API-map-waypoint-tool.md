@@ -18,7 +18,9 @@ This tool was created with the purpose of programming a vehicle to follow waypoi
 * **To move a waypoint:** click and drag it.
 * **To save or erase coordinates:** right-click the map; the location name is the point of interest nearest to the first waypoint, and that is the file's default name.
 * **To load coordinates from a file:** right-click the map to load a JSON file and view the path on the map. The file must be an array of latitudes and longitudes as explained below.
-* **To add a vehicle:** right-click the map and click *place*. A small bot will happily move around the waypoints with a simple algorithm at a fixed speed!
+* **To add a vehicle:** right-click the map and click *place*. A small bot will happily move around the waypoints with a simple algorithm at a fixed speed.
+
+{{< image "Waypoint_Tool_vehicle.gif" "Vehicle following waypoints on map" >}}
 
 To make editing easier, use the <a href="/programming/waypointMapTool.html">full-page view</a>.
 
