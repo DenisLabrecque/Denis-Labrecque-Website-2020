@@ -2,15 +2,17 @@
 title: "Waypoint Tool"
 subtitle: "Draw a path and export the waypoint coordinates to a JSON file."
 headline: "Path tool using the Bing Maps API to get coordinates and create a set of waypoints."
-image: "Waypoint_Map_Bing.jpg"
+image: "Waypoint_Tool_vehicle.gif"
 date: 2021-03-31T00:00:00-00:00
 ctaLink: "/programming/waypointMapTool.html"
-ctaTitle: "Full-page View"
+ctaTitle: "Map"
 draft: false
 ---
 This tool was created with the purpose of programming a vehicle to follow waypoints using an Arduino microcontroller paired to a GPS module.
 
 <iframe src="/programming/waypointMapTool.html" style="width:100%; height: 500px; border: none;"></iframe>
+
+To make editing easier, use the <a href="/programming/waypointMapTool.html">full-page view</a>.
 
 ## Creating and Loading Waypoints
 * **To create a waypoint path:** click on the map.
@@ -21,8 +23,6 @@ This tool was created with the purpose of programming a vehicle to follow waypoi
 * **To add a vehicle:** right-click the map and click *place*. A small bot will happily move around the waypoints with a simple algorithm at a fixed speed.
 
 {{< image "Waypoint_Tool_vehicle.gif" "Vehicle following waypoints on map" >}}
-
-To make editing easier, use the <a href="/programming/waypointMapTool.html">full-page view</a>.
 
 ### Output JSON
 This map uses the <a href="https://www.bing.com/api/maps/sdkrelease/mapcontrol/isdk">Bing Maps API</a> to add events that allow the user to create waypoints. The output file is a JSON array in the following format:
@@ -42,37 +42,18 @@ This map uses the <a href="https://www.bing.com/api/maps/sdkrelease/mapcontrol/i
 Each node in the array represents a waypoint, ordered from the first waypoint to the last. At the moment, only the `latitude` and `longitude` properties are used, the rest being complimentary information received from <a href="https://docs.microsoft.com/en-us/bingmaps/v8-web-control/map-control-api/pushpin-class">`Pushpin.getLocation()`</a>.
 
 ## Problems Solved
-In part for my future self, and in part to help others who need clear instructions as I do, here are solutions to a few geometric problems that need solving to direct an autonomous vehicle on a map.
+In part for my future self, and in part to help others who need clear instructions as I do, here are a few solutions to geometric problems for directing an autonomous vehicle using geographic coordinates.
 
-The solution to this problem is very simple if we measure the vehicle's heading angle compared to the target waypoint, as explained below. This gives an angle off to the left or off to the right that the vehicle can correct for. This simulation uses a quack approximation to rotate the vehicle, but in real life the rudder of a boat or steering of a car would use a PID controller with a setpoint of 0 degrees (no error) and an input of the actual deviation off the target in degrees.
+The simplest solution is to measure the vehicle's heading angle compared to the target waypoint's bearing angle, as explained below. This gives an angle off to the left or off to the right that the vehicle can correct for. This simulation uses a quack approximation to rotate the vehicle, but in real life the rudder of a boat or steering of a car would use a PID controller with a setpoint of 0 degrees (no error) and an input of the actual deviation off the target in degrees.
 
-A better algorithm would include the concept of track, meaning that a line between both the previous and the next waypoint would be established, and the vehicle's distance from that line would give the error. This would help protect from deviations caused by wind or current. A simple way to achieve this is to simply include more waypoints along the path.
+{{< image "Heading_Bearing_Error.svg" "Heading versus bearing, and the heading deviation error between them. Both heading and bearing are relative to North." >}}
 
-### How to Project a Point from a Location by Degree
-To predict where a vehicle is going, one must first project that vehicle's current heading vector on the map. Solution from <a href="https://math.stackexchange.com/q/143932/769532">Calculate point, given x, y, angle, and distance</a> on Stack Overflow.
-
-{{<highlight javascript>}}
-// Project a point from a certain location at a certain angle.
-// Returns the other point needed to complete this line.
-// https://math.stackexchange.com/a/143946/769532
-// x = distance * cos(θ), y = distance * sin(θ)
-function projectPoint(location, angle, distance) {
-    distance = distance * .00001 // This factor needs adjustment
-    angle = degreesToRadians(angle)
-
-    let latitude = location.latitude + (distance * Math.cos(angle))
-    let longitude = location.longitude + (distance * Math.sin(angle))
-
-    return {"latitude": latitude, "longitude": longitude}
-}
-{{</highlight>}}
-
-This function may be slightly inaccurate because it assumes the earth is flat, but it is sufficient for our needs.
+A better algorithm would include the concept of track -- a line between the previous and next waypoints -- and the vehicle's distance from that track line would give the error. This would help protect from deviations caused by wind or current (a simple way to achieve this is to include more waypoints along the path).
 
 ### How to Calculate Angle Between Two Geographic Coordinates
-To predict whether a vehicle is heading in the right direction, one would need to find the angle between the vehicle and the target location. Is it really possible to calculate the angle between only two points? In fact, there is a third point: north. Technically, this is known as finding the bearing from one coordinate to the next.
+To predict whether a vehicle is heading in the right direction, one would need to find the angle between the vehicle and the target location. Is it really possible to calculate the angle between only two points? In fact, there is a third point: North. Technically, this is known as the **bearing** from one coordinate to the next.
 
-For example, suppose a vehicle's next waypoint is due north relative to the vehicle. In that case, the waypoint's bearing relative to the vehicle is 0 degrees. If the waypoint were due east, its bearing to the vehicle would be 90 degrees. If it were due west, 180 degrees, and so forth.
+For example, suppose a vehicle's next waypoint is due North relative to the vehicle. In that case, the waypoint's bearing relative to the vehicle is 0 degrees. If the waypoint were due East, its bearing to the vehicle would be 90 degrees. If it were due South, 180 degrees, and so forth.
 
 Code below is inspired from an answer on Stack Overflow: <a href="https://stackoverflow.com/a/18738281/4682228">Calculate angle between two Latitude/Longitude points</a>. Because coordinates in degrees must be converted to radians, a little function `locationToRadians()` converts a location `{latitude, longitude}` to radians.
 
@@ -107,12 +88,12 @@ function degreesToRadians(degrees) {
 }
 {{</highlight>}}
 
-### How to Calculate Angle Between Direction and Destination Point
-When traveling with a vehicle to a waypoint, one would like to know whether the vehicle's direction is correct. A simple way to do this is to draw a line ahead of the vehicle: this is the vehicle's heading. Heading is calculated in degrees away from north, where 90.0 is east, 180.0 is south, etc. The location the vehicle wants to reach also has an angle: the bearing from the vehicle to that point.
+### How to Calculate Angle Between Vehicle Direction and its Target Location
+When traveling with a vehicle to a waypoint, one would like to know whether the vehicle's direction is correct. A simple way to do this is to draw a line ahead of the vehicle: this is the vehicle's heading. Heading is calculated in degrees away from North, where 90.0 is East, 180.0 is South, etc. The location the vehicle wants to reach also has an angle: the bearing from the vehicle to that point.
 
-To find how far away the vehicle is pointing, simply subtract heading from bearing. That is, if the vehicle is heading 30 degrees north, and the target location's bearing is 30 degrees, then `30.0 - 30.0 == 0`, meaning that the vehicle is heading straight towards the target.
+To find how far away the vehicle is pointing, simply subtract heading from bearing. That is, if the vehicle is heading 30 degrees North, and the target location's bearing is 30 degrees, then `30.0 - 30.0 == 0`, meaning that the vehicle is heading straight on target.
 
-If the vehicle were heading 25 degrees north, but the target's bearing is still 30 degrees, then `heading - bearing == 25.0 - 30.0 == -5.0`. The vehicle is pointing -5 degrees to the target's left. If the result were +5 degrees, the vehicle would be pointing to the target's right.
+If the vehicle were heading 25 degrees North, but the target's bearing is still 30 degrees, then `heading - bearing == 25.0 - 30.0 == -5.0`. The vehicle is pointing -5 degrees to the target's left. If the result were +5 degrees, the vehicle would be pointing to the target's right.
 
 The code to find this heading error is shown below, as inspired from a <a href="https://stackoverflow.com/a/54820295/4682228">snippet on Stack Overflow</a>:
 
@@ -121,23 +102,25 @@ The code to find this heading error is shown below, as inspired from a <a href="
 // Left degrees are negative and right degrees are positive.
 // Always returns the shortest angle.
 function headingError(bearing, heading) {
-    // Get both angles; these add to 360 degrees
+    // Get both angles; these add to 360 degrees, but one is smaller
     let leftAngle = bearing - heading
     let rightAngle = heading - bearing
 
-    // Non-negative
+    // Make non-negative
     if(leftAngle < 0)
         leftAngle += 360
     if(rightAngle < 0)
         rightAngle += 360
     
-    // Return the smallest and negative for left
+    // Return the most acute angle, and make leftwards angles negative
     return leftAngle < rightAngle ? -leftAngle : rightAngle
 }
 {{</highlight>}}
 
+The code above corrects for situations where a simple subtraction does not give the ideal answer. For example, what happens if `heading = 350.0` and `bearing = 10.0`? Is the vehicle pointing 340 degrees to the waypoint's right?
+
 ### Calculating Distance between Two Locations on Earth
-To know whether a vehicle has arrived to its waypoint requires measuring distance. One may also want to know the path's total length.
+To know whether a vehicle has arrived at a waypoint requires measuring distance. One might also want to know other distance information, like the path's total length.
 
 Accurately finding two distances on earth requires including the earth's sphericity. To test this function's accuracy, try inputting two cities with a known distance between them.
 
@@ -161,3 +144,24 @@ function distanceInMetersOnEarth(location1, location2) {
     return earthRadiusM * c;
 }
 {{</highlight>}}
+
+### Projecting a Point from a Location at a Certain Angle
+To show the vehicle's projected path, one must project a point before the vehicle based on its current heading. Solution from <a href="https://math.stackexchange.com/q/143932/769532">Calculate point, given x, y, angle, and distance</a> on Stack Overflow. Keep in mind that the input location here is an object in the format `{latitude, longitude}`.
+
+{{<highlight javascript>}}
+// Project a point from a certain location at a certain angle.
+// Returns the other point needed to complete this line.
+// https://math.stackexchange.com/a/143946/769532
+// x = distance * cos(θ), y = distance * sin(θ)
+function projectPoint(location, angle, distance) {
+    distance = distance * .00001 // This factor needs adjustment
+    angle = degreesToRadians(angle)
+
+    let latitude = location.latitude + (distance * Math.cos(angle))
+    let longitude = location.longitude + (distance * Math.sin(angle))
+
+    return {"latitude": latitude, "longitude": longitude}
+}
+{{</highlight>}}
+
+This function may be slightly inaccurate because it assumes the earth is flat, but it is sufficient for our needs. In this way, one would use a GPS module to track the vehicle's location, and a compass for the vehicle's current heading. Those two inputs are sufficient to project a point from the vehicle's location at the heading's angle an arbitrary distance away (or using a vector of a certain length to reflect speed). A line can then be drawn from the vehicle's location to the projected point.
