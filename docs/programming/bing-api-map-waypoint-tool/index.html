@@ -95,6 +95,10 @@
 }]
 </code></pre></div>
 <p>Each node in the array represents a waypoint, ordered from the first waypoint to the last. At the moment, only the <code>latitude</code> and <code>longitude</code> properties are used, the rest being complimentary information received from <a href="https://docs.microsoft.com/en-us/bingmaps/v8-web-control/map-control-api/pushpin-class"><code>Pushpin.getLocation()</code></a>.</p>
+<h2 id="problems-solved">Problems Solved</h2>
+<p>In part for my future self, and in part to help others who need clear instructions as I do, here are solutions to a few geometric problems that need solving to direct an autonomous vehicle on a map.</p>
+<p>The solution to this problem is very simple if we measure the vehicle&rsquo;s heading angle compared to the target waypoint, as explained below. This gives an angle off to the left or off to the right that the vehicle can correct for. This simulation uses a quack approximation to rotate the vehicle, but in real life the rudder of a boat or steering of a car would use a PID controller with a setpoint of 0 degrees (no error) and an input of the actual deviation off the target in degrees.</p>
+<p>A better algorithm would include the concept of track, meaning that a line between both the previous and the next waypoint would be established, and the vehicle&rsquo;s distance from that line would give the error. This would help protect from deviations caused by wind or current. A simple way to achieve this is to simply include more waypoints along the path.</p>
 <h3 id="how-to-project-a-point-from-a-location-by-degree">How to Project a Point from a Location by Degree</h3>
 <p>To predict where a vehicle is going, one must first project that vehicle&rsquo;s current heading vector on the map. Solution from <a href="https://math.stackexchange.com/q/143932/769532">Calculate point, given x, y, angle, and distance</a> on Stack Overflow.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Project a point from a certain location at a certain angle.
@@ -112,10 +116,6 @@
 }
 </code></pre></div>
 <p>This function may be slightly inaccurate because it assumes the earth is flat, but it is sufficient for our needs.</p>
-<h2 id="problems-solved">Problems Solved</h2>
-<p>In part for my future self, and in part to help others who need clear instructions as I do, here are solutions to a few geometric problems that need solving to direct an autonomous vehicle on a map.</p>
-<p>The solution to this problem is very simple if we measure the vehicle&rsquo;s heading angle compared to the target waypoint, as explained below. This gives an angle off to the left or off to the right that the vehicle can correct for. This simulation uses a quack approximation to rotate the vehicle, but in real life the rudder of a boat or steering of a car would use a PID controller with a setpoint of 0 degrees (no error) and an input of the actual deviation off the target in degrees.</p>
-<p>A better algorithm would include the concept of track, meaning that a line between both the previous and the next waypoint would be established, and the vehicle&rsquo;s distance from that line would give the error. This would help protect from deviations caused by wind or current. A simple way to achieve this is to simply include more waypoints along the path.</p>
 <h3 id="how-to-calculate-angle-between-two-geographic-coordinates">How to Calculate Angle Between Two Geographic Coordinates</h3>
 <p>To predict whether a vehicle is heading in the right direction, one would need to find the angle between the vehicle and the target location. Is it really possible to calculate the angle between only two points? In fact, there is a third point: north. Technically, this is known as finding the bearing from one coordinate to the next.</p>
 <p>For example, suppose a vehicle&rsquo;s next waypoint is due north relative to the vehicle. In that case, the waypoint&rsquo;s bearing relative to the vehicle is 0 degrees. If the waypoint were due east, its bearing to the vehicle would be 90 degrees. If it were due west, 180 degrees, and so forth.</p>

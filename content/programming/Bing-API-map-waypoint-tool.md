@@ -41,6 +41,13 @@ This map uses the <a href="https://www.bing.com/api/maps/sdkrelease/mapcontrol/i
 
 Each node in the array represents a waypoint, ordered from the first waypoint to the last. At the moment, only the `latitude` and `longitude` properties are used, the rest being complimentary information received from <a href="https://docs.microsoft.com/en-us/bingmaps/v8-web-control/map-control-api/pushpin-class">`Pushpin.getLocation()`</a>.
 
+## Problems Solved
+In part for my future self, and in part to help others who need clear instructions as I do, here are solutions to a few geometric problems that need solving to direct an autonomous vehicle on a map.
+
+The solution to this problem is very simple if we measure the vehicle's heading angle compared to the target waypoint, as explained below. This gives an angle off to the left or off to the right that the vehicle can correct for. This simulation uses a quack approximation to rotate the vehicle, but in real life the rudder of a boat or steering of a car would use a PID controller with a setpoint of 0 degrees (no error) and an input of the actual deviation off the target in degrees.
+
+A better algorithm would include the concept of track, meaning that a line between both the previous and the next waypoint would be established, and the vehicle's distance from that line would give the error. This would help protect from deviations caused by wind or current. A simple way to achieve this is to simply include more waypoints along the path.
+
 ### How to Project a Point from a Location by Degree
 To predict where a vehicle is going, one must first project that vehicle's current heading vector on the map. Solution from <a href="https://math.stackexchange.com/q/143932/769532">Calculate point, given x, y, angle, and distance</a> on Stack Overflow.
 
@@ -61,13 +68,6 @@ function projectPoint(location, angle, distance) {
 {{</highlight>}}
 
 This function may be slightly inaccurate because it assumes the earth is flat, but it is sufficient for our needs.
-
-## Problems Solved
-In part for my future self, and in part to help others who need clear instructions as I do, here are solutions to a few geometric problems that need solving to direct an autonomous vehicle on a map.
-
-The solution to this problem is very simple if we measure the vehicle's heading angle compared to the target waypoint, as explained below. This gives an angle off to the left or off to the right that the vehicle can correct for. This simulation uses a quack approximation to rotate the vehicle, but in real life the rudder of a boat or steering of a car would use a PID controller with a setpoint of 0 degrees (no error) and an input of the actual deviation off the target in degrees.
-
-A better algorithm would include the concept of track, meaning that a line between both the previous and the next waypoint would be established, and the vehicle's distance from that line would give the error. This would help protect from deviations caused by wind or current. A simple way to achieve this is to simply include more waypoints along the path.
 
 ### How to Calculate Angle Between Two Geographic Coordinates
 To predict whether a vehicle is heading in the right direction, one would need to find the angle between the vehicle and the target location. Is it really possible to calculate the angle between only two points? In fact, there is a third point: north. Technically, this is known as finding the bearing from one coordinate to the next.
