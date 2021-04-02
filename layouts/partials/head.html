@@ -4,6 +4,9 @@
   <title>Denis Labrecque</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="content-language" content="{{ site.Language.Lang }}-ca" />
+  <meta name="description" content="{{ .Page.Params.headline }}" /><!-- TODO -->
+  <meta name="image" content="" /><!-- TODO -->
 
   {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $sass.Permalink }}" />

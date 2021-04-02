@@ -4,8 +4,10 @@ publishDir = "docs"
 assetDir = "/assets"
 [Languages]
     [Languages.en]
+        languageName = "English"
         weight = 1
     [Languages.fr]
+        languageName = "Français"
         weight = 2
 [markup.goldmark.renderer]
     unsafe = true

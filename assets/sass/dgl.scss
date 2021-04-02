@@ -421,6 +421,19 @@ a.button {
    }
 }
 
+p.not-first-line {
+   &::first-line {
+      color: unset;
+   }
+   &::first-letter {
+      float: unset;
+      font-weight: unset;
+      font-size: unset;
+      padding-top: unset;
+      padding-right: unset;
+   }
+}
+
 blockquote {
    margin-left: 0;
    margin-right: 0;

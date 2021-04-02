@@ -5,9 +5,19 @@
 {{ partial "pageTitle" (dict "context" . "title" .Title "subtitle" .Params.subtitle "headline" .Params.headline "image" .Params.image "ctaTitle" .Params.ctaTitle "ctaLink" .Params.ctaLink )}}
 
   {{ if .Params.blank }}
+    <!-- {{ if .IsTranslated }}
+      {{ range $.Site.Home.AllTranslations }}
+      <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+      {{ end }}
+    {{ end }} -->
     {{ .Content }}
   {{ else }}
   <section class="margined">
+    <!-- {{ if .IsTranslated }}
+      {{ range $.Site.Home.AllTranslations }}
+        <p><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></p>
+      {{ end }}
+    {{ end }} -->
     {{ .Content }}
   </section>
   {{ end }}
