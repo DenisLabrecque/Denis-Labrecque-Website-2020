@@ -172,7 +172,8 @@
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">rightAngle</span> <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">rightAngle</span>
 }
 </code></pre></div>
-<h3 id="how-to-calculate-distance-between-two-locations-on-earth">How to Calculate Distance between Two Locations on Earth</h3>
+<h3 id="calculating-distance-between-two-locations-on-earth">Calculating Distance between Two Locations on Earth</h3>
+<p>To know whether a vehicle has arrived to its waypoint requires measuring distance. One may also want to know the path&rsquo;s total length.</p>
 <p>Accurately finding two distances on earth requires including the earth&rsquo;s sphericity. To test this function&rsquo;s accuracy, try inputting two cities with a known distance between them.</p>
 <p>Of course, for our purposes, one could assume the earth is flat, but this is more fun. Code shamelessly taken from <a href="https://stackoverflow.com/a/365853/4682228">Calculate distance between 2 GPS coordinates</a> on Stack Overflow:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find distance between two locations in meters.

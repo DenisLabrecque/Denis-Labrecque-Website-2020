@@ -136,7 +136,9 @@ function headingError(bearing, heading) {
 }
 {{</highlight>}}
 
-### How to Calculate Distance between Two Locations on Earth
+### Calculating Distance between Two Locations on Earth
+To know whether a vehicle has arrived to its waypoint requires measuring distance. One may also want to know the path's total length.
+
 Accurately finding two distances on earth requires including the earth's sphericity. To test this function's accuracy, try inputting two cities with a known distance between them.
 
 Of course, for our purposes, one could assume the earth is flat, but this is more fun. Code shamelessly taken from <a href="https://stackoverflow.com/a/365853/4682228">Calculate distance between 2 GPS coordinates</a> on Stack Overflow:
