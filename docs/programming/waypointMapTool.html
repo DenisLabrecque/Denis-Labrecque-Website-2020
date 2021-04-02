@@ -116,8 +116,8 @@
         let distance
         if(pins.length > 0) {
             let targetLoc = currentWaypoint()
-            let bearing = angleFromCoordinate(location, targetLoc)
-            error = calculateError(bearing, heading)
+            let bearing = bearingBetweenCoordinates(location, targetLoc)
+            error = headingError(bearing, heading)
             distance = distanceInMetersOnEarth(location, targetLoc)
             if(previousDistance == null)
                 previousDistance = distance
@@ -416,21 +416,24 @@ function projectPoint(location, angle, distance) {
 // and current heading in degrees North. Negative error is degrees
 // off to the left, and positive error is divergence to the right.
 // https://stackoverflow.com/a/54820295/4682228
-function calculateError(heading1, heading2) {
-    let left = heading1 - heading2
-    let right = heading2 - heading1
+function headingError(bearing, heading) {
+    // Get both angles; these add to 360 degrees
+    let leftAngle = bearing - heading
+    let rightAngle = heading - bearing
 
-    if(left < 0)
-        left += 360
-    if(right < 0)
-        right += 360
+    // Non-negative
+    if(leftAngle < 0)
+        leftAngle += 360
+    if(rightAngle < 0)
+        rightAngle += 360
     
-    return left < right ? -left : right
+    // Return the smallest and negative for left
+    return leftAngle < rightAngle ? -leftAngle : rightAngle
 }
 
 // https://www.igismap.com/map-tool/bearing-angle
 // https://stackoverflow.com/a/18738281/4682228
-function angleFromCoordinate(point1, point2) {
+function bearingBetweenCoordinates(point1, point2) {
     point1 = locationToRadians(point1)
     point2 = locationToRadians(point2)
 

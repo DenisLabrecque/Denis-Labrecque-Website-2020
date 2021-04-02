@@ -95,17 +95,41 @@
 }]
 </code></pre></div>
 <p>Each node in the array represents a waypoint, ordered from the first waypoint to the last. At the moment, only the <code>latitude</code> and <code>longitude</code> properties are used, the rest being complimentary information received from <a href="https://docs.microsoft.com/en-us/bingmaps/v8-web-control/map-control-api/pushpin-class"><code>Pushpin.getLocation()</code></a>.</p>
-<h3 id="how-to-calculate-angle-between-two-geographic-coordinates">How to Calculate Angle Between Two Geographic Coordinates</h3>
-<p>Is it really possible to calculate the angle between only two points? In fact, there is a third point: North. Technically, this is known as finding the bearing from one coordinate to the next.</p>
-<p>Code below is from an answer from Stack Overflow: <a href="%22https://stackoverflow.com/a/18738281/4682228%22">Calculate angle between two Latitude/Longitude points</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find the bearing between two coordinates.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">angleFromCoordinate</span>(<span style="color:#a6e22e">point1</span>, <span style="color:#a6e22e">point2</span>) {
-    <span style="color:#a6e22e">point1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">locationToRadians</span>(<span style="color:#a6e22e">point1</span>)
-    <span style="color:#a6e22e">point2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">locationToRadians</span>(<span style="color:#a6e22e">point2</span>)
+<h3 id="how-to-project-a-point-from-a-location-by-degree">How to Project a Point from a Location by Degree</h3>
+<p>To predict where a vehicle is going, one must first project that vehicle&rsquo;s current heading vector on the map. Solution from <a href="https://math.stackexchange.com/q/143932/769532">Calculate point, given x, y, angle, and distance</a> on Stack Overflow.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Project a point from a certain location at a certain angle.
+</span><span style="color:#75715e">// Returns the other point needed to complete this line.
+</span><span style="color:#75715e">// https://math.stackexchange.com/a/143946/769532
+</span><span style="color:#75715e">// x = distance * cos(θ), y = distance * sin(θ)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">projectPoint</span>(<span style="color:#a6e22e">location</span>, <span style="color:#a6e22e">angle</span>, <span style="color:#a6e22e">distance</span>) {
+    <span style="color:#a6e22e">distance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">distance</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">.00001</span> <span style="color:#75715e">// This factor needs adjustment
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">angle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">angle</span>)
 
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">longitudeDifference</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">point2</span>.<span style="color:#a6e22e">longitude</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">point1</span>.<span style="color:#a6e22e">longitude</span>
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">longitudeDifference</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">point2</span>.<span style="color:#a6e22e">latitude</span>)
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">point1</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">point2</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">-</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">point1</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">point2</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">longitudeDifference</span>)
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">latitude</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">latitude</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">distance</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">angle</span>))
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">longitude</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">longitude</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">distance</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">angle</span>))
+
+    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;latitude&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">latitude</span>, <span style="color:#e6db74">&#34;longitude&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">longitude</span>}
+}
+</code></pre></div>
+<p>This function may be slightly inaccurate because it assumes the earth is flat, but it is sufficient for our needs.</p>
+<h2 id="problems-solved">Problems Solved</h2>
+<p>In part for my future self, and in part to help others who need clear instructions as I do, here are solutions to a few geometric problems that need solving to direct an autonomous vehicle on a map.</p>
+<p>The solution to this problem is very simple if we measure the vehicle&rsquo;s heading angle compared to the target waypoint, as explained below. This gives an angle off to the left or off to the right that the vehicle can correct for. This simulation uses a quack approximation to rotate the vehicle, but in real life the rudder of a boat or steering of a car would use a PID controller with a setpoint of 0 degrees (no error) and an input of the actual deviation off the target in degrees.</p>
+<p>A better algorithm would include the concept of track, meaning that a line between both the previous and the next waypoint would be established, and the vehicle&rsquo;s distance from that line would give the error. This would help protect from deviations caused by wind or current. A simple way to achieve this is to simply include more waypoints along the path.</p>
+<h3 id="how-to-calculate-angle-between-two-geographic-coordinates">How to Calculate Angle Between Two Geographic Coordinates</h3>
+<p>To predict whether a vehicle is heading in the right direction, one would need to find the angle between the vehicle and the target location. Is it really possible to calculate the angle between only two points? In fact, there is a third point: north. Technically, this is known as finding the bearing from one coordinate to the next.</p>
+<p>For example, suppose a vehicle&rsquo;s next waypoint is due north relative to the vehicle. In that case, the waypoint&rsquo;s bearing relative to the vehicle is 0 degrees. If the waypoint were due east, its bearing to the vehicle would be 90 degrees. If it were due west, 180 degrees, and so forth.</p>
+<p>Code below is inspired from an answer on Stack Overflow: <a href="https://stackoverflow.com/a/18738281/4682228">Calculate angle between two Latitude/Longitude points</a>. Because coordinates in degrees must be converted to radians, a little function <code>locationToRadians()</code> converts a location <code>{latitude, longitude}</code> to radians.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find the bearing between two coordinates.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">bearingBetweenCoordinates</span>(<span style="color:#a6e22e">location1</span>, <span style="color:#a6e22e">location2</span>) {
+    <span style="color:#a6e22e">location1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">locationToRadians</span>(<span style="color:#a6e22e">location1</span>)
+    <span style="color:#a6e22e">location2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">locationToRadians</span>(<span style="color:#a6e22e">location2</span>)
+
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">longitudeDifference</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location2</span>.<span style="color:#a6e22e">longitude</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">location1</span>.<span style="color:#a6e22e">longitude</span>
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">longitudeDifference</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">location2</span>.<span style="color:#a6e22e">latitude</span>)
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">location1</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">location2</span>.<span style="color:#a6e22e">latitude</span>)
+            <span style="color:#f92672">-</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">location1</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">location2</span>.<span style="color:#a6e22e">latitude</span>)
+            <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">longitudeDifference</span>)
     
     <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">bearing</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">atan2</span>(<span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">x</span>)
     <span style="color:#a6e22e">bearing</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">radiansToDegrees</span>(<span style="color:#a6e22e">bearing</span>)
@@ -113,20 +137,59 @@
 
     <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">bearing</span>
 }
+
+<span style="color:#75715e">// Convert a location in degrees to a location in radians.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">locationToRadians</span>(<span style="color:#a6e22e">location</span>) {
+    <span style="color:#66d9ef">return</span> {<span style="color:#a6e22e">latitude</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">latitude</span>),
+            <span style="color:#a6e22e">longitude</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">longitude</span>)}
+}
+
+<span style="color:#75715e">// Convert degrees to radians.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">degrees</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">degrees</span> <span style="color:#f92672">*</span> (Math.<span style="color:#a6e22e">PI</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">180</span>)
+}
 </code></pre></div>
+<h3 id="how-to-calculate-angle-between-direction-and-destination-point">How to Calculate Angle Between Direction and Destination Point</h3>
+<p>When traveling with a vehicle to a waypoint, one would like to know whether the vehicle&rsquo;s direction is correct. A simple way to do this is to draw a line ahead of the vehicle: this is the vehicle&rsquo;s heading. Heading is calculated in degrees away from north, where 90.0 is east, 180.0 is south, etc. The location the vehicle wants to reach also has an angle: the bearing from the vehicle to that point.</p>
+<p>To find how far away the vehicle is pointing, simply subtract heading from bearing. That is, if the vehicle is heading 30 degrees north, and the target location&rsquo;s bearing is 30 degrees, then <code>30.0 - 30.0 == 0</code>, meaning that the vehicle is heading straight towards the target.</p>
+<p>If the vehicle were heading 25 degrees north, but the target&rsquo;s bearing is still 30 degrees, then <code>heading - bearing == 25.0 - 30.0 == -5.0</code>. The vehicle is pointing -5 degrees to the target&rsquo;s left. If the result were +5 degrees, the vehicle would be pointing to the target&rsquo;s right.</p>
+<p>The code to find this heading error is shown below, as inspired from a <a href="https://stackoverflow.com/a/54820295/4682228">snippet on Stack Overflow</a>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find how many degrees right or left one heading is to the next.
 </span><span style="color:#75715e">// Left degrees are negative and right degrees are positive.
 </span><span style="color:#75715e">// Always returns the shortest angle.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">calculateError</span>(<span style="color:#a6e22e">heading1</span>, <span style="color:#a6e22e">heading2</span>) {
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">heading1</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heading2</span>
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">heading2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heading1</span>
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">headingError</span>(<span style="color:#a6e22e">bearing</span>, <span style="color:#a6e22e">heading</span>) {
+    <span style="color:#75715e">// Get both angles; these add to 360 degrees
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bearing</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heading</span>
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">rightAngle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">heading</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">bearing</span>
 
-    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">left</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-        <span style="color:#a6e22e">left</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">360</span>
-    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">right</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-        <span style="color:#a6e22e">right</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">360</span>
+    <span style="color:#75715e">// Non-negative
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+        <span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">360</span>
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">rightAngle</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+        <span style="color:#a6e22e">rightAngle</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">360</span>
     
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">left</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">right</span> <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">left</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">right</span>
+    <span style="color:#75715e">// Return the smallest and negative for left
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">rightAngle</span> <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">rightAngle</span>
+}
+</code></pre></div>
+<h3 id="how-to-calculate-distance-between-two-locations-on-earth">How to Calculate Distance between Two Locations on Earth</h3>
+<p>Accurately finding two distances on earth requires including the earth&rsquo;s sphericity. To test this function&rsquo;s accuracy, try inputting two cities with a known distance between them.</p>
+<p>Of course, for our purposes, one could assume the earth is flat, but this is more fun. Code shamelessly taken from <a href="https://stackoverflow.com/a/365853/4682228">Calculate distance between 2 GPS coordinates</a> on Stack Overflow:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find distance between two locations in meters.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">distanceInMetersOnEarth</span>(<span style="color:#a6e22e">location1</span>, <span style="color:#a6e22e">location2</span>) {
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">earthRadiusM</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">6371000</span>;
+
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">dLat</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">location2</span>.<span style="color:#a6e22e">latitude</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">location1</span>.<span style="color:#a6e22e">latitude</span>);
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">dLon</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">location2</span>.<span style="color:#a6e22e">longitude</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">location1</span>.<span style="color:#a6e22e">longitude</span>);
+
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lat1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">location1</span>.<span style="color:#a6e22e">latitude</span>);
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lat2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">location2</span>.<span style="color:#a6e22e">latitude</span>);
+
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">dLat</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">dLat</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">dLon</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)
+          <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">dLon</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">lat1</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">lat2</span>);
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">atan2</span>(Math.<span style="color:#a6e22e">sqrt</span>(<span style="color:#a6e22e">a</span>), Math.<span style="color:#a6e22e">sqrt</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#a6e22e">a</span>));
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">earthRadiusM</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">c</span>;
 }
 </code></pre></div>
 
