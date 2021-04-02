@@ -13,11 +13,6 @@
     {{ .Content }}
   {{ else }}
   <section class="margined">
-    <!-- {{ if .IsTranslated }}
-      {{ range $.Site.Home.AllTranslations }}
-        <p><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></p>
-      {{ end }}
-    {{ end }} -->
     {{ .Content }}
   </section>
   {{ end }}
