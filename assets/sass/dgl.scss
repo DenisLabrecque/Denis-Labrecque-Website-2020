@@ -757,7 +757,8 @@ nav.menu {
 // Syntax highlights
 pre {
    padding: $border;
-   background-color: $cloud-black;
+   background-color: $cloud-black !important;
+   overflow-x: auto;
 }
 
 // Circle animation for email sending
