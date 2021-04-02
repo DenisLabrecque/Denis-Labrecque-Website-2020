@@ -44,7 +44,7 @@
 
 
 <section class="red diagonal-bottom">
-   <meta name="image" content="/Waypoint_Map_Bing.jpg" />
+   <meta name="image" content="/Waypoint_Tool_vehicle.gif" />
    <div class="margined">
       <header>
          <h1>Waypoint Tool</h1>
@@ -54,7 +54,7 @@
       <p>Path tool using the Bing Maps API to get coordinates and create a set of waypoints.</p>
       
       
-      <a class="button anim-top-bottom" href="/programming/waypointMapTool.html">Full-page View</a>
+      <a class="button anim-top-bottom" href="/programming/waypointMapTool.html">Map</a>
       
    </div>
  </section>
@@ -63,6 +63,7 @@
   <section class="margined">
     <p>This tool was created with the purpose of programming a vehicle to follow waypoints using an Arduino microcontroller paired to a GPS module.</p>
 <iframe src="/programming/waypointMapTool.html" style="width:100%; height: 500px; border: none;"></iframe>
+<p>To make editing easier, use the <a href="/programming/waypointMapTool.html">full-page view</a>.</p>
 <h2 id="creating-and-loading-waypoints">Creating and Loading Waypoints</h2>
 <ul>
 <li><strong>To create a waypoint path:</strong> click on the map.</li>
@@ -81,7 +82,6 @@
     <img src="/Waypoint_Tool_vehicle.gif" alt="/Waypoint_Tool_vehicle.gif" class="slide-anim" data-anim="bottom top" />
     <figcaption class="appear-anim" data-anim="bottom top">Vehicle following waypoints on map</figcaption>
 </figure>
-<p>To make editing easier, use the <a href="/programming/waypointMapTool.html">full-page view</a>.</p>
 <h3 id="output-json">Output JSON</h3>
 <p>This map uses the <a href="https://www.bing.com/api/maps/sdkrelease/mapcontrol/isdk">Bing Maps API</a> to add events that allow the user to create waypoints. The output file is a JSON array in the following format:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript">[{
@@ -96,29 +96,21 @@
 </code></pre></div>
 <p>Each node in the array represents a waypoint, ordered from the first waypoint to the last. At the moment, only the <code>latitude</code> and <code>longitude</code> properties are used, the rest being complimentary information received from <a href="https://docs.microsoft.com/en-us/bingmaps/v8-web-control/map-control-api/pushpin-class"><code>Pushpin.getLocation()</code></a>.</p>
 <h2 id="problems-solved">Problems Solved</h2>
-<p>In part for my future self, and in part to help others who need clear instructions as I do, here are solutions to a few geometric problems that need solving to direct an autonomous vehicle on a map.</p>
-<p>The solution to this problem is very simple if we measure the vehicle&rsquo;s heading angle compared to the target waypoint, as explained below. This gives an angle off to the left or off to the right that the vehicle can correct for. This simulation uses a quack approximation to rotate the vehicle, but in real life the rudder of a boat or steering of a car would use a PID controller with a setpoint of 0 degrees (no error) and an input of the actual deviation off the target in degrees.</p>
-<p>A better algorithm would include the concept of track, meaning that a line between both the previous and the next waypoint would be established, and the vehicle&rsquo;s distance from that line would give the error. This would help protect from deviations caused by wind or current. A simple way to achieve this is to simply include more waypoints along the path.</p>
-<h3 id="how-to-project-a-point-from-a-location-by-degree">How to Project a Point from a Location by Degree</h3>
-<p>To predict where a vehicle is going, one must first project that vehicle&rsquo;s current heading vector on the map. Solution from <a href="https://math.stackexchange.com/q/143932/769532">Calculate point, given x, y, angle, and distance</a> on Stack Overflow.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Project a point from a certain location at a certain angle.
-</span><span style="color:#75715e">// Returns the other point needed to complete this line.
-</span><span style="color:#75715e">// https://math.stackexchange.com/a/143946/769532
-</span><span style="color:#75715e">// x = distance * cos(θ), y = distance * sin(θ)
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">projectPoint</span>(<span style="color:#a6e22e">location</span>, <span style="color:#a6e22e">angle</span>, <span style="color:#a6e22e">distance</span>) {
-    <span style="color:#a6e22e">distance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">distance</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">.00001</span> <span style="color:#75715e">// This factor needs adjustment
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">angle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">angle</span>)
+<p>In part for my future self, and in part to help others who need clear instructions as I do, here are a few solutions to geometric problems for directing an autonomous vehicle using geographic coordinates.</p>
+<p>The simplest solution is to measure the vehicle&rsquo;s heading angle compared to the target waypoint&rsquo;s bearing angle, as explained below. This gives an angle off to the left or off to the right that the vehicle can correct for. This simulation uses a quack approximation to rotate the vehicle, but in real life the rudder of a boat or steering of a car would use a PID controller with a setpoint of 0 degrees (no error) and an input of the actual deviation off the target in degrees.</p>
 
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">latitude</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">latitude</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">distance</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">angle</span>))
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">longitude</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">longitude</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">distance</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">angle</span>))
 
-    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;latitude&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">latitude</span>, <span style="color:#e6db74">&#34;longitude&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">longitude</span>}
-}
-</code></pre></div>
-<p>This function may be slightly inaccurate because it assumes the earth is flat, but it is sufficient for our needs.</p>
+
+
+
+<figure>
+    <img src="/Heading_Bearing_Error.svg" alt="/Heading_Bearing_Error.svg" class="slide-anim" data-anim="bottom top" />
+    <figcaption class="appear-anim" data-anim="bottom top">Heading versus bearing, and the heading deviation error between them. Both heading and bearing are relative to North.</figcaption>
+</figure>
+<p>A better algorithm would include the concept of track &ndash; a line between the previous and next waypoints &ndash; and the vehicle&rsquo;s distance from that track line would give the error. This would help protect from deviations caused by wind or current (a simple way to achieve this is to include more waypoints along the path).</p>
 <h3 id="how-to-calculate-angle-between-two-geographic-coordinates">How to Calculate Angle Between Two Geographic Coordinates</h3>
-<p>To predict whether a vehicle is heading in the right direction, one would need to find the angle between the vehicle and the target location. Is it really possible to calculate the angle between only two points? In fact, there is a third point: north. Technically, this is known as finding the bearing from one coordinate to the next.</p>
-<p>For example, suppose a vehicle&rsquo;s next waypoint is due north relative to the vehicle. In that case, the waypoint&rsquo;s bearing relative to the vehicle is 0 degrees. If the waypoint were due east, its bearing to the vehicle would be 90 degrees. If it were due west, 180 degrees, and so forth.</p>
+<p>To predict whether a vehicle is heading in the right direction, one would need to find the angle between the vehicle and the target location. Is it really possible to calculate the angle between only two points? In fact, there is a third point: North. Technically, this is known as the <strong>bearing</strong> from one coordinate to the next.</p>
+<p>For example, suppose a vehicle&rsquo;s next waypoint is due North relative to the vehicle. In that case, the waypoint&rsquo;s bearing relative to the vehicle is 0 degrees. If the waypoint were due East, its bearing to the vehicle would be 90 degrees. If it were due South, 180 degrees, and so forth.</p>
 <p>Code below is inspired from an answer on Stack Overflow: <a href="https://stackoverflow.com/a/18738281/4682228">Calculate angle between two Latitude/Longitude points</a>. Because coordinates in degrees must be converted to radians, a little function <code>locationToRadians()</code> converts a location <code>{latitude, longitude}</code> to radians.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find the bearing between two coordinates.
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">bearingBetweenCoordinates</span>(<span style="color:#a6e22e">location1</span>, <span style="color:#a6e22e">location2</span>) {
@@ -149,31 +141,32 @@
     <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">degrees</span> <span style="color:#f92672">*</span> (Math.<span style="color:#a6e22e">PI</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">180</span>)
 }
 </code></pre></div>
-<h3 id="how-to-calculate-angle-between-direction-and-destination-point">How to Calculate Angle Between Direction and Destination Point</h3>
-<p>When traveling with a vehicle to a waypoint, one would like to know whether the vehicle&rsquo;s direction is correct. A simple way to do this is to draw a line ahead of the vehicle: this is the vehicle&rsquo;s heading. Heading is calculated in degrees away from north, where 90.0 is east, 180.0 is south, etc. The location the vehicle wants to reach also has an angle: the bearing from the vehicle to that point.</p>
-<p>To find how far away the vehicle is pointing, simply subtract heading from bearing. That is, if the vehicle is heading 30 degrees north, and the target location&rsquo;s bearing is 30 degrees, then <code>30.0 - 30.0 == 0</code>, meaning that the vehicle is heading straight towards the target.</p>
-<p>If the vehicle were heading 25 degrees north, but the target&rsquo;s bearing is still 30 degrees, then <code>heading - bearing == 25.0 - 30.0 == -5.0</code>. The vehicle is pointing -5 degrees to the target&rsquo;s left. If the result were +5 degrees, the vehicle would be pointing to the target&rsquo;s right.</p>
+<h3 id="how-to-calculate-angle-between-vehicle-direction-and-its-target-location">How to Calculate Angle Between Vehicle Direction and its Target Location</h3>
+<p>When traveling with a vehicle to a waypoint, one would like to know whether the vehicle&rsquo;s direction is correct. A simple way to do this is to draw a line ahead of the vehicle: this is the vehicle&rsquo;s heading. Heading is calculated in degrees away from North, where 90.0 is East, 180.0 is South, etc. The location the vehicle wants to reach also has an angle: the bearing from the vehicle to that point.</p>
+<p>To find how far away the vehicle is pointing, simply subtract heading from bearing. That is, if the vehicle is heading 30 degrees North, and the target location&rsquo;s bearing is 30 degrees, then <code>30.0 - 30.0 == 0</code>, meaning that the vehicle is heading straight on target.</p>
+<p>If the vehicle were heading 25 degrees North, but the target&rsquo;s bearing is still 30 degrees, then <code>heading - bearing == 25.0 - 30.0 == -5.0</code>. The vehicle is pointing -5 degrees to the target&rsquo;s left. If the result were +5 degrees, the vehicle would be pointing to the target&rsquo;s right.</p>
 <p>The code to find this heading error is shown below, as inspired from a <a href="https://stackoverflow.com/a/54820295/4682228">snippet on Stack Overflow</a>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find how many degrees right or left one heading is to the next.
 </span><span style="color:#75715e">// Left degrees are negative and right degrees are positive.
 </span><span style="color:#75715e">// Always returns the shortest angle.
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">headingError</span>(<span style="color:#a6e22e">bearing</span>, <span style="color:#a6e22e">heading</span>) {
-    <span style="color:#75715e">// Get both angles; these add to 360 degrees
+    <span style="color:#75715e">// Get both angles; these add to 360 degrees, but one is smaller
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bearing</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heading</span>
     <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">rightAngle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">heading</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">bearing</span>
 
-    <span style="color:#75715e">// Non-negative
+    <span style="color:#75715e">// Make non-negative
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
         <span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">360</span>
     <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">rightAngle</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
         <span style="color:#a6e22e">rightAngle</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">360</span>
     
-    <span style="color:#75715e">// Return the smallest and negative for left
+    <span style="color:#75715e">// Return the most acute angle, and make leftwards angles negative
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">rightAngle</span> <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">leftAngle</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">rightAngle</span>
 }
 </code></pre></div>
+<p>The code above corrects for situations where a simple subtraction does not give the ideal answer. For example, what happens if <code>heading = 350.0</code> and <code>bearing = 10.0</code>? Is the vehicle pointing 340 degrees to the waypoint&rsquo;s right?</p>
 <h3 id="calculating-distance-between-two-locations-on-earth">Calculating Distance between Two Locations on Earth</h3>
-<p>To know whether a vehicle has arrived to its waypoint requires measuring distance. One may also want to know the path&rsquo;s total length.</p>
+<p>To know whether a vehicle has arrived at a waypoint requires measuring distance. One might also want to know other distance information, like the path&rsquo;s total length.</p>
 <p>Accurately finding two distances on earth requires including the earth&rsquo;s sphericity. To test this function&rsquo;s accuracy, try inputting two cities with a known distance between them.</p>
 <p>Of course, for our purposes, one could assume the earth is flat, but this is more fun. Code shamelessly taken from <a href="https://stackoverflow.com/a/365853/4682228">Calculate distance between 2 GPS coordinates</a> on Stack Overflow:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find distance between two locations in meters.
@@ -193,6 +186,23 @@
     <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">earthRadiusM</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">c</span>;
 }
 </code></pre></div>
+<h3 id="projecting-a-point-from-a-location-at-a-certain-angle">Projecting a Point from a Location at a Certain Angle</h3>
+<p>To show the vehicle&rsquo;s projected path, one must project a point before the vehicle based on its current heading. Solution from <a href="https://math.stackexchange.com/q/143932/769532">Calculate point, given x, y, angle, and distance</a> on Stack Overflow. Keep in mind that the input location here is an object in the format <code>{latitude, longitude}</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Project a point from a certain location at a certain angle.
+</span><span style="color:#75715e">// Returns the other point needed to complete this line.
+</span><span style="color:#75715e">// https://math.stackexchange.com/a/143946/769532
+</span><span style="color:#75715e">// x = distance * cos(θ), y = distance * sin(θ)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">projectPoint</span>(<span style="color:#a6e22e">location</span>, <span style="color:#a6e22e">angle</span>, <span style="color:#a6e22e">distance</span>) {
+    <span style="color:#a6e22e">distance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">distance</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">.00001</span> <span style="color:#75715e">// This factor needs adjustment
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">angle</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">degreesToRadians</span>(<span style="color:#a6e22e">angle</span>)
+
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">latitude</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">latitude</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">distance</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">angle</span>))
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">longitude</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">longitude</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">distance</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">angle</span>))
+
+    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;latitude&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">latitude</span>, <span style="color:#e6db74">&#34;longitude&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">longitude</span>}
+}
+</code></pre></div>
+<p>This function may be slightly inaccurate because it assumes the earth is flat, but it is sufficient for our needs. In this way, one would use a GPS module to track the vehicle&rsquo;s location, and a compass for the vehicle&rsquo;s current heading. Those two inputs are sufficient to project a point from the vehicle&rsquo;s location at the heading&rsquo;s angle an arbitrary distance away (or using a vector of a certain length to reflect speed). A line can then be drawn from the vehicle&rsquo;s location to the projected point.</p>
 
   </section>
   

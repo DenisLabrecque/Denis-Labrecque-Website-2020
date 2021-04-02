@@ -13,7 +13,8 @@
       
       <guid>/programming/bing-api-map-waypoint-tool/</guid>
       <description>This tool was created with the purpose of programming a vehicle to follow waypoints using an Arduino microcontroller paired to a GPS module.
-Creating and Loading Waypoints  To create a waypoint path: click on the map. To remove a waypoint: click on the waypoint and click remove. To move a waypoint: click and drag it. To save or erase coordinates: right-click the map; the location name is the point of interest nearest to the first waypoint, and that is the file&amp;rsquo;s default name.</description>
+To make editing easier, use the full-page view.
+Creating and Loading Waypoints  To create a waypoint path: click on the map. To remove a waypoint: click on the waypoint and click remove. To move a waypoint: click and drag it. To save or erase coordinates: right-click the map; the location name is the point of interest nearest to the first waypoint, and that is the file&amp;rsquo;s default name.</description>
     </item>
     
     <item>
