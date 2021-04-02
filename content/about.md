@@ -43,12 +43,14 @@ blank: true
   </script>
 </section>
 
-<section class="margined">
+<section class="margined" itemscope itemtype="https://schema.org/Person">
   <h2>About</h2>
-  <p>When he was very young, Denis enjoyed drawing airplanes and rolling a miniature steam engine around to understand how the wheels paired together. Eventually, his curiosity grew towards graphics, piqued by a book explaining how to design websites. He has since been imagining user interfaces by creating small apps on the side, by working as a web designer, and by working as a programmer.</p>
+  <p>When he was very young, <span itemprop="name">Denis</span> enjoyed drawing airplanes and rolling a miniature steam engine around to understand how the wheels paired together. Eventually, his curiosity grew towards graphics, piqued by a book explaining how to design websites. He has since been imagining user interfaces by creating small apps on the side, by working as a web designer, and by working as a programmer.</p>
   <p>One of Denis' designs has been printed over 100,000 times; his programming has also helped maintain websites with over 3 million yearly users. He hopes to continue being useful in improving software user experiences for his future organization.</p>
 
+  <span itemprop="image">
   {{< image "DenisTransparentBackground.png" "Denis Labrecque" >}}
+  </span>
 
   <p>Because Denis’ interests range from composing orchestral music to using 3D software, and building electronics to making scale models, your project likely interests him! If you want help, you are welcome to <a href="#contact">contact him</a>.<p>
 </section>
@@ -56,6 +58,6 @@ blank: true
 <section class="margined">
     <blockquote>
       <span class="highlight">If I had to describe Denis in two words, I would say would say working and creative. His desire to always find the best solution to the problem is truly one of his talents.</span>
-      <cite>Maxime Pronovost, Owner of Studio Grafik</cite>
+      <cite><a href="https://www.linkedin.com/in/studiografikmaximepronovost/">Maxime Pronovost</a>, owner of <a href="https://studiografik.ca/">Studio Grafik</a></cite>
     </blockquote>
 </section>
