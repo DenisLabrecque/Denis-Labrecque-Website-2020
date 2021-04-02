@@ -407,7 +407,7 @@ a.button {
    }
 }
 
-.red.diagonal-bottom + section>p:first-child {
+.red.diagonal-bottom + section>p:first-child, h2 + p {
    &::first-line {
       color: $red-pinkerton;
    }

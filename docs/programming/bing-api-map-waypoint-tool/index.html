@@ -95,6 +95,40 @@
 }]
 </code></pre></div>
 <p>Each node in the array represents a waypoint, ordered from the first waypoint to the last. At the moment, only the <code>latitude</code> and <code>longitude</code> properties are used, the rest being complimentary information received from <a href="https://docs.microsoft.com/en-us/bingmaps/v8-web-control/map-control-api/pushpin-class"><code>Pushpin.getLocation()</code></a>.</p>
+<h3 id="how-to-calculate-angle-between-two-geographic-coordinates">How to Calculate Angle Between Two Geographic Coordinates</h3>
+<p>Is it really possible to calculate the angle between only two points? In fact, there is a third point: North. Technically, this is known as finding the bearing from one coordinate to the next.</p>
+<p>Code below is from an answer from Stack Overflow: <a href="%22https://stackoverflow.com/a/18738281/4682228%22">Calculate angle between two Latitude/Longitude points</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find the bearing between two coordinates.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">angleFromCoordinate</span>(<span style="color:#a6e22e">point1</span>, <span style="color:#a6e22e">point2</span>) {
+    <span style="color:#a6e22e">point1</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">locationToRadians</span>(<span style="color:#a6e22e">point1</span>)
+    <span style="color:#a6e22e">point2</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">locationToRadians</span>(<span style="color:#a6e22e">point2</span>)
+
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">longitudeDifference</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">point2</span>.<span style="color:#a6e22e">longitude</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">point1</span>.<span style="color:#a6e22e">longitude</span>
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">longitudeDifference</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">point2</span>.<span style="color:#a6e22e">latitude</span>)
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">point1</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">point2</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">-</span> Math.<span style="color:#a6e22e">sin</span>(<span style="color:#a6e22e">point1</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">point2</span>.<span style="color:#a6e22e">latitude</span>) <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">cos</span>(<span style="color:#a6e22e">longitudeDifference</span>)
+    
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">bearing</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">atan2</span>(<span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">x</span>)
+    <span style="color:#a6e22e">bearing</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">radiansToDegrees</span>(<span style="color:#a6e22e">bearing</span>)
+    <span style="color:#a6e22e">bearing</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">bearing</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">360</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">360</span>
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">bearing</span>
+}
+</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:3;-o-tab-size:3;tab-size:3"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Find how many degrees right or left one heading is to the next.
+</span><span style="color:#75715e">// Left degrees are negative and right degrees are positive.
+</span><span style="color:#75715e">// Always returns the shortest angle.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">calculateError</span>(<span style="color:#a6e22e">heading1</span>, <span style="color:#a6e22e">heading2</span>) {
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">heading1</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heading2</span>
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">heading2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">heading1</span>
+
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">left</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+        <span style="color:#a6e22e">left</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">360</span>
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">right</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+        <span style="color:#a6e22e">right</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">360</span>
+    
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">left</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">right</span> <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">left</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">right</span>
+}
+</code></pre></div>
 
   </section>
   
