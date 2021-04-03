@@ -1,7 +1,7 @@
 ---
 title: "Résumé"
 subtitle: "Denis Labrecque"
-headline: "Student graduating with degrees in graphic design and information technology, having practical experience in both design and programming."
+headline: "Denis has graduated cum laude with Information Technology and Graphic Design degrees from Pensacola Christian College in December 2020. He is just now starting a programming career."
 ctaTitle: "LinkedIn"
 ctaLink: "https://www.linkedin.com/in/denisglabrecque/?locale=en_US"
 date: 2020-11-26T21:51:14-06:00
