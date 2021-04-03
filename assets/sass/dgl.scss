@@ -407,32 +407,32 @@ a.button {
    }
 }
 
-.red.diagonal-bottom + section>p:first-child {
-   &::first-line {
-      color: $red-pinkerton;
-   }
-   &::first-letter {
-      float: left;
-      font-family: "Work Sans", sans-serif;
-      font-weight: 300;
-      font-size: 350%;
-      padding-top: 8pt;
-      padding-right: 1pt;
-   }
-}
+// .red.diagonal-bottom + section>p:first-child {
+//    &::first-line {
+//       color: $red-pinkerton;
+//    }
+//    &::first-letter {
+//       float: left;
+//       font-family: "Work Sans", sans-serif;
+//       font-weight: 300;
+//       font-size: 350%;
+//       padding-top: 8pt;
+//       padding-right: 1pt;
+//    }
+// }
 
-p.not-first-line {
-   &::first-line {
-      color: unset;
-   }
-   &::first-letter {
-      float: unset;
-      font-weight: unset;
-      font-size: unset;
-      padding-top: unset;
-      padding-right: unset;
-   }
-}
+// p.not-first-line {
+//    &::first-line {
+//       color: unset;
+//    }
+//    &::first-letter {
+//       float: unset;
+//       font-weight: unset;
+//       font-size: unset;
+//       padding-top: unset;
+//       padding-right: unset;
+//    }
+// }
 
 blockquote {
    margin-left: 0;
@@ -768,9 +768,9 @@ nav.menu {
 
 // Syntax highlights
 pre {
-   padding: $border * 2;
+   padding: $padding / 2;
    background-color: $cloud-black !important;
-   overflow-x: scroll;
+   overflow-x: auto;
 }
 
 // Circle animation for email sending

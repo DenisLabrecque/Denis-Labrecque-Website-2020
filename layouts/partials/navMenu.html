@@ -1,20 +1,25 @@
 <nav class="menu">
+   {{ $lang := printf "%s" site.Language }}
+   {{ $base := "/" }}
+   {{ if eq $lang "fr" }}
+      {{ $base = "/fr/"}}
+   {{ end }}
+
     <div>
-       <a href="/" id="logo-button" class="overlay-button">
+       <a href="{{ $base }}" id="logo-button" class="overlay-button">
           <img src="/icon-red.png" alt="Denis Labrecque logo" width="38" height="38" />
        </a>
     </div>
  
     <ul id="menu-bar">
-    {{ $lang := printf "%s" site.Language }}
     {{ if eq $lang "en" }}
       <li><a href="/programming/">Programming</a></li>
       <li><a href="/graphics/">Graphics</a></li>
       <li><a href="/about/">Contact</a></li>
     {{ else }}
-      <li><a href="/programming/">Programmation</a></li>
-      <li><a href="/graphics/">Graphisme</a></li>
-      <li><a href="/about/">Contacter</a></li>
+      <li><a href="/fr/programming/">Programmation</a></li>
+      <li><a href="/fr/graphics/">Graphisme</a></li>
+      <li><a href="/fr/about/">Contacter</a></li>
     {{ end }}
     </ul>
  </nav>

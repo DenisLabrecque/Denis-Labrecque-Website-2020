@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
-    <link>/fr/</link>
-    <description>Recent content on </description>
+    <title>Graphics on </title>
+    <link>/fr/graphics/</link>
+    <description>Recent content in Graphics on </description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 11 Mar 2021 18:05:10 -0600</lastBuildDate>
     
-	<atom:link href="/fr/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/fr/graphics/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Résumé</title>
-      <link>/fr/resume/</link>
-      <pubDate>Fri, 26 Mar 2021 21:51:14 -0600</pubDate>
-      
-      <guid>/fr/resume/</guid>
-      <description>ÉducationPensacola Christian College, FloridaB.S. in Computing: Information TechnologyB.S. in Visual Arts: Graphic DesignAoût 2015—décembre 2020 (note cumulative de 3.6/4.0)
-Supervision d’une petite équipe de graphistes pour la création d’un recueil étudiant, en vue de sa publication et de sa vente.
-Aide à la gestion d’une équipe de sept coéquipiers dans la programmation d’un logiciel d’examens en ligne avec Oracle et ASP.NET, avec un leadership efficace pour livrer le projet à temps.</description>
-    </item>
     
     <item>
       <title>Voilier North American Morgan 40&#39;</title>

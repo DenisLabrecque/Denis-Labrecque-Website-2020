@@ -4,15 +4,17 @@
 {{ define "main" }}
 {{ partial "pageTitle" (dict "context" . "title" .Title "subtitle" .Params.subtitle "headline" .Params.headline "image" .Params.image "ctaTitle" .Params.ctaTitle "ctaLink" .Params.ctaLink )}}
 
-  {{ if .Params.blank }}
-    <!-- {{ if .IsTranslated }}
-      {{ range $.Site.Home.AllTranslations }}
-      <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
-      {{ end }}
-    {{ end }} -->
-    {{ .Content }}
-  {{ else }}
+{{ if .Params.blank }}
+  {{ .Content }}
+{{ else }}
   <section class="margined">
+    {{ if .IsTranslated }}
+      {{ range .Translations }}
+        {{ if ne site.Language .Language }}
+        <p><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></p>
+        {{ end }}
+      {{ end }}
+    {{ end }}
     {{ .Content }}
   </section>
   {{ end }}

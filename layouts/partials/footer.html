@@ -1,26 +1,48 @@
+{{ $lang := printf "%s" site.Language }}
+
+{{ $name_network := "Network" }}
+{{ $link_linkedIn := "https://www.linkedin.com/in/denisglabrecque/?locale=en_US" }}
+{{ $name_programming := "Programming" }}
+{{ $link_programming := "/programming/" }}
+{{ $name_graphics := "Graphics" }}
+{{ $link_graphics := "/graphics/" }}
+{{ $name_about := "About" }}
+{{ $link_about := "/about/" }}
+{{ $link_resume := "/resume/" }}
+{{ if eq $lang "fr" }}
+   {{ $name_network = "Réseau" }}
+   {{ $link_linkedIn = "https://www.linkedin.com/in/denisglabrecque/?locale=fr_FR" }}
+   {{ $name_programming = "Programmation" }}
+   {{ $link_programming = "/fr/programming/" }}
+   {{ $name_graphics = "Graphisme" }}
+   {{ $link_graphics = "/fr/graphics/" }}
+   {{ $name_about = "À propos" }}
+   {{ $link_about = "/fr/about/" }}
+   {{ $link_resume = "/fr/resume/" }}
+{{ end }}
+
 <footer class="diagonal-top anim-top-top">
     <div class="margined">
        <nav class="grid-3">
           <div class="grid-item">
-             <h3>Network</h3>
+             <h3>{{ $name_network }}</h3>
              <ul>
-                <li><a href="https://www.linkedin.com/in/denisglabrecque/">LinkedIn</a></li>
+                <li><a href="{{ $link_linkedIn }}">LinkedIn</a></li>
                 <li><a href="https://www.youtube.com/channel/UCw3D6IUqE0sQk_ULQEJJkhw">YouTube</a></li>
-                <li><a href="https://www.facebook.com/DenisGLabrecque/">Facebook</a></li>
              </ul>
           </div>
           <div class="grid-item">
              <h3>Navigation</h3>
              <ul>
-                <li><a href="/programming/">Programming</a></li>
-                <li><a href="/graphics/">Graphics</a></li>
+                <li><a href="{{ $link_programming }}">{{ $name_programming }}</a></li>
+                <li><a href="{{ $link_graphics }}">{{ $name_graphics }}</a></li>
              </ul>
           </div>
           <div class="grid-item">
              <h3>Information</h3>
              <ul>
-                <li><a href="/about/">About</a></li>
-                <li><a href="/resume/">Résumé</a></li>
+                <li><a href="{{ $link_about }}">{{ $name_about }}</a></li>
+                <li><a href="{{ $link_resume }}">Résumé</a></li>
              </ul>
           </div>
        </nav>
@@ -29,4 +51,4 @@
           <img src="/icon.png" alt="D L logo" width="32" height="39.5" />
           Denis Labrecque © {{ now.Format "2006" }}</small>
     </div>
- </footer>
+</footer>

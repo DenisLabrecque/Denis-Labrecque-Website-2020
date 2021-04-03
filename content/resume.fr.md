@@ -62,5 +62,5 @@ author: "Denis Labrecque"
 </section>
 
 <section>
-    <a href="/about/#contact" class="button">Contacter Denis</a>
+    <a href="/fr/about/" class="button">Contacter Denis</a>
 </section>
