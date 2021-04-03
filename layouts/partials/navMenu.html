@@ -6,28 +6,15 @@
     </div>
  
     <ul id="menu-bar">
-       <li><a href="/programming/">Programming</a></li>
-       <li><a href="/graphics/">Graphics</a></li>
-       <li><a href="/about/">Contact</a></li>
+    {{ $lang := printf "%s" site.Language }}
+    {{ if eq $lang "en" }}
+      <li><a href="/programming/">Programming</a></li>
+      <li><a href="/graphics/">Graphics</a></li>
+      <li><a href="/about/">Contact</a></li>
+    {{ else }}
+      <li><a href="/programming/">Programmation</a></li>
+      <li><a href="/graphics/">Graphisme</a></li>
+      <li><a href="/about/">Contacter</a></li>
+    {{ end }}
     </ul>
-    
-    <!-- <script>
-       function menuClick(element) {
-          console.log("menu click" + element)
-          let menuBar = document.querySelector("#menu-bar");
- 
-          if(element.classList.contains("not-clicked")) {
-             element.classList.remove("not-clicked")
-             element.classList.add("clicked")
-             menuBar.classList.remove("not-revealed")
-             menuBar.classList.add("revealed")
-          }
-          else {
-             element.classList.remove("clicked")
-             element.classList.add("not-clicked")
-             menuBar.classList.remove("revealed")
-             menuBar.classList.add("not-revealed")
-          }
-       }
-    </script> -->
  </nav>

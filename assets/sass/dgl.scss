@@ -407,7 +407,7 @@ a.button {
    }
 }
 
-.red.diagonal-bottom + section>p:first-child, h2 + p {
+.red.diagonal-bottom + section>p:first-child {
    &::first-line {
       color: $red-pinkerton;
    }
@@ -768,9 +768,9 @@ nav.menu {
 
 // Syntax highlights
 pre {
-   padding: $border;
+   padding: $border * 2;
    background-color: $cloud-black !important;
-   overflow-x: auto;
+   overflow-x: scroll;
 }
 
 // Circle animation for email sending

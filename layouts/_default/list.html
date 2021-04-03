@@ -4,9 +4,7 @@
 
 <section>
   <div class="margined">
-     <div class="card-grid">
-      {{ partial "cardlist" (dict "context" . "section" (.Title | lower)) }}
-     </div>
+    {{ partial "cardlist" (dict "context" . "section" (.Title | lower)) }}
   </div>
 </section>
 

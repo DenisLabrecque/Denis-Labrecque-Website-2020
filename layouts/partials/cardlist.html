@@ -1,31 +1,32 @@
+<div class="card-grid rellax">
+{{ $count := 0 }}
+{{ $max := int .max }}
 {{ range (where .context.Site.Pages "Section" .section) }}
-{{ range.Pages }}
-   <a class="card" href="{{ .RelPermalink }}">
-      {{ $img := resources.GetMatch .Params.image }}
-      
-      {{ $x_400 := $img.Fill "400x300 Center" }}
-      {{ $x_800 := $img.Fill "800x600 Center" }}
-      {{ $x_1440 := $img.Fill "1440x1080 Center" }}
-      {{ $x_2560 := $img.Fill "2560x1920 Center" }}
+   {{ range.Pages }}
+      {{ if or (eq $max 0) (lt $count $max) }}
+         <a class="card" href="{{ .RelPermalink }}">
+            {{ $img := resources.GetMatch .Params.image }}
+            
+            {{ $x_400 := $img.Fill "400x300 Center" }}
+            {{ $x_800 := $img.Fill "800x600 Center" }}
+            {{ $x_1440 := $img.Fill "1440x1080 Center" }}
+            {{ $x_2560 := $img.Fill "2560x1920 Center" }}
 
-      <img src="{{$img.RelPermalink}}"
-           srcset="{{$x_400.RelPermalink}} 400w,
-                   {{ if $x_800.Width }}{{$x_800.RelPermalink}} 800w,{{ end }}
-                   {{ if $x_1440.Width }}{{$x_1440.RelPermalink}} 1440w,{{ end }}
-                   {{ if $x_2560.Width }}{{$x_2560.RelPermalink}} 2560w{{ end }}"
-           alt="{{ $img.RelPermalink }}" />
-      <h3>{{ .Title }}</h3>
-      <p>{{ .Summary }}</p>
-      {{/*
-      <em>{{ with $img.Exif }}
-            {{ range $k, $v := .Tags }}
-            <br /><strong>{{ $k }}</strong> {{ $v }}
-            {{ end }}
-            {{ else }}
-               <em>No exif</em>
-           {{ end }}</em>
-      <p>{{ $img.Params }}</p>
-      */}}
-   </a>
+            <img src="{{$img.RelPermalink}}"
+               srcset="{{$x_400.RelPermalink}} 400w,
+                        {{ if $x_800.Width }}{{$x_800.RelPermalink}} 800w,{{ end }}
+                        {{ if $x_1440.Width }}{{$x_1440.RelPermalink}} 1440w,{{ end }}
+                        {{ if $x_2560.Width }}{{$x_2560.RelPermalink}} 2560w{{ end }}"
+               alt="{{ $img.RelPermalink }}" />
+            <h3>{{ .Title }}</h3>
+            <p>{{ .Summary }}</p>
+         </a>
+      {{ end }}
+      {{ $count = add 1 $count }}
+   {{ end }}
 {{ end }}
+</div>
+
+{{ if and (gt $max 0) (gt $count $max) }}
+   <a class="button slide-anim" data-anim="bottom top" href="{{ .section }}">More</a>
 {{ end }}
