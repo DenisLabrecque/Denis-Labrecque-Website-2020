@@ -20,11 +20,31 @@
   <url>
     <loc>/programming/</loc>
     <lastmod>2021-03-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/programming/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/programming/"
+                />
   </url>
   
   <url>
     <loc>/programming/bing-api-map-waypoint-tool/</loc>
     <lastmod>2021-03-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/programming/bing-api-map-waypoint-tool/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/programming/bing-api-map-waypoint-tool/"
+                />
   </url>
   
   <url>
@@ -70,6 +90,16 @@
   <url>
     <loc>/about/</loc>
     <lastmod>2020-11-26T21:51:14-06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/about/"
+                />
   </url>
   
   <url>

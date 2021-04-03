@@ -3,6 +3,51 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/fr/</loc>
+    <lastmod>2021-03-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/"
+                />
+  </url>
+  
+  <url>
+    <loc>/fr/programming/bing-api-map-waypoint-tool/</loc>
+    <lastmod>2021-03-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/programming/bing-api-map-waypoint-tool/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/programming/bing-api-map-waypoint-tool/"
+                />
+  </url>
+  
+  <url>
+    <loc>/fr/programming/</loc>
+    <lastmod>2021-03-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/programming/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/programming/"
+                />
+  </url>
+  
+  <url>
     <loc>/fr/resume/</loc>
     <lastmod>2021-03-26T21:51:14-06:00</lastmod>
     <xhtml:link
@@ -14,21 +59,6 @@
                 rel="alternate"
                 hreflang="fr"
                 href="/fr/resume/"
-                />
-  </url>
-  
-  <url>
-    <loc>/fr/</loc>
-    <lastmod>2021-03-11T18:05:10-06:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/"
                 />
   </url>
   
@@ -59,6 +89,21 @@
                 rel="alternate"
                 hreflang="fr"
                 href="/fr/graphics/morgan-40-sailboat/"
+                />
+  </url>
+  
+  <url>
+    <loc>/fr/about/</loc>
+    <lastmod>2020-11-26T21:51:14-06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/about/"
                 />
   </url>
   

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on </title>
+    <link>/fr/programming/</link>
+    <description>Recent content in Programming on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 31 Mar 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/fr/programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Outil de balisage</title>
+      <link>/fr/programming/bing-api-map-waypoint-tool/</link>
+      <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/programming/bing-api-map-waypoint-tool/</guid>
+      <description>Cet outil a été conçu pour programmer un véhicule autonome à suivre des balises en utilisant un microcontrôleur Arduino avec un module GPS.
+Pour faciliter l&amp;rsquo;édition, utilisez la vue pleine page.
+Créer et charger des balises  Pour créer un sentier: cliquez sur la carte. Pour enlever une balise: cliquez sur la balise et cliquez remove. Pour modifier un balise: cliquez et faites glisser. Pour enregistrer ou effacer les coordonnées: cliquez de droite sur la carte; le nom de la localisation est le point d&amp;rsquo;interêt le plus proche de la première balise, ce qui est le nom de fichier par défaut.</description>
+    </item>
+    
+  </channel>
+</rss>

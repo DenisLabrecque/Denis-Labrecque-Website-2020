@@ -5,10 +5,21 @@
     <link>/fr/</link>
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 11 Mar 2021 18:05:10 -0600</lastBuildDate>
+    <lastBuildDate>Wed, 31 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/fr/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Outil de balisage</title>
+      <link>/fr/programming/bing-api-map-waypoint-tool/</link>
+      <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/programming/bing-api-map-waypoint-tool/</guid>
+      <description>Cet outil a été conçu pour programmer un véhicule autonome à suivre des balises en utilisant un microcontrôleur Arduino avec un module GPS.
+Pour faciliter l&amp;rsquo;édition, utilisez la vue pleine page.
+Créer et charger des balises  Pour créer un sentier: cliquez sur la carte. Pour enlever une balise: cliquez sur la balise et cliquez remove. Pour modifier un balise: cliquez et faites glisser. Pour enregistrer ou effacer les coordonnées: cliquez de droite sur la carte; le nom de la localisation est le point d&amp;rsquo;interêt le plus proche de la première balise, ce qui est le nom de fichier par défaut.</description>
+    </item>
     
     <item>
       <title>Résumé</title>
@@ -29,6 +40,16 @@ Aide à la gestion d’une équipe de sept coéquipiers dans la programmation d�
       <guid>/fr/graphics/morgan-40-sailboat/</guid>
       <description>Ces images ont été faites pour un client qui désirait rénover son voilier. Si de tels rendus d&amp;rsquo;image vous interessent, veuillez contacter Denis.
 Lit principal à la proue Accomodations de la galère Poste de navigation Poste de travail qui peut être transformé en lit si nécessaire Créé et rendu dans Blender, le logiciel gratuit d&amp;rsquo;animation 3D.</description>
+    </item>
+    
+    <item>
+      <title>Contacter</title>
+      <link>/fr/about/</link>
+      <pubDate>Thu, 26 Nov 2020 21:51:14 -0600</pubDate>
+      
+      <guid>/fr/about/</guid>
+      <description>SujetMessageEvoyerMerci! Envoyé à votre programme courriel.
+let div_container = document.querySelector(&#39;div.contact-content&#39;)let fld_subject = document.querySelector(&#39;#subjectField&#39;)let txt_message = document.querySelector(&#39;#messageField&#39;)let btn_send = document.querySelector(&#39;#sendEmail&#39;)let div_confirmation = document.querySelector(&#39;div.circle__box&#39;)function sendEmail() {let mail = document.createElement(&#34;a&#34;)mail.href = &#39;mailto:denis.g.labrecque@gmail.com?subject=&#39; + encodeURIComponent(fld_subject.value) + &#39;&amp;body=&#39; + encodeURIComponent(txt_message.value)mail.click();div_confirmation.classList.remove(&#39;hidden&#39;)div_container.style.display = &#39;none&#39;}</description>
     </item>
     
   </channel>
