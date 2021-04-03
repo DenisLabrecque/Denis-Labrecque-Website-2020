@@ -1,20 +1,22 @@
 <head>
   <meta charset="utf-8">
   <link rel="icon" href="/icon-red.png" />
-  <title>
-    {{ if eq (string .Page.Params.Title) "" }}
-      Denis Labrecque
-    {{ else if eq (string .Page.Params.Subtitle) "" }}
-      {{ .Page.Params.Title }}
-    {{ else }}
-      {{ .Page.Params.Title }}: {{ .Page.Params.Subtitle }}
-    {{ end }}
-  </title>
+  {{ $title := "" }}
+  {{ if eq (string .Page.Params.Title) "" }}
+    {{ $title = "Denis Labrecque"}}
+  {{ else if eq (string .Page.Params.Subtitle) "" }}
+    {{ $title = .Page.Params.Title }}
+  {{ else }}
+    {{ $title = printf "%s: %s" .Page.Params.Title .Page.Params.Subtitle }}
+  {{ end }}
+  <title>{{ $title }}</title>
+  <meta property="og:title" content="{{ $title }}" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="content-language" content="{{ site.Language.Lang }}-ca" />
   <meta name="description" content="{{ .Page.Params.headline }}" />
   <meta name="image" content="/{{ .Page.Params.image }}" />
+  <meta property="og:image" content="/{{ .Page.Params.image }}"/>
 
   {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $sass.Permalink }}" />

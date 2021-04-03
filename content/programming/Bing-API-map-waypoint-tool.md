@@ -1,6 +1,6 @@
 ---
 title: "Waypoint Tool"
-subtitle: "Draw a path and export the waypoint coordinates to a JSON file."
+subtitle: "Draw a path and export the waypoint coordinates to a JSON file"
 headline: "Path tool using the Bing Maps API to get coordinates and create a set of waypoints."
 image: "Waypoint_Tool_vehicle.gif"
 date: 2021-03-31T00:00:00-00:00

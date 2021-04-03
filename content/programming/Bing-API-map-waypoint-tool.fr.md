@@ -1,6 +1,6 @@
 ---
 title: "Outil de balisage"
-subtitle: "Dessinez un sentier et exportez ses coordonnées vers un fichier JSON."
+subtitle: "Dessinez un sentier et exportez ses coordonnées vers un fichier JSON"
 headline: "Outil de balisage utilisant l'API Bing Maps pour obtenir des coordonnées et créér des sentiers."
 image: "Waypoint_Tool_vehicle.gif"
 date: 2021-03-31T00:00:00-00:00
