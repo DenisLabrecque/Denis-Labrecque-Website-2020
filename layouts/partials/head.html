@@ -20,6 +20,15 @@
 
   {{ $sass := resources.Get "sass/dgl.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $sass.Permalink }}" />
+
+  <!-- Clarity tracking code for http://denislabrecque.ca/ -->
+  <script>
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "63pa01tjtd");
+  </script>
 </head>
 {{ $js := resources.Get "js/anim.js" }}
 <script src="{{ $js.Permalink }}" defer></script>
